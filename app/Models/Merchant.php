@@ -12,7 +12,14 @@ class Merchant extends Model
     protected $table = 'merchant';
 
     protected $fillable = [
-        'id','email','password','first_name','last_name','contact_number','name_of_business','about'
-        
+        'id',
+        'email',
+        'password',
+        'first_name',
+        'last_name',
+        'contact_number',
+        'name_of_business',
+        'about'
+
     ];
 }
