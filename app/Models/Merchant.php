@@ -19,7 +19,7 @@ class Merchant extends Model
         'last_name',
         'contact_number',
         'name_of_business',
-        'about'
+        'about',
 
     ];
 }
