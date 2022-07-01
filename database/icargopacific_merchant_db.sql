@@ -1,0 +1,215 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 01, 2022 at 07:43 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `icargopacific_merchant_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `order_number` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `sender_location` varchar(255) NOT NULL,
+  `recipient_location` varchar(255) NOT NULL,
+  `length` float NOT NULL,
+  `width` float NOT NULL,
+  `height` float NOT NULL,
+  `weight` float NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `remarks` text NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `mode_of_payment` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cargo`
+--
+
+CREATE TABLE `cargo` (
+  `id` int(11) NOT NULL,
+  `cargo_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `driver`
+--
+
+CREATE TABLE `driver` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `merchant`
+--
+
+CREATE TABLE `merchant` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `contact_number` varchar(255) NOT NULL,
+  `name_of_business` varchar(255) NOT NULL,
+  `about` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle`
+--
+
+CREATE TABLE `vehicle` (
+  `id` int(11) NOT NULL,
+  `vehicle_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+INSERT INTO `vehicle` (`id`, `vehicle_type`) VALUES
+(1, 'Truck'),
+(2, 'Minivan'),
+(3, 'Bulk Transportation'),
+(4, 'Tanker'),
+(5, 'Container');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verify_merchant`
+--
+
+CREATE TABLE `verify_merchant` (
+  `id` int(11) NOT NULL,
+  `proof_of_identification` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `verify_merchant`
+--
+
+INSERT INTO `verify_merchant` (`id`, `proof_of_identification`) VALUES
+(1, 'Philippine Passport'),
+(2, 'Social Security System (SSS) Card'),
+(3, 'Unified Multi-Purpose Identification (UMID) Card'),
+(4, 'Driver\'s License'),
+(5, 'PhilHealth ID'),
+(6, 'Professional Regulatory Commission (PRC) ID'),
+(7, 'Philippine Postal ID'),
+(8, 'Taxpayer Identification Number');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`order_number`);
+
+--
+-- Indexes for table `cargo`
+--
+ALTER TABLE `cargo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `driver`
+--
+ALTER TABLE `driver`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `merchant`
+--
+ALTER TABLE `merchant`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicle`
+--
+ALTER TABLE `vehicle`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `verify_merchant`
+--
+ALTER TABLE `verify_merchant`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `order_number` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cargo`
+--
+ALTER TABLE `cargo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `driver`
+--
+ALTER TABLE `driver`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `merchant`
+--
+ALTER TABLE `merchant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vehicle`
+--
+ALTER TABLE `vehicle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `verify_merchant`
+--
+ALTER TABLE `verify_merchant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
