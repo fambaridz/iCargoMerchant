@@ -12,7 +12,6 @@ class Booking extends Model
     protected $table = 'booking';
 
     protected $fillable = [
-        'order_name',
         'email',
         'sender_location',
         'recipient_location',
@@ -25,4 +24,8 @@ class Booking extends Model
         'price',
         'mode_of_payment',
     ];
+
+
+    protected $primaryKey = 'order_number';
+
 }

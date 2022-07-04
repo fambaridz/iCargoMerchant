@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingController;
 
-use App\Http\Controllers\BillingController;
 
 
 /*
@@ -21,8 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-Route::get('/billing', [BillingController::class, 'index']);
-
-Route::get('/orders', [BillingController::class,'getBilling']);
+Route::post('/booking', [BookingController::class, 'insertBooking']);
