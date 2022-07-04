@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\SignUp;
+use App\Http\Controllers\UserController;
+
+
+
 
 
 
@@ -18,10 +22,15 @@ use App\Http\Controllers\SignUp;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function(Request $request) {
     return $request->user();
 });
 
 Route::post('/booking', [BookingController::class, 'insertBooking']);
 
 Route::post('/merchant', [SignUp::class,'create']);
+
+Route::post('/merchant1', [UserController::class,'logIn']);
+
+
+
