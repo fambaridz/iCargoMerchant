@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Cargo;
+use App\Models\Vehicle;
 
 //IMPORT DB IF YOU USE DB FOR QUERYING
 use Illuminate\Support\Facades\DB;
@@ -67,4 +69,18 @@ class BookingController extends Controller
             ], 500);
         } 
     }
+    
+    public function display(){
+
+        $cargo = DB::table('cargo')->get();
+        $vehicle = DB::table('vehicle')->get();
+
+        return response()->json
+            ([
+                'CargoType'=>$cargo,
+                'Vehicles'=>$vehicle,
+                ]
+                ,200);
+    }
+
 }

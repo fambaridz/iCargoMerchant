@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\IndentificationController;
+use App\Http\Controllers\IdentificationController;
 
 
 
@@ -30,6 +30,8 @@ Route::post('/booking', [BookingController::class, 'insertBooking']);
 Route::post('/merchantsignup', [IdentificationController::class,'create']);
 
 Route::post('/merchantlogin', [IdentificationController::class,'logIn']);
+
+Route::get('/displaydata', [BookingController::class, 'display']);
 
 
 
