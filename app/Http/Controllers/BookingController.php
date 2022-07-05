@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
-<<<<<<< HEAD
 use App\Models\Cargo;
 use App\Models\Vehicle;
-=======
 use Illuminate\Support\Facades\Validator;
->>>>>>> 5cea6d3a98654640ec7bd72b85c96827fcc67093
 
 //IMPORT DB IF YOU USE DB FOR QUERYING
 use Illuminate\Support\Facades\DB;
@@ -25,10 +22,12 @@ class BookingController extends Controller
             'email' => 'required|email',
             'sender_location' => 'required',
             'recipient_location' => 'required',
+            'vehicle' => 'required',
             'length' => 'required',
             'width' => 'required',
             'height' => 'required',
             'weight' => 'required',
+            'cargo_type' => 'required',
             'time' => 'required',
             'remarks' => 'required',
             'price' => 'required',
@@ -47,10 +46,12 @@ class BookingController extends Controller
                 'email' => $request->email,
                 'sender_location' => $request->sender_location,
                 'recipient_location' => $request->recipient_location,
+                'vehicle' => $request->vehicle,
                 'length' => $request->length,
                 'width' => $request->width,
                 'height' => $request->height,
                 'weight' => $request->weight,
+                'cargo_type' => $request->cargo_type,
                 'time' => $request->time,
                 'remarks' => $request->remarks,
                 'price' => $request->price,
