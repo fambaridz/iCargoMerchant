@@ -3,8 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\SignUp;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\IndentificationController;
 
 
 
@@ -28,9 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function(Request $request) {
 
 Route::post('/booking', [BookingController::class, 'insertBooking']);
 
-Route::post('/merchant', [SignUp::class,'create']);
+Route::post('/merchantsignup', [IdentificationController::class,'create']);
 
-Route::post('/merchant1', [UserController::class,'logIn']);
+Route::post('/merchantlogin', [IdentificationController::class,'logIn']);
 
 
 

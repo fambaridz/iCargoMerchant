@@ -14,6 +14,7 @@ class BookingController extends Controller
 
     public function insertBooking(Request $request){
 
+        //This is the code for validation of every request
         $validated =\Validator::make($request->all(), [
             'email' => 'required|email',
             'sender_location' => 'required',
@@ -26,14 +27,14 @@ class BookingController extends Controller
             'remarks' => 'required',
             'price' => 'required',
             'mode_of_payment' => 'required',
-        ]); //This is the code for validation of every request
+        ]);
 
-
-        if ($validated->fails()) { //if validation fails this will return the error response
+        //if validation fails this will return the error response
+        if ($validated->fails()) { 
             $responseArr['message'] = $validated->errors();
         return response()->json($responseArr);
-
         }
+
         //if correct, it will insert in the table of booking
          $bookingTable = DB::table('booking')->insert(
             [
@@ -50,7 +51,8 @@ class BookingController extends Controller
                 'price' => $request->price,
                 'mode_of_payment' => $request->mode_of_payment, //change this to finalgrade
         ]);
-        //it will return status 200 if it was inserted in the DB  and 500 if inserting doesnt success
+
+        //it will return status 200 if it was inserted in the DB and 500 if inserting is not successful
         if ($bookingTable) {
             return response()->json
             ([
@@ -65,6 +67,4 @@ class BookingController extends Controller
             ], 500);
         } 
     }
-
-
 }
