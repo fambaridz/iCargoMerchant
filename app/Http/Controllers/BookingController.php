@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Validator;
 
 //IMPORT DB IF YOU USE DB FOR QUERYING
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class BookingController extends Controller
 
     public function insertBooking(Request $request){
 
-        $validated =\Validator::make($request->all(), [
+        $validated =Validator::make($request->all(), [
             'email' => 'required|email',
             'sender_location' => 'required',
             'recipient_location' => 'required',
@@ -27,7 +28,6 @@ class BookingController extends Controller
             'price' => 'required',
             'mode_of_payment' => 'required',
         ]); //This is the code for validation of every request
-
 
         if ($validated->fails()) { //if validation fails this will return the error response
             $responseArr['message'] = $validated->errors();
