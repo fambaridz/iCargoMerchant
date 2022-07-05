@@ -33,5 +33,7 @@ Route::post('/merchantlogin', [IdentificationController::class,'logIn']);
 
 Route::get('/displaydata', [BookingController::class, 'display']);
 
+Route::get('/verify', [IdentificationController::class, 'verifymerchant']);
+
 
 

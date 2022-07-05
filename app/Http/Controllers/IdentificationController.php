@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Merchant;
 use App\Models\User;
+use App\Models\Verify_merchant;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -110,10 +111,20 @@ class IdentificationController extends Controller
             ], 201);
       
     } 
-
-
     
+    //Verify Merchant : Proof of Identification
+    function verifymerchant()
+     {
+        $verify_merchant = DB::table('verify_merchant')->get();
+        
+        return response()->json
+            ([
+                'proof_of_identification'=>$verify_merchant,
+                
+                ]
+                ,200);
 
+     }
 
- 
+     
 }
