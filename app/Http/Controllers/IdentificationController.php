@@ -126,9 +126,9 @@ class IdentificationController extends Controller
 
      }
 
-     function logout(Request $request){
+     function logout(Request $request){                        // logut / delete token
         $request ->user()->currentAccessToken()->delete();
-        return response()->json([
+        return response()->json([                              // postman->headers-> key: Authorizaion || value: Bearer[space][token]
             'status_code' => 200,
             'message' => 'Token deleted successfuly.'
         ]);
