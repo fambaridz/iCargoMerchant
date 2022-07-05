@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2022 at 07:43 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jul 04, 2022 at 12:04 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,8 @@ CREATE TABLE `booking` (
   `height` float NOT NULL,
   `weight` float NOT NULL,
   `time` varchar(255) NOT NULL,
+  `distance` int(11) NOT NULL,
+  `inclusions` varchar(255) NOT NULL,
   `remarks` text NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `mode_of_payment` varchar(255) NOT NULL
@@ -52,6 +54,17 @@ CREATE TABLE `cargo` (
   `id` int(11) NOT NULL,
   `cargo_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cargo`
+--
+
+INSERT INTO `cargo` (`id`, `cargo_type`) VALUES
+(1, 'Box'),
+(2, 'Pallet'),
+(3, 'Roll'),
+(4, 'Crate'),
+(5, 'Bag');
 
 -- --------------------------------------------------------
 
@@ -102,7 +115,8 @@ INSERT INTO `vehicle` (`id`, `vehicle_type`) VALUES
 (2, 'Minivan'),
 (3, 'Bulk Transportation'),
 (4, 'Tanker'),
-(5, 'Container');
+(5, 'Container'),
+(6, 'Closed Van');
 
 -- --------------------------------------------------------
 
@@ -183,7 +197,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `driver`
@@ -201,7 +215,7 @@ ALTER TABLE `merchant`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `verify_merchant`

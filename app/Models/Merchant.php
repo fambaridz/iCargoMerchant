@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Merchant extends Model
+class Merchant  extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'merchant';
 
     protected $fillable = [
-        'id',
+     
         'email',
         'password',
         'first_name',
@@ -22,4 +25,16 @@ class Merchant extends Model
         'about',
 
     ];
+
+    public $timestamps = false;
+
+    protected $primaryKey = 'id';
+
+
+    protected $hidden = [
+        'password',
+    ];
+
+  
+
 }
