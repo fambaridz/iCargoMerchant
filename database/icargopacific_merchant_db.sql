@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2022 at 12:04 PM
+-- Generation Time: Jul 05, 2022 at 05:24 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -32,10 +32,12 @@ CREATE TABLE `booking` (
   `email` varchar(255) NOT NULL,
   `sender_location` varchar(255) NOT NULL,
   `recipient_location` varchar(255) NOT NULL,
+  `vehicle` varchar(255) NOT NULL,
   `length` float NOT NULL,
   `width` float NOT NULL,
   `height` float NOT NULL,
   `weight` float NOT NULL,
+  `cargo_type` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL,
   `distance` int(11) NOT NULL,
   `inclusions` varchar(255) NOT NULL,
@@ -92,7 +94,7 @@ CREATE TABLE `merchant` (
   `last_name` varchar(255) NOT NULL,
   `contact_number` varchar(255) NOT NULL,
   `name_of_business` varchar(255) NOT NULL,
-  `about` text NOT NULL
+  `about` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
