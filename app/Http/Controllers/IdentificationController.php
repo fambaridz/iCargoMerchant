@@ -80,7 +80,7 @@ class IdentificationController extends Controller
         }
     }
 
-   function logIn(Request $request)
+    function logIn(Request $request)
     {
 
         $validated = Validator::make($request->all(), [
@@ -124,6 +124,14 @@ class IdentificationController extends Controller
                 ]
                 ,200);
 
+     }
+
+     function logout(Request $request){
+        $request ->user()->currentAccessToken()->delete();
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Token deleted successfuly.'
+        ]);
      }
 
      
