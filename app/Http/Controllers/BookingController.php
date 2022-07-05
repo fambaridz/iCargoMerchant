@@ -18,6 +18,7 @@ class BookingController extends Controller
     public function insertBooking(Request $request)
     {
 
+        //This is the code for validation of every request
         $validated = Validator::make($request->all(), [
             'email' => 'required|email',
             'sender_location' => 'required',
@@ -32,9 +33,10 @@ class BookingController extends Controller
             'remarks' => 'required',
             'price' => 'required',
             'mode_of_payment' => 'required',
-        ]); //This is the code for validation of every request
+        ]);
 
-        if ($validated->fails()) { //if validation fails this will return the error response
+        //if validation fails this will return the error response
+        if ($validated->fails()) { 
             $responseArr['message'] = $validated->errors();
             return response()->json($responseArr);
         }
@@ -76,11 +78,13 @@ class BookingController extends Controller
         }
     }
     
+    //function to display contents of cargo and vehicle table
     public function display(){
 
         $cargo = DB::table('cargo')->get();
         $vehicle = DB::table('vehicle')->get();
 
+        //will return status 200 containing the contents of the database
         return response()->json
             ([
                 'CargoType'=>$cargo,
@@ -88,5 +92,4 @@ class BookingController extends Controller
                 ]
                 ,200);
     }
-
 }
