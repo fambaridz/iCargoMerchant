@@ -31,12 +31,12 @@ Route::post('/merchantsignup', [IdentificationController::class,'create']);
 
 Route::post('/merchantlogin', [IdentificationController::class,'logIn']);
 
-Route::get('/displaydata', [BookingController::class, 'display']);
+Route::get('/cargovehiclelist', [BookingController::class, 'displayCargoVehicle']);
 
 Route::get('/getbooking/{id}', [BookingController::class, 'displayBooking']);
 
 
-Route::get('/verify', [IdentificationController::class, 'verifymerchant']);
+Route::get('/verification', [IdentificationController::class, 'verifymerchant']);
 
 
 Route::group(['middleware' =>['auth:sanctum']],function(){
