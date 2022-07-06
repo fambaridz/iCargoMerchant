@@ -83,7 +83,7 @@ class BookingController extends Controller
     }
     
     //function to display contents of cargo and vehicle table
-    public function display(){
+    public function displayCargoVehicle(){
 
         $cargo = DB::table('cargo')->get();
         $vehicle = DB::table('vehicle')->get();
