@@ -61,7 +61,7 @@ class BookingController extends Controller
                 'inclusions' => $request->inclusions,
                 'remarks' => $request->remarks,
                 'price' => $request->price,
-                'mode_of_payment' => $request->mode_of_payment, //change this to finalgrade
+                'mode_of_payment' => $request->mode_of_payment,
             ]
         );
 
