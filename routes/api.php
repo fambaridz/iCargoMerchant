@@ -38,7 +38,7 @@ Route::get('/verify', [IdentificationController::class, 'verifymerchant']);
 
 Route::group(['middleware' =>['auth:sanctum']],function(){
 
-    Route::get('/merchantlogout', [IdentificationController::class,'logout']);
+    Route::post('/merchantlogout', [IdentificationController::class,'logout']);
 
 });
 
