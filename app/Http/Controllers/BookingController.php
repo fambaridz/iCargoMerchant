@@ -56,9 +56,9 @@ class BookingController extends Controller
             'height' => 'required',
             'weight' => 'required',
             'cargo_type' => 'required',
+            'time' => 'required',
             'distance' => 'required',
             'inclusions' => 'required',
-            'time' => 'required',
             'remarks' => 'required',
             'price' => 'required',
             'mode_of_payment' => 'required',
@@ -88,7 +88,7 @@ class BookingController extends Controller
                 'inclusions' => $request->inclusions,
                 'remarks' => $request->remarks,
                 'price' => $request->price,
-                'mode_of_payment' => $request->mode_of_payment, //change this to finalgrade
+                'mode_of_payment' => $request->mode_of_payment,
             ]
         );
 
