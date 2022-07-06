@@ -47,7 +47,6 @@ class IdentificationController extends Controller
             //if correct, it will insert in the table of merchant
             $merchantTable = DB::table('merchant')->insert(
                 [
-
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'email' => $request->email,
@@ -95,9 +94,8 @@ class IdentificationController extends Controller
             return response()->json($responseArr);
         }
 
-        $user = Merchant::where('email', $request->email)->first();
-        //requesting first the email                  
-
+        //requesting first the email 
+        $user = Merchant::where('email', $request->email)->first();                 
       
        if (!$user || !Hash::check($request->password, $user->password)) {
         return response('Login invalid', 503);
@@ -107,7 +105,7 @@ class IdentificationController extends Controller
 
             return response([
                 'token' => [$token],
-                'message' => ['Log In Successs.']                                    //success log in message
+                'message' => ['Log In Successs.']                              //success log in message
             ], 201);
       
     } 
@@ -126,9 +124,10 @@ class IdentificationController extends Controller
 
      }
 
-     function logout(Request $request){                        // logut / delete token
+     //function to logut / delete token
+     function logout(Request $request){                        
         $request ->user()->currentAccessToken()->delete();
-        return response()->json([                              // postman->headers-> key: Authorizaion || value: Bearer[space][token]
+        return response()->json([                                              // postman->headers-> key: Authorizaion || value: Bearer[space][token]
             'status_code' => 200,
             'message' => 'Token deleted successfuly.'
         ]);
