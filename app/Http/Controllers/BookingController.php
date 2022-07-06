@@ -15,6 +15,33 @@ class BookingController extends Controller
 {
     //
 
+    public function displayBooking(Request $request, $email){
+        //get booking condition to same of email
+        $bookingGet = DB::table('booking')->where('email',$email)->get();
+                                 //OR
+
+        //get booking condition to same order number
+       // $bookingGet = DB::table('booking')->where('order_number',$order_number)->get();
+
+//if booking get        
+        if ($bookingGet) {
+            return response()->json(
+                [
+                    'success' => $bookingGet,
+                    'message' => 'successfully get',
+                ],
+                200
+            );
+        } else {
+            //if query failed
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to get',
+            ], 500);
+        }
+
+    }
+
     public function insertBooking(Request $request)
     {
 
