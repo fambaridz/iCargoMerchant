@@ -27,9 +27,9 @@ class IdentificationController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'contact_number' => 'required',
+            'contact_number' => 'required|digits:11',
             'name_of_business' => 'required',
-            'password' => 'required|confirmed|min:8|',
+            'password' => 'required|confirmed|min:8',
 
         ]);
 
