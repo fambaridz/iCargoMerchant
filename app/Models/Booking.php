@@ -20,6 +20,8 @@ class Booking extends Model
         'height',
         'weight',
         'time',
+        'distance',
+        'inclusions',
         'remarks',
         'price',
         'mode_of_payment',
