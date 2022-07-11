@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2022 at 02:12 AM
+-- Generation Time: Jul 11, 2022 at 02:18 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -45,7 +45,8 @@ CREATE TABLE `booking` (
   `inclusions` varchar(255) NOT NULL,
   `remarks` text NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `mode_of_payment` varchar(255) NOT NULL
+  `mode_of_payment` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
