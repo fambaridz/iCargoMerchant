@@ -38,7 +38,7 @@ const routes = [
   {
     name:'verify',
     path: '/verify',
-    component: () => import(/* webpackChunkName: "register" */ '../components/Login/AccountVerify.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../components/Login/verifyMerchant.vue')
   },
   {
     name:'price',
