@@ -70,4 +70,46 @@ class CustomerController extends Controller
             ], 404);
         }
     }
+
+    //Customer Login Function
+    function logIn(Request $request)                                
+    {
+
+        $validated = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+            'device_name' => 'required',
+        ]);
+
+        //if validation fails this will return the error response
+        if ($validated->fails()) {
+            $responseArr['message'] = $validated->errors();
+            return response()->json($responseArr);
+        }
+
+        //requesting first the email 
+        $user = Customer::where('email', $request->email)->first();                 
+      
+       if (!$user || !Hash::check($request->password, $user->password)) {
+        return response('Login invalid', 503);
+     }
+
+        $token = $user->createToken($request->device_name)->plainTextToken;
+
+            return response([
+                'token' => [$token],
+                'message' => ['Log In Successs.']                              //success log in message
+            ], 201);
+      
+    }
+
+     //function to logut / delete token
+     function logout(Request $request){                        
+        $request ->user()->currentAccessToken()->delete();
+        return response()->json([                                              // postman->headers-> key: Authorizaion || value: Bearer[space][token]
+            'status_code' => 200,
+            'message' => 'Token deleted successfuly.'
+        ]);
+     }
+
 }
