@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IdentificationController;
 
 
@@ -46,3 +47,5 @@ Route::group(['middleware' =>['auth:sanctum']],function(){
 });
 
 Route::put('/merchantupdate/{id}', [IdentificationController::class, 'update']);
+
+Route::post('/customersignup', [CustomerController::class,'signup']);
