@@ -22,7 +22,9 @@ class BookingController extends Controller
         $validated = Validator::make($request->all(), [
             'email' => 'required|email',
             'sender_location' => 'required',
+            'sender_contact' => 'required|digits:11',
             'recipient_location' => 'required',
+            'recipient_contact' => 'required|digits:11',
             'vehicle' => 'required',
             'length' => 'required|numeric',
             'width' => 'required|numeric',
@@ -49,7 +51,9 @@ class BookingController extends Controller
 
                 'email' => $request->email,
                 'sender_location' => $request->sender_location,
+                'sender_contact' => $request->sender_contact,
                 'recipient_location' => $request->recipient_location,
+                'recipient_contact' => $request->recipient_contact,
                 'vehicle' => $request->vehicle,
                 'length' => $request->length,
                 'width' => $request->width,
