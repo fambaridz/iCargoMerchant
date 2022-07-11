@@ -14,7 +14,9 @@ class Booking extends Model
     protected $fillable = [
         'email',
         'sender_location',
+        'sender_contact',
         'recipient_location',
+        'recipient_contact',
         'length',
         'width',
         'height',
@@ -25,6 +27,7 @@ class Booking extends Model
         'remarks',
         'price',
         'mode_of_payment',
+        'status',
     ];
 
 
