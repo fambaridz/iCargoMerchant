@@ -1,17 +1,5 @@
 <template>
   <div>
-    <div>
-
-      <nav class="navbar navbar-expand-lg navbar-light menu">
-        <div class="container-fluid OrderNumber">
-
-          <h3 style="margin-left:30ch;">Order #133443383590</h3>
-          <button variant="light"><span class="fa fa-circle-info circle-info"></span></button>
-        
-        </div>
-      </nav>
-
-    </div>
     <br>
     <GmapMap :center='center' :zoom='12' style='width:100%;  height: 200px;'>
       <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center = m.position" />
