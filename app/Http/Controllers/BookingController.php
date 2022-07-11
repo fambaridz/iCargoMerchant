@@ -37,6 +37,7 @@ class BookingController extends Controller
             'remarks' => 'required',
             'price' => 'required|numeric',
             'mode_of_payment' => 'required',
+            'status' =>'required',
         ]);
 
         //if validation fails this will return the error response
@@ -66,6 +67,8 @@ class BookingController extends Controller
                 'remarks' => $request->remarks,
                 'price' => $request->price,
                 'mode_of_payment' => $request->mode_of_payment,
+                'status' => $request->status,
+
             ]
         );
 
