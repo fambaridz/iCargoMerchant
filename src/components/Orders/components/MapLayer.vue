@@ -1,79 +1,72 @@
 <template>
   <div>
-    <br>
-    <GmapMap :center='center' :zoom='12' style='width:100%;  height: 270px;'>
-      <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center = m.position" />
-    </GmapMap>
-
+    <div class="GMAP">
+      <br>
+      <GmapMap :center='center' :zoom='12' style='width:100%;  height: 200px;'>
+        <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center = m.position" />
+      </GmapMap>
+    </div>
     <!---CONTENT-->
-    <b-container class="Map Layer">
-      <b-row>
-        <div class="container-fluid Details">
-          <div class="row">
-            <div class="col-5 text-left" style="color: white; height: 0px;">
-              <span style="color:white ; font-weight:bold; margin-left: 40ch;">Sender:</span>
-            </div>
-            <div class="col-6 text-left">
-              <span style="color:white; margin-left: 0ch;">Emelio Marasigan W. Araullones</span>
-            </div>
+    <div class="MapLayer">
+      <div class="container-fluid Details">
 
-            <div class="row">
-              <div class="col-5 text-left" style="color: white; height: 0px;">
-                <span style="color:white ; font-weight:bold; margin-left: 40ch;">Recipient:</span>
-              </div>
-              <div class="col-6 text-left">
-                <span style="color:white; margin-left: 0ch;">Loida Anne Alicia Deline Q. Esteban</span> <br> <br>
-                <i class="fa-solid fa-box box" style="color:#e7ba09; margin-left:-26ch;"></i>
-                <span style="color:white; margin-left: -16ch;"> Port Batangas, Batangas Port Access Road, Calatagan,
-                  Batangas
-                </span>
-                <br><br>
-              </div>
-
-
-
-              <div class="row">
-                <div class="col-6 text-left">
-                  <div class="container-fluid vertical-line" style="margin-left: 35ch;"></div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="container-fluid Driver-Details">
-                  <h6>Your Driver</h6>
-                  <i class="fa-regular fa-circle-user user-icon" style="color: #0D7CFF; margin-left: 2ch;"></i>
-
-                  <span id="driver-name" style="margin-left:13ch; font-weight: bold;">Bartholomew D. Sales</span>
-                  <i class="fa-solid fa-square-phone phone-icon" style="color:#e7ba09; margin-left: 4ch"></i>
-                  <br>
-                  <span id="logistic-company" style="margin-left:13ch;">&nbsp;&nbsp;&nbsp;AllGoods Logistic Co.</span>
-                  <br>
-                </div>
-
-                <div class="row">
-                  <!--div class="col-6 text-left">
-                 <br>
-                <i class="fa-solid fa-box boxa" style="color:white; margin-left:34ch;"></i>
-                <span style="color:white; margin-left:44ch;"> Port Batangas, Batangas Port Access Road </span>
-              </div-->
-
-                  <div class="col-6 text-left">
-                    <br>
-                    <i class="fa-solid fa-box boxa" style="color:white; margin-left:34ch;"></i>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 text-left">
-                      <span style="color:white;margin-left: 44ch;">Port Batangas, Batangas Port Access Road, Calatagan,
-                        Batangas</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!--SENDER-->
+        <div class="container-fluid Sender">
+          <br>
+          <div row>
+            <span class="sender">Sender:</span>
+            <span class="name">Emelio Marasigan W. Araullones</span>
           </div>
         </div>
-      </b-row>
-    </b-container>
+
+
+        <!--RECIPIENT-->
+        <div class="container-fluid Recipient">
+          <div row>
+            <span class="recipient">Recipient:</span>
+            <span class="name">Loida Anne Alicia Deline Q. Esteban</span>
+            <br> <br>
+          </div>
+        </div>
+
+        <!--PICK-UP ADDRESS-->
+        <div class="container-fluid PUAdd">
+          <div row>
+            <i class="fa-solid fa-box box"></i>
+            <span class="address"> Port Batangas, Batangas Port Access Road, Calatagan, Batangas </span>
+            <br><br>
+          </div>
+        </div>
+
+
+        <!--VERTICAL LINE-->
+        <div class="container-fluid VLine">
+          <div class="container-fluid vertical-line"></div>
+        </div>
+
+
+        <!--DRIVER DETAILS-->
+        <div class="container-fluid Driver-Details">
+          <h6 class="h6">Your Driver</h6>
+          <i class="fa-regular fa-circle-user user-icon"></i>
+          <span id="driver-name">Bartholomew D. Sales</span>
+          <i class="fa-solid fa-square-phone phone-icon"></i>
+          <br>
+          <span id="logistic-company">&nbsp;&nbsp;&nbsp;AllGoods Logistic Co.</span>
+          <br>
+        </div>
+
+        <!--DROP-OFF ADDRESS-->
+        <div class="DOAdd">
+          <div row>
+            <br>
+            <i class="fa-solid fa-box boxa"></i>
+            <span class="address2 justified">Port Batangas, Batangas Port Access Road, Calatagan, Batangas</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
@@ -88,101 +81,95 @@ export default {
       places: [],
     }
   },
-  mounted() {
-    this.geolocate();
-  },
-  methods: {
-    setPlace(place) {
-      this.currentPlace = place;
-    },
-    addMarker() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng(),
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
-        this.center = marker;
-        this.currentPlace = null;
-      }
-    },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-      });
-    },
-  },
 };
 
 </script>
 
 <style scoped>
-.OrderNumber {
-  background-color: white;
-  color: black;
-  float: center;
-}
-
-.circle-info {
-  color: #e7ba09;
-  width: 2rem;
-  height: 2rem;
-}
-
-.angle-left {
-  color: gray;
-  width: 2.1rem;
-  height: 2.1rem;
-}
-
 .Details {
   background-color: #003060;
-  padding: 1rem;
   color: white;
-  padding-left: 3rem;
+  width: 100%;
+  height: 160em;
 }
 
 .Driver-Details {
   background-color: white;
-  padding: 1rem;
-  width: 33%;
+  width: 25em;
+  height: 5.7em;
   color: black;
-  padding-left: 3 rem;
   border-radius: 20px;
   background-color: white;
-  outline: none;
-  transition: .3s;
-  float: left;
-  align-items: center;
+  margin-left: 53ch;
 
+}
+
+#driver-name {
+  margin-left: 12ch;
+  font-weight: bold;
+}
+
+#logistic-company {
+  margin-left: 12ch;
 }
 
 .user-icon {
   position: absolute;
   width: 3rem;
   height: 3rem;
+  color: #0D7CFF;
+  margin-left: 2ch;
 }
 
 .phone-icon {
   position: absolute;
   width: 2.875rem;
   height: 2.875rem;
+  color: #e7ba09;
+  margin-left: 4ch
+}
+
+.Sender {
+  margin-left: 50ch;
+}
+
+.sender {
+  color: white;
+  font-weight: bold;
+}
+
+.name {
+  color: white;
+  margin-left: 2ch;
+}
+
+.Recipient {
+  margin-left: 50ch;
+}
+
+.recipient {
+  color: white;
+  font-weight: bold;
 }
 
 .box {
   position: absolute;
-  width: 1.875rem;
-  height: 1.875rem;
+  color: #fbcd10;
+  margin-left: 1ch;
+  width: 2rem;
+  height: 2rem;
 }
 
 .boxa {
   position: absolute;
-  width: 1.875rem;
-  height: 1.875rem;
+  color: white;
+  margin-left: 3ch;
+  width: 2rem;
+  height: 2rem;
+}
+
+.VLine {
+  margin-left: 32ch;
 }
 
 .vertical-line {
@@ -190,6 +177,97 @@ export default {
   background-color: white;
   padding: .000001rem;
   width: .400%;
-  height: 7rem;
+  height: 6rem;
+  margin-left: 10ch;
+}
+
+.PUAdd {
+  margin-left: 40ch;
+}
+
+.DOAdd {
+  margin-left: 40ch;
+}
+
+.address {
+  color: white;
+  margin-left: 10ch;
+}
+
+.address2 {
+  color: white;
+  margin-left: 12ch;
+}
+
+@media (max-width:700px) {
+  .Details {
+    width: 25rem;
+    height: 40rem;
+  }
+
+  .Driver-Details {
+    width: 20rem;
+    margin-left: 2ch;
+  }
+
+  .h6 {
+    margin-left: 10ch;
+  }
+  
+  #driver-name{
+    margin-left:6ch;
+  }
+
+  #logistic-company {
+    margin-left: 5ch;
+  }
+
+  .user-icon {
+    margin-left: -1ch;
+  }
+
+  .phone-icon {
+    margin-left: 2ch;
+  }
+
+  .Sender {
+    width: 25rem;
+    margin-left: -3ch;
+  }
+
+  .Recipient {
+    width: 25rem;
+    margin-left: -3ch;
+  }
+
+  .PUAdd {
+    width: 25rem;
+    margin-left: -3ch;
+  }
+
+  .DOAdd {
+    width: 25rem;
+    margin-left: -1ch;
+  }
+
+  .address {
+    margin-left: 4.9ch;
+  }
+
+  .address2 {
+    margin-left: 6.8ch;
+  }
+
+  .box {
+    margin-left: -2.2ch;
+  }
+
+  .boxa {
+    margin-left: -1.5ch;
+  }
+
+  .VLine {
+    margin-left: -13.9ch;
+  }
 }
 </style>

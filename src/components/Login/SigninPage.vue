@@ -16,7 +16,7 @@
         <br>
         <div class="text-center">
             <a to=" " id ="buttons" class="btn btn-light btn-lg shadow text-muted">ㅤBackㅤ</a>
-            <button type="submit"  id="buttons" class="btn btn-warning btn-lg shadow text-light">ㅤSIGN IN SIGN INㅤ</button>
+            <button type="submit"  id="buttons" class="btn btn-warning btn-lg shadow text-light">ㅤSIGN INㅤ</button>
         </div>
         <h5 class="p-4 text-dark">Don’t have an account yet?<a class="font-weight-normal text" href="/signup"> Sign up
             now.</a></h5>
