@@ -3,10 +3,10 @@
         <!-- modal username -->
         <b-modal id="modal-custom-name" ref="modal" title="Update Company Name" button-size="md" body-class="p-4" centered hide-header-close
             no-close-on-backdrop header-class="justify-content-center">
-            <form ref="form" @submit.stop.prevent="handleSubmit">
+            <form ref="form" @submit.prevent="submitForm">
                 <div class="container-fluid custom-input" style="width:80%">
                     <b-form-group label-for="name-input">
-                        <label for="comp-name">Company Name <span style="color:red;"
+                        <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
                         <b-form-input id="comp-name" v-model="form.companyname"
                             style="border-radius: 25px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
@@ -19,9 +19,11 @@
                     <b-button size="md" @click="$bvModal.hide('modal-custom-name')" style="width:100px; border-radius:15px; background-color: white; color:#BC9476; box-shadow: 0px 1px 1px 1px #ced6e0; border:none;">
                         Back
                     </b-button>
-                    <b-button size="md" :disabled="!formisvalid" @click="$bvModal.hide('modal-custom-name')" style="width:100px; border-radius:10px; background-color: #FFC000; color:white; border:none; box-shadow: 0px 1px 1px 1px #ced6e0; ">
+                    <b-button size="md" :disabled="!formisvalid" @click="submitForm" style="width:100px; border-radius:10px; background-color: #FFC000; color:white; border:none; box-shadow: 0px 1px 1px 1px #ced6e0; ">
                         Update
                     </b-button>
+
+                    
                 </div>
             </template>
         </b-modal>
@@ -30,12 +32,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data(){
         return{
             form:{
                 companyname: this.company
-            }
+            },
+         
         }
     },
 
@@ -51,11 +55,21 @@ export default {
     methods:{
         submitForm(){
             if(this.formisvalid){
-                return false;
+
+//update method
+
+            axios.put('/updateBusiness/7',this.form).then((response)=>{
+                    console.log(response.data)
+
+            }).catch((err)=>{
+                    console.log(err)
+            }) 
+
             }else{
                 console.log('invalid form')
             }
         }
+
     },
     props:{
         company:String

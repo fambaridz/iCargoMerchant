@@ -1,6 +1,6 @@
 <template>
   <div class="bg container-fluid py-5 p-1">
-    <form>
+    <form >
       <h1 class="text-dark text-center py-2">
         Be an <span class="text-primary"> iCargo </span><span class="text-warning"> Merchant </span> today!
       </h1>
@@ -64,14 +64,22 @@
           <a href="/verify" id="buttons" class="text btn btn-warning btn-lg shadow text-light">Next</a>
         </div>
       </div>
+
+      <v-btn color="info" @click="examplePOST">BUTTONNNNN</v-btn>
     </form>
   </div>
 </template>
 
 <script>
+
+import axios from 'axios'
+
+
 export default {
+
   data() {
     return {
+      data:'',
       show: false,
       firstname: "",
       lastname: "",
@@ -121,6 +129,47 @@ export default {
       },
     };
   },
+
+
+methods: {
+
+
+    examplePOST(){
+        axios.post('/merchantsignup',this.$data).then((res)=>{
+          console.log(res.data);
+        }).catch((err)=>{
+          console.log(err);
+        })
+    },
+ 
+
+
+
+
+
+
+
+
+
+ 
+    signupData(){
+
+//post method
+
+       axios.post('/merchantsignup',this.$data).then((response)=>{
+        
+            console.log(response.data)
+            
+             }).catch((errors)=>{
+   
+             this.error =  errors.response.data;
+    
+             }) 
+    },
+
+
+},  
+
 };
 </script>
 
@@ -174,7 +223,6 @@ label {
   font-size: 1em;
   letter-spacing: 1px;
 }
-
 .newLabel {
   color: #aaa;
   display: inline-block;

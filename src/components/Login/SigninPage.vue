@@ -1,48 +1,84 @@
-
 <template>
   <div class="container-fluid pt-5 p-1 background">
-      <form>
-        <h1 class="text-dark text-center">Sign in to <span class="text">iCargo</span><span class="text-warning"> Pacific</span></h1>
-        <label class="text-left text-dark" >Email </label>
-        <!--Email input field-->
+      <form class="custom-form" @submit.prevent="loginUser">
+        <h1 class="text-dark text-center">Sign in to <span class="text">iCargo</span><span class="text-warning">
+            Pacific</span></h1>
+        <label class="text-left text-dark">Email </label>
         <v-text-field id="email" v-model="email" class="field d-block mx-auto" :rules="[rules.required, rules.email]" name="email"
           background-color="#eef5fd" rounded solo filled></v-text-field>
-
         <label class="text-left text-dark">Password </label>
-        <!--Password input field-->
-        <v-text-field id="password" v-model="password" name="password" class="field d-block mx-auto"
-          background-color="#eef5fd" rounded solo filled :rules="[rules.required]"
-          :type="show ?'text': 'password'" :append-icon="show ?'mdi-eye':'mdi-eye-off'"   
-          @click:append="show=!show"></v-text-field>
-        
+
+        <v-text-field id="password" v-model="auth.password" name="password" class="field d-block mx-auto" rounded solo
+          filled :rules="[rules.required]" :type="show ? 'text' : 'password'" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"  background-color="#eef5fd"
+          @click:append="show = !show"></v-text-field>
+
         <h5 class="text-right p-0 m-0 text-dark font-weight-normal"><a href="#" class="text">Forgot password?ㅤㅤ</a></h5>
         <br>
         <div class="text-center">
-              <a to=" " id ="buttons" class="btn btn-light btn-lg shadow text-muted">ㅤBackㅤ</a>
-              <a href="/routes" id="buttons" class="btn btn-warning btn-lg shadow text-light">ㅤSign inㅤ</a>
+            <a to=" " id ="buttons" class="btn btn-light btn-lg shadow text-muted">ㅤBackㅤ</a>
+            <button type="submit"  id="buttons" class="btn btn-warning btn-lg shadow text-light">ㅤSIGN IN SIGN INㅤ</button>
         </div>
-        <h5 class="m-4 text-dark">Don’t have an account yet?<a class="font-weight-normal text" href="/signup"> Sign up now.</a></h5>
+        <h5 class="p-4 text-dark">Don’t have an account yet?<a class="font-weight-normal text" href="/signup"> Sign up
+            now.</a></h5>
       </form>
   </div>
 </template>
 
 <script>
+
+
+import axios from 'axios'
+/* eslint-disable */ 
 export default {
   name: 'SigninPage',
-  data () {
-      return {
-        show: false,
-        email: '',
-        rules: {
-          required: value => !!value || 'Required.',
-          email: value => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Invalid e-mail.'
-          },
+  data() {
+    return {
+      auth:{
+        email:'',
+        password:'',
+        device_name:'browser',
+      },
+      show: false,
+      email: '',
+      rules: {
+        required: value => !!value || 'Required.',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
         },
-      }
-    },
+      },
+
+     
   }
+  },
+
+   methods: {
+     
+
+        async loginUser(){
+          axios.defaults.baseURL = "http://127.0.0.1:8000"
+          await axios.get('/sanctum/csrf-cookie')
+          await axios.post('/api/merchantlogin',this.auth).then((response)=>{
+        //  this.signIn()
+          localStorage.setItem('token', response.data.token) //STORE THE AUTHENTICATED TOKEN IN LOCAL STORAGE
+        //  console.log(response)
+          axios.get('/api/user').then((response)=>{ //TO GET THE LOGGED IN USER MIDDLEWARE
+          //        console.log(response.data) //USE RESPONSE.DATA TO GET THE INFORMATION OF LOGGED USER
+            })
+         
+          }).catch((err)=>{
+            //  console.log(err)
+          }).finally(()=>{
+              //console.log("processing")
+          })
+        },
+
+     /*    goToHome() {
+          this.$router.push('/');
+        } */
+   }
+
+}
 
 </script>
 

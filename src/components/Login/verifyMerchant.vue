@@ -8,7 +8,9 @@
         </label>
         <v-row justify="center" class="custom-row">
           <v-col sm="10">
-            <v-select label="Choose Government-issued ID Type" class="select" background-color="#eef5fd" :items="items"
+            <v-select label="Choose Government-issued ID Type" class="select" background-color="#eef5fd" :items="items" 
+              item-text="proof_of_identification"
+            item-value="id"
               solo rounded>
             </v-select>
             <div>
@@ -57,22 +59,37 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 export default {
   name: "SignUp",
   data: () => ({
     items: [
-      "Driver's License",
-      "OFW ID",
-      "Passport",
-      "PhilHealth",
-      "PhilSys ID",
-      "Postal ID",
-      "PRC ID",
-      "SSS",
-      "UMID",
-      "Alien Certificate of Registration",
     ],
   }),
+  mounted(){
+   // this.getVerifyID()
+    this.getID();
+  
+  },
+  methods:{
+
+     async getID(){
+      await axios.get('/verification').then((res)=>{
+        console.log(res.data)
+        this.items = res.data[0]
+      })
+
+     },
+    //get method
+      async getVerifyID(){
+        await axios.get('/verification').then((response)=>{
+          this.$data.items = response.data[0]
+
+          console.log(response.data)
+        })
+      }
+  },
 };
 </script>
 

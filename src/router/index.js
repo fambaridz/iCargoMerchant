@@ -28,7 +28,8 @@ const routes = [
   {
     name:'signupForm',
     path: '/signup',
-    component: () => import(/* webpackChunkName: "signup" */ '../components/Login/signupForm.vue')
+    component: () => import(/* webpackChunkName: "signup" */ '../components/Login/signupForm.vue'),
+    meta: { requiresAuth: true} , //PUT LIKE THIS IF YOU WANT TO PROCTECT THE ROUTE WITH UNAUTHENTICATED USER
   },
   {
     name:'registration',
@@ -84,3 +85,25 @@ const router = new VueRouter({
 })
 
 export default router
+
+function loggedIn(){
+  return localStorage.getItem('token')
+
+ 
+}
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const { requiresAuth } = to.meta;
+ 
+
+
+if (requiresAuth) {
+      if (!loggedIn()) {
+         
+          return next({  name: "signinPage"});
+      }
+  }
+  next();
+
+})
