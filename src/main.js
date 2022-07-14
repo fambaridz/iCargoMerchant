@@ -5,10 +5,21 @@ import{BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 import * as VueGoogleMaps from "vue2-google-maps"
 import FullpageModal from 'vue-fullpage-modal'
 import PopupLayer from 'vue-popup-layer'
+import axios from 'axios'
+/* eslint-disable */ 
+
+const token = localStorage.getItem('token');
+
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
+axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+/* eslint-disable no-new */
+
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
+
 Vue.use(IconsPlugin)
 Vue.use(FullpageModal)
 Vue.use(router)
@@ -30,6 +41,7 @@ import router from './router'
 
 new Vue({
   vuetify,
+ 
   router,
   render: h => h(App)
 }).$mount('#app')

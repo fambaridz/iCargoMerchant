@@ -18,7 +18,7 @@
               <b-dropdown-item id="item" href="/toship"><i class="fa-solid fa-box icon-body"></i>Orders</b-dropdown-item>
               <b-dropdown-item id="item" href="/profile"><i class="fa-solid fa-user icon-body"></i>Profile</b-dropdown-item>
               <b-dropdown-item id="item" href="/about"><i class="fa-solid fa-circle-question icon-body"></i>Help Center</b-dropdown-item>
-              <b-dropdown-item id="item" href="/" @click="goToHome()"><i class="fa-solid fa-right-from-bracket icon-body"></i>Logout</b-dropdown-item>
+              <b-dropdown-item id="item" href="/" @click="logout()"><i class="fa-solid fa-right-from-bracket icon-body"></i>Logout</b-dropdown-item>
             </b-dropdown>
           </div>
         </div>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+/* eslint-disable */ 
+import axios from 'axios';
   export default {
     name: 'NavbarTop',
   
@@ -35,6 +37,22 @@
   //     this.$router.push('LoginPage');
   //   }
   // }
+
+    methods:{
+
+        logout(){
+            axios.post('/api/merchantlogout').then((response)=>{
+          
+              localStorage.removeItem('token');
+
+                  }).catch(err=>{  
+
+                      console.log(err)
+
+                   })
+        }
+      
+    }
 
   }
   
