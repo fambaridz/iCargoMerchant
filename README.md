@@ -1,7 +1,7 @@
 ### iCargoMerchant FRONTEND
 
 # About the Project
-The project use Vue framework (version 2) for building user interfaces.
+The project use Vue framework for building user interfaces.
 
 The codes, components and other necessary files are located at the src folder.
 
