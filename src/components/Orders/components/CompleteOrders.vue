@@ -7,10 +7,10 @@
         <div>
             <b-tabs justified>
                 <div class="topnav">
-                    <a href="/toship" class="disable"><b>To ship</b></a>
-                    <a href="/ongoing" class="disable"><b>On going</b></a>
-                    <a href="/complete" class="active"><b style="color:white">Completed</b></a>
-                    <a href="/cancel" class="disable"><b>Cancelled</b></a>
+                    <a href="/toship" class="disable"><b id="top-nav">To ship</b></a>
+                    <a href="/ongoing" class="disable"><b id="top-nav">On going</b></a>
+                    <a href="/complete" class="active"><b id="top-nav" style="color:white">Completed</b></a>
+                    <a href="/cancel" class="disable"><b id="top-nav">Cancelled</b></a>
                 </div>
             </b-tabs>
         </div>
@@ -205,9 +205,9 @@ a.disable:hover {
 
 @media (max-width:700px) {
 
-    .topnav {
+    /* .topnav {
         width: 25em;
-    }
+    } */
 
     .box-header {
         width: 22rem;
@@ -241,6 +241,19 @@ a.disable:hover {
 
     .box-footer {
         width: 17rem;
+    }
+}
+
+
+/* for top nav */
+@media(max-width:400px){
+    #top-nav{
+      font-size: 0.8rem;
+    }
+}
+@media(max-width:350px){
+    #top-nav{
+      font-size: 0.5rem;
     }
 }
 </style>
