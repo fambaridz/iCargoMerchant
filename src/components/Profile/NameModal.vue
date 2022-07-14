@@ -9,7 +9,7 @@
                         <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
                         <b-form-input id="comp-name" v-model="form.companyname"
-                            style="border-radius: 25px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
+                            style="border-radius: 25px; margin-top:5px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
                         </b-form-input>
                     </b-form-group>
                 </div>
