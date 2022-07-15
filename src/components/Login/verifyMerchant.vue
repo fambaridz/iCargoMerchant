@@ -1,65 +1,97 @@
 <template>
-  <div class="bg container-fluid">
-    <form> 
-      <h1 class="text-dark text-center">Account Verification</h1>
-      <v-app class="form">
-        <label id="label" class="text-muted required">
-          Proof of Identification
-        </label>
-        <v-row justify="center" class="custom-row">
-          <v-col sm="10">
-            <v-select label="Choose Government-issued ID Type" class="select" background-color="#eef5fd" :items="items" 
-              item-text="proof_of_identification"
-            item-value="id"
-              solo rounded>
+  <div class="bg container-fluid py-5 p-1">
+    <form>
+      <div class="row custom-input">
+        <div class="col-12">
+          <h1 class="text-dark text-center">Account Verification</h1>
+          <v-app class="form">
+            <label id="label" class="text-left text-muted required mb-2">
+              Proof of Identification
+            </label>
+            <v-select
+              label="Choose Government-issued ID Type"
+              class="select d-flex"
+              background-color="#eef5fd"
+              :items="items"
+              solo
+              rounded
+            >
             </v-select>
-            <div>
-            <label class="text-muted required" style="margin-left:40px">
-              Photo of your ID Card
-            </label>
-            <label id="sLabel" class="text-muted required">ㅤㅤㅤBusiness Permit
-            </label>
-            <v-row class="d-inline-flex">
-              <v-col class="form-group text-center d-flex">
-                <v-file-input class="idInput" background-color="#eef5fd" label="Choose File..." solo rounded
-                  prepend-icon="mdi-camera"></v-file-input>
-              </v-col>
-              <v-col form-group text-center d-flex>
-                <v-file-input class="permitInput" background-color="#eef5fd" label="Choose File..." solo rounded
-                  prepend-icon="mdi-camera"></v-file-input>
-              </v-col>
-            </v-row>
-            </div>
-            <v-row class="container">
-              <v-col class="center d-flex" style="margin-left:35px; margin-top:20px;">
-                <input type="checkbox" id="accept" value="accept" />
-                <label for="accept" class="check text-dark">
-                  I have read, understood and accept the <br />
-                  Terms and Conditions and Privacy Policy.</label>
-              </v-col>
-            </v-row>
-            <br />
-            <p class="p-4 text-muted text-center mt-5">
-              Already have an account?
-              <a href="/" class="text-primary">
-                Sign in.</a>
-            </p>
-            <v-row class="container" style="margin-left:165px" >
-              <v-col class="center">
-                <a href="/signup" id="buttons" class="text btn btn-light btn-lg shadow text-muted">Back</a>
-                <a href="/registration" id="buttons" class="text btn btn-warning btn-lg shadow text-light">Sign
-                  Up</a>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-app>
+          </v-app>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 custom-input">
+          <label class="text-left text-muted required my-2">
+            Photo of your ID Card
+          </label>
+          <v-file-input
+            background-color="#eef5fd"
+            label="Choose File..."
+            solo
+            rounded
+            prepend-icon="mdi-camera"
+          ></v-file-input>
+        </div>
+
+        <div class="col-lg-6 custom-input">
+          <label class="text-left text-muted required my-2">
+            Business Permit
+          </label>
+          <v-file-input
+            background-color="#eef5fd"
+            label="Choose File..."
+            solo
+            rounded
+            prepend-icon="mdi-camera"
+          ></v-file-input>
+        </div>
+      </div>
+
+      <v-row class="container">
+        <v-col class="center">
+          <input type="checkbox" id="accept" value="accept" />
+          <label for="accept" class="check text-dark">
+            I have read, understood and accept the <br />
+            Terms and Conditions and Privacy Policy.</label
+          >
+        </v-col>
+      </v-row>
+
+      <div class="row custom-input">
+        <div class="col-12">
+          <p class="text-muted text-center my-4">
+            Already have an account?<router-link
+              to="SignUp.vue"
+              class="text-primary"
+            >
+              Sign in.</router-link
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="box custom-input">
+        <div class="col-12">
+          <router-link
+            to="/"
+            id="button1"
+            class="text btn btn-light btn-lg shadow text-muted"
+            >Back</router-link>
+
+          <router-link
+            to="/registration"
+            id="button2"
+            class="text btn btn-warning btn-lg shadow text-light"
+            >Sign Up</router-link>
+        </div>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-
 import axios from 'axios'
 export default {
   name: "SignUp",
@@ -95,47 +127,58 @@ export default {
 
 <style>
 .bg {
-  height: 100vh;
-  background: linear-gradient(to bottom right,
-      #280eb8,
-      #3352db,
-      #4c9cca,
-      rgb(79, 135, 187));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 130vh;
+  position: relative;
+  background: linear-gradient(
+    to bottom right,
+    #280eb8,
+    #3352db,
+    #4c9cca,
+    rgb(79, 135, 187)
+  );
 }
 
 .form {
-  height: 400px;
+  height: 90px;
 }
+
+.row {
+  margin: 0px 120px;
+}
+
 h1 {
   font-weight: bold;
-  font-family: Roboto;
 }
 
-form {
-  font-family: Roboto;
-  width: 900px;
-  margin: auto;
-  background: white;
-  text-align: left;
-  padding: 40px 0;
-  border-radius: 50px;
+p {
+  font-size: 1.2em;
 }
 
-#label {
-  color: #aaa;
+router-link.text {
+  text-decoration: none;
+  font-size: 1.4em;
+}
+
+#button1 {
+  margin: 0 10px;
   display: inline-block;
-  text-align: left;
-  margin-left: 110px;
-  font-size: 1em;
-  letter-spacing: 1px;
+  padding: 10px 40px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.required:after {
-  content: " *";
-  color: red;
+#button2 {
+  margin: 0 auto;
+  display: inline-block;
+  padding: 10px 40px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.box{
+  text-align: center;
 }
 
 .container {
@@ -151,50 +194,40 @@ form {
   transform: translate(-50%, -50%);
 }
 
-#vLabel {
-  margin-left: -200px;
+form {
+  font-family: Roboto;
+  max-width: 900px;
+  margin: 150px auto;
+  background: white;
+  text-align: left;
+  padding: 40px 90px;
+  border-radius: 50px;
+  margin-bottom: 100px;
+  flex-wrap: wrap;
 }
 
-#sLabel {
-  margin-left: 140px;
-}
-
-.idInput {
-  width: 340px;
+label {
+  color: #aaa;
   display: inline-block;
-  color: #3eb3f4;
+  margin: 0px;
+  font-size: 1em;
+  letter-spacing: 1px;
 }
 
-.permitInput {
-  width: 340px;
-  display: inline-block;
-  box-sizing: border-box;
-  margin: 0 40px;
-  color: #3eb3f4;
-}
-
-router-link.text {
-  text-decoration: none;
-  font-size: 1.5em;
-}
-
-#buttons {
-  margin: 0 15px;
-  padding: 10px 40px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: bold;
+.required:after {
+  content: " *";
+  color: red;
 }
 
 input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"]+*::before {
+input[type="checkbox"] + *::before {
   content: "";
   display: inline-block;
   float: left;
-  margin-left: 40px;
+  margin-left: -50px;
   margin-top: 5px;
   margin-right: -320px;
   vertical-align: bottom;
@@ -205,7 +238,7 @@ input[type="checkbox"]+*::before {
   border-color: yellow;
 }
 
-input[type="checkbox"]:checked+*::before {
+input[type="checkbox"]:checked + *::before {
   content: "✓";
   font-size: 1.2rem;
   font-weight: bolder;
@@ -215,17 +248,261 @@ input[type="checkbox"]:checked+*::before {
   border-color: yellow;
 }
 
-input[type="checkbox"]:checked+* {
+input[type="checkbox"]:checked + * {
   color: yellow;
 }
 
 .check {
   position: inline-block;
-  margin: 0 auto;
-  text-align: center;
+  margin-left: 220px;
+  text-align: left;
   top: 0;
   left: 0;
-  width: 480px;
 }
 
+/* tablet */
+@media (max-width: 600px) {
+  .row {
+    margin: 0px 60px;
+  }
+
+  form {
+    margin-top: 10px;
+  }
+
+  p {
+    font-size: 1.2em;
+  }
+
+  router-link.text {
+    text-decoration: none;
+    font-size: 1.4em;
+  }
+
+  #button1 {
+    margin: 0 10px;
+    display: inline-block;
+    padding: 10px 40px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #button2 {
+    margin: 0 auto;
+    display: inline-block;
+    padding: 10px 40px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + *::before {
+    content: "";
+    display: inline-block;
+    float: left;
+    margin-left: -50px;
+    margin-top: 1px;
+    margin-right: -310px;
+    vertical-align: bottom;
+    width: 2rem;
+    height: 2rem;
+    border-style: solid;
+    border-width: 0.2rem;
+    border-color: yellow;
+  }
+
+  input[type="checkbox"]:checked + *::before {
+    content: "✓";
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: yellow;
+    text-align: center;
+    background: white;
+    border-color: yellow;
+  }
+
+  input[type="checkbox"]:checked + * {
+    color: yellow;
+  }
+
+  .check {
+    position: inline-block;
+    margin-left: 90px;
+    text-align: justify;
+    font-size: 0.8rem;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* big phone */
+@media (max-width: 450px) {
+  .row {
+    margin: 0px 30px;
+  }
+
+
+  p {
+    font-size: 0.8em;
+    padding-top: 40px;
+    padding-bottom: -10px;
+  }
+  label{
+    font-size: 1em;
+  }
+
+  router-link.text {
+    text-decoration: none;
+    font-size: 0.7em;
+  }
+
+  #button1 {
+    margin: 0 5px;
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #button2 {
+    margin: 0 1px;
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + *::before {
+    content: "";
+    display: inline-block;
+    float: left;
+    margin-left: -50px;
+    margin-top: 20px;
+    margin-right: -310px;
+    vertical-align: bottom;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-style: solid;
+    border-width: 0.2rem;
+    border-color: yellow;
+  }
+
+  input[type="checkbox"]:checked + *::before {
+    content: "✓";
+    font-size: 1rem;
+    font-weight: bolder;
+    color: yellow;
+    text-align: center;
+    background: white;
+    border-color: yellow;
+  }
+
+  input[type="checkbox"]:checked + * {
+    color: yellow;
+  }
+
+  .check {
+    position: inline-block;
+    margin-left: 50px;
+    width: 160px;
+    margin-top: 100px;
+    margin-bottom: 70px;
+    text-align: left;
+    font-size: 0.7rem;
+  }
+}
+
+/* small phone */
+@media (max-width: 379px) {
+  .row {
+    margin: 0px 20px;
+  }
+
+  p {
+    font-size: 0.7em;
+    padding-top: 40px;
+    padding-bottom: -10px;
+  }
+
+  label{
+    font-size: 0.9em;
+  }
+
+  router-link.text {
+    text-decoration: none;
+    font-size: 0.7em;
+  }
+
+  #button1 {
+    margin: 0 5px;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #button2 {
+    margin: 0 1px;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + *::before {
+    content: "";
+    display: inline-block;
+    float: left;
+    margin-left: -40px;
+    margin-top: 20px;
+    margin-right: -310px;
+    vertical-align: bottom;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-style: solid;
+    border-width: 0.2rem;
+    border-color: yellow;
+  }
+
+  input[type="checkbox"]:checked + *::before {
+    content: "✓";
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: yellow;
+    text-align: center;
+    background: white;
+    border-color: yellow;
+  }
+
+  input[type="checkbox"]:checked + * {
+    color: yellow;
+  }
+
+  .check {
+    position: inline-block;
+    width: 150px;
+    margin-left: 40px;
+    margin-top: 100px;
+    margin-bottom: 70px;
+    text-align: left;
+    font-size: 0.7rem;
+  }
+}
 </style>
