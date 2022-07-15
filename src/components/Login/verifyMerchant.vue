@@ -68,7 +68,7 @@ export default {
     ],
   }),
   mounted(){
-   // this.getVerifyID()
+    
     this.getID();
   
   },
@@ -81,14 +81,8 @@ export default {
       })
 
      },
-    //get method
-      async getVerifyID(){
-        await axios.get('/verification').then((response)=>{
-          this.$data.items = response.data[0]
-
-          console.log(response.data)
-        })
-      }
+  
+    
   },
 };
 </script>

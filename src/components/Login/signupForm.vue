@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <v-btn color="info" @click="examplePOST">BUTTONNNNN</v-btn>
+      <v-btn color="info">BUTTONNNNN</v-btn>
     </form>
   </div>
 </template>
@@ -132,30 +132,9 @@ export default {
 
 
 methods: {
-
-
-    examplePOST(){
-        axios.post('/merchantsignup',this.$data).then((res)=>{
-          console.log(res.data);
-        }).catch((err)=>{
-          console.log(err);
-        })
-    },
- 
-
-
-
-
-
-
-
-
-
- 
     signupData(){
 
-//post method
-
+//post method, signup middleware
        axios.post('/merchantsignup',this.$data).then((response)=>{
         
             console.log(response.data)
