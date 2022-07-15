@@ -42,7 +42,7 @@
         <a to=" " class="btn btn-light btn-lg shadow text-muted">ㅤBackㅤ</a>
         <button type="submit" class="btn btn-warning btn-lg shadow text-light"
         >
-          ㅤSIGN IN
+          ㅤSIGN INㅤ
         </button>
       </div>
       <h5 class="p-4 text-dark">
