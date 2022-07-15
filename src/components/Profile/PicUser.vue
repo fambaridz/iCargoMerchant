@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         async getName() {
-            await axios.get('/verification').then((res) => {
+            await axios.get('/user').then((res) => {
                 console.log(res)
             })
         }
