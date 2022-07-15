@@ -40,8 +40,9 @@
       <br />
       <div class="text-center">
         <a to=" " class="btn btn-light btn-lg shadow text-muted">ㅤBackㅤ</a>
-        <button type="submit" class="btn btn-warning btn-lg shadow text-light">
-          ㅤSIGN IN SIGN INㅤ
+        <button type="submit" class="btn btn-warning btn-lg shadow text-light"
+        >
+          ㅤSIGN IN
         </button>
       </div>
       <h5 class="p-4 text-dark">
@@ -83,25 +84,27 @@ export default {
 
   methods: {
     async loginUser() {
+ 
+
       axios.defaults.baseURL = "http://127.0.0.1:8000";
-      await axios.get("/sanctum/csrf-cookie");
+    await axios.get("/sanctum/csrf-cookie")
       await axios
         .post("/api/merchantlogin", this.auth)
+        
         .then((response) => {
-          //  this.signIn()
-          localStorage.setItem("token", response.data.token); //STORE THE AUTHENTICATED TOKEN IN LOCAL STORAGE
-          //  console.log(response)
-          axios.get("/api/user").then((response) => {
-            //TO GET THE LOGGED IN USER MIDDLEWARE
-            //        console.log(response.data) //USE RESPONSE.DATA TO GET THE INFORMATION OF LOGGED USER
-          });
+          this.$router.push({name:'details'});
+          
+      localStorage.setItem("token", response.data.token); 
+
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    
+ 
+       
         })
         .catch((err) => {
           //  console.log(err)
         })
-        .finally(() => {
-          //console.log("processing")
-        });
+      
     },
 
     /*    goToHome() {

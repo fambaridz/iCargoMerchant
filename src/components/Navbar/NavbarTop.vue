@@ -18,7 +18,7 @@
 
         <div class="justify-content-end d-flex align-items-center">
           <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
-          &nbsp;&nbsp;<span id="user">Hi,user.</span>
+          &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
 
           <b-dropdown id="dropdown-right" right variant="none">
             <b-dropdown-item id="item" href="/routes"
@@ -54,14 +54,28 @@ export default {
   name: "NavbarTop",
 data(){
   return{
-   
+      userLogged : {},
       errors:'',
    
   }
 },
+mounted(){
+      this.showuser()
+  },
+ 
 
 
   methods: {
+
+     showuser(){
+        axios.get("/api/user").then((response) => {
+             
+
+                  this.userLogged = response.data
+
+                  console.log(this.userLogged)
+          });
+      },
     logout() {
       axios
         .post("/api/merchantlogout")

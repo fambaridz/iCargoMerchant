@@ -68,6 +68,7 @@
 
 
 <script>
+
 import NavbarTop from '../../Navbar/NavbarTop.vue'
 import TitleHeader from '../Price/components/TitleHeader.vue'
 
@@ -76,7 +77,9 @@ import TitleHeader from '../Price/components/TitleHeader.vue'
     components: {
     NavbarTop,
     TitleHeader
-  }
+  },
+
+  
   
        
   }

@@ -80,13 +80,13 @@
       <div class="container">
         <div class="center">
           <router-link to=" " id="buttons" class="text btn btn-light btn-lg shadow text-muted">Back</router-link>
-          <router-link to=" /verification" id="buttons" class="text btn btn-warning btn-lg shadow text-light">Next
+          <router-link to=" /verify" id="buttons" class="text btn btn-warning btn-lg shadow text-light">Next
           </router-link>
         </div>
         <br />
       </div>
 
-      <v-btn color="info">BUTTONNNNN</v-btn>
+      <v-btn color="info">BUTTON</v-btn>
     </form>
   </div>
 </template>

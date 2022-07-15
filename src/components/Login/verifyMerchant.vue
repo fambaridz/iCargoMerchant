@@ -13,6 +13,7 @@
               class="select d-flex"
               background-color="#eef5fd"
               :items="items"
+              item-text="proof_of_identification"
               solo
               rounded
             >
@@ -93,23 +94,25 @@
 
 <script>
 import axios from 'axios'
+
 export default {
   name: "SignUp",
   data: () => ({
     items: [
-    ],
+   ],
   }),
   mounted(){
     
-    this.getID();
+   this.getID();
   
   },
   methods:{
 
      async getID(){
       await axios.get('/verification').then((res)=>{
-      //  console.log(res.data)
-        this.items = res.data[0]
+        this.items = res.data.ver
+
+    
       })
 
      },

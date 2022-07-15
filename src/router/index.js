@@ -87,7 +87,7 @@ const router = new VueRouter({
 export default router
 
 function loggedIn(){
-  return localStorage.getItem('token')
+  return localStorage.getItem("token")
 
  
 }
@@ -100,7 +100,6 @@ router.beforeEach((to, from, next) => {
 
 if (requiresAuth) {
       if (!loggedIn()) {
-         
           return next({  name: "signinPage"});
       }
   }
