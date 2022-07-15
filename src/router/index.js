@@ -29,7 +29,6 @@ const routes = [
     name:'signupForm',
     path: '/signup',
     component: () => import(/* webpackChunkName: "signup" */ '../components/Login/signupForm.vue'),
-    meta: { requiresAuth: true} , //PUT LIKE THIS IF YOU WANT TO PROCTECT THE ROUTE WITH UNAUTHENTICATED USER
   },
   {
     name:'registration',
@@ -54,7 +53,9 @@ const routes = [
   {
     name:'details',
     path: '/details',
-    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/Other Details/NavBody.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/Other Details/NavBody.vue'),
+    meta: { requiresAuth: true} , //PUT LIKE THIS IF YOU WANT TO PROCTECT THE ROUTE WITH UNAUTHENTICATED USER
+
   },
   {
     name:'toship',
