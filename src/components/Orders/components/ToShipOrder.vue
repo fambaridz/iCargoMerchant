@@ -7,10 +7,10 @@
         <div>
             <b-tabs justified>
                 <div class="topnav">
-                    <a class="active"><b style="color:white">To ship</b></a>
-                    <a href="/ongoing" class="disable"><b>On going</b></a>
-                    <a href="/complete" class="disable"><b>Completed</b></a>
-                    <a href="/cancel" class="disable"><b>Cancelled</b></a>
+                    <a class="active"><b id="top-nav" style="color:white">To ship</b></a>
+                    <a href="/ongoing" class="disable"><b id="top-nav">On going</b></a>
+                    <a href="/complete" class="disable"><b id="top-nav">Completed</b></a>
+                    <a href="/cancel" class="disable"><b id="top-nav">Cancelled</b></a>
                 </div>
             </b-tabs>
         </div>
@@ -134,6 +134,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .toship-body {
     height: 100%;
     background-color: white;
@@ -231,10 +232,9 @@ a.disable:hover {
 }
 
 @media (max-width:700px) {
-
-    .topnav {
+    /* .topnav{
         width: 25em;
-    }
+    } */
 
     .box-header {
         width: 22rem;
@@ -283,6 +283,18 @@ a.disable:hover {
     #cancel {
         margin-left: 9.5ch;
         width: 8rem;
+    }
+}
+
+/* for top nav */
+@media(max-width:400px){
+    #top-nav{
+      font-size: 0.8rem;
+    }
+}
+@media(max-width:350px){
+    #top-nav{
+      font-size: 0.5rem;
     }
 }
 </style>

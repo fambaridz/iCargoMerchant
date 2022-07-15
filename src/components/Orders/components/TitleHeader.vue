@@ -52,9 +52,9 @@ input.nosubmit {
 }
 
 @media (max-width:700px) {
-    .title {
+    /* .title {
         width: 25rem;
-    }
+    } */
 
     .pull-right {
         width: 15rem;

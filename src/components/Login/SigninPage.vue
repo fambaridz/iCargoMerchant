@@ -104,7 +104,9 @@ export default {
         });
     },
 
-    
+    /*    goToHome() {
+          this.$router.push('/');
+        } */
   },
 };
 </script>
