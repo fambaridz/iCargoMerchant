@@ -88,15 +88,19 @@ export default {
 
       axios.defaults.baseURL = "http://127.0.0.1:8000";
     await axios.get("/sanctum/csrf-cookie")
+  
       await axios
         .post("/api/merchantlogin", this.auth)
         
         .then((response) => {
-          this.$router.push({name:'details'});
+             localStorage.setItem("token", response.data.token); 
+       //   this.$router.push({name:'details'});
           
-      localStorage.setItem("token", response.data.token); 
+              this.$router.push('/details', () => this.$router.go(0)).catch(err => {})
 
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          
+  
+
     
  
        

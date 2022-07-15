@@ -92,6 +92,7 @@ function loggedIn(){
  
 }
 
+
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const { requiresAuth } = to.meta;

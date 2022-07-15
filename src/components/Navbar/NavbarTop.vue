@@ -36,7 +36,7 @@
               ><i class="fa-solid fa-circle-question icon-body"></i>Help
               Center</b-dropdown-item
             >
-            <b-dropdown-item id="item" href="/" @click="logout()"
+            <b-dropdown-item id="item"  @click="logout"
               ><i class="fa-solid fa-right-from-bracket icon-body"></i
               >Logout</b-dropdown-item
             >
@@ -68,19 +68,23 @@ mounted(){
   methods: {
 
      showuser(){
-        axios.get("/api/user").then((response) => {
+  
+
+        axios.get("/user").then((response) => {
              
 
                   this.userLogged = response.data
 
                   console.log(this.userLogged)
+                   
           });
       },
     logout() {
       axios
-        .post("/api/merchantlogout")
+        .post("/merchantlogout")
         .then((response) => {
           localStorage.removeItem("token");
+          this.$router.push({name:'signinPage'})
         })
         .catch((err) => {
         //  this.errors = err
