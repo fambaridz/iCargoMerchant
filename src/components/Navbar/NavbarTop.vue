@@ -48,11 +48,17 @@
 </template>
 
 <script>
-/* eslint-disable */
+
 import axios from "axios";
 export default {
   name: "NavbarTop",
-
+data(){
+  return{
+   
+      errors:'',
+   
+  }
+},
 
 
   methods: {
@@ -63,7 +69,8 @@ export default {
           localStorage.removeItem("token");
         })
         .catch((err) => {
-          console.log(err);
+        //  this.errors = err
+        //  console.log(err);
         });
     },
   },

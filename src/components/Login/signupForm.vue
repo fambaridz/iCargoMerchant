@@ -92,6 +92,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios'
 
 
@@ -157,8 +158,8 @@ methods: {
 //post method, signup middleware
        axios.post('/merchantsignup',this.$data).then((response)=>{
         
-            console.log(response.data)
-            
+        //    console.log(response.data)
+            //response.data to get response  
              }).catch((errors)=>{
    
              this.error =  errors.response.data;
