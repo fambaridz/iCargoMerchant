@@ -202,7 +202,7 @@ textarea {
   margin: 4px 2px;
   cursor: pointer;
 }
-.button {border-radius: 4rem;}  
+.button {border: none; border-radius: 4rem;}  
 .button2:hover {
   background: #ffae00;
   color: rgb(255, 255, 255);
