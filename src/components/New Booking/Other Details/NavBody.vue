@@ -183,7 +183,7 @@ textarea {
   margin: 4px 2px;
   cursor: pointer;
 }
-.button1 {border-radius: 4rem;}   
+.button1 {border: none; border-radius: 4rem;}   
 .button1:hover {
   background: #ffae00;
   color: rgb(255, 255, 255);
