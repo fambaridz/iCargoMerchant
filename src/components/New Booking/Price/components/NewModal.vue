@@ -28,9 +28,11 @@
               <span style="color:grey; "> Driver,fuel,load,/unload,insurance </span><br>
               <span style="color:grey; "> Earliest pickup within an hour.Later pickup times are also available.  </span>
             </div>
+            <br>
             <h6> Your driver must receive your advance approval<br>to reimburse tolls and parking.</h6>
+            <br>
     </div>
-    <pre class="text-center"><b-button pill @click="hideModal()" variant="secondary font-weight-bold">    CLOSE    </b-button>  <b-button pill href="/toship" variant="primary font-weight-bold">   BOOK NOW   </b-button></pre>
+    <pre class="text-center"><b-button pill @click="hideModal()" variant="secondary">    CLOSE    </b-button>  <b-button pill href="/toship" variant="primary">   BOOK NOW   </b-button></pre>
     </div>
     </b-modal>
   </div>
@@ -49,6 +51,7 @@ export default {
 }
 </script>
 <style scoped>
+
 h6{
     color:red;
     text-align:center;
@@ -88,5 +91,6 @@ h6{
 }
 #modal{
   padding-bottom: 50px;
+  font-family: 'Poppins','sans-serif';
 }
 </style>
