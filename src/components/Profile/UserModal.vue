@@ -101,13 +101,7 @@ export default {
             }
         }
     },
-    props:{
-        firstname:String,
-        lastname:String,
-        compabout:String,
-        compcontact:String,
-        compemail:String
-    },
+    
     computed:{
         fnameisvalid(){
             return !!this.form.fname

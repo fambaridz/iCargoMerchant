@@ -8,7 +8,7 @@
                     <b-form-group label-for="name-input">
                         <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
-                        <b-form-input id="comp-name" v-model="form.companyname"
+                        <b-form-input id="comp-name" v-model="companyname"
                             style="border-radius: 25px; margin-top:5px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
                         </b-form-input>
                     </b-form-group>
@@ -33,24 +33,28 @@
 
 <script>
 import axios from 'axios'
+
 export default {
     data(){
         return{
+            companyname: '',
             form:{
-                companyname: this.company
-            },
-         
+                companyname:''
+            }
         }
     },
 
     computed:{
         compnameisvalid(){
-            return !!this.form.companyname
+            return !!this.companyname
         },
         formisvalid(){
             return this.compnameisvalid 
         },
         
+    },
+    mounted() {
+        this.getName()
     },
     methods:{
         submitForm(){
@@ -58,22 +62,30 @@ export default {
 
 //update method
 
-            axios.put('/updateBusiness/7',this.form).then((response)=>{
-                    console.log(response.data)
+            axios.put('/merchantupdate/1',this.$data).then((response)=>{
+                console.log(response.data)
 
             }).catch((err)=>{
-                    console.log(err)
+                console.log(err)
             }) 
 
             }else{
                 console.log('invalid form')
             }
-        }
+        },
+        getName(){
+
+        axios.get("/user").then((response) => {
+             
+                  this.companyname = response.data.name_of_business
+                  this.companyid = response.data.id
+
+                  console.log(this.companyname)
+                   
+          });
+        },
 
     },
-    props:{
-        company:String
-    }
 
 }
 </script>

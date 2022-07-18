@@ -8,7 +8,7 @@
             <div class="col-8 d-flex align-items-center box-line">
                 <div class="row">
                     <span class="profile-insert">Name</span>
-                    <span class="details">{{firstname}} {{lastname}}</span>
+                    <span class="details">{{userInfo.first_name}} {{userInfo.last_name}}</span>
                 </div>
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -25,7 +25,7 @@
             <div class="col-8 d-flex align-items-center">
                 <div class="row about">
                     <span class="profile-insert box-line">About</span>
-                    <p id="about">{{compabout}}</p>
+                    <p id="about">{{userInfo.about}}</p>
 
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="col-8 d-flex align-items-center box-line">
                 <div class="row">
                     <span class="profile-insert">Contact Number</span>
-                    <span class="details">(+63){{compcontact}}</span>
+                    <span class="details">(+63){{userInfo.contact_number}}</span>
                 </div>
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -60,7 +60,7 @@
             <div class="col-8 d-flex align-items-center box-line">
                 <div class="row">
                     <span class="profile-insert">Email</span>
-                    <span class="details">{{compemail}}</span>
+                    <span class="details">{{userInfo.email}}</span>
                 </div>
             </div>
             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -69,29 +69,41 @@
         </div>
         <!-- end box 4 -->
         <div>
-            <UserModal :firstname="firstname" :lastname="lastname" :compabout="compabout" :compcontact="compcontact"
-                :compemail="compemail" />
+            <UserModal />
         </div>
     </div>
 </template>
 
 <script>
 import UserModal from './UserModal.vue';
+import axios from 'axios'
 
 export default {
      name: 'UpdateUserComp',
      data() {
          return {
-            firstname: 'abchardware',
-            lastname: 'official',
-            compabout: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.l',
-            compcontact: 9123456789,
-            compemail: 'johndelacruz@gmail.com',
+            userInfo: {}
          }
     },
      components:{
         UserModal,
      },
+     mounted() {
+        this.getUserInfo()
+    },
+    methods: {
+
+     getUserInfo(){
+  
+
+        axios.get("/user").then((response) => {
+             
+                  this.userInfo = response.data
+                  console.log(this.userInfo)
+                   
+          });
+      },
+    }
      
 }
 </script>
