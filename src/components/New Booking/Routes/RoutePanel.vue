@@ -1,5 +1,5 @@
 <template>
-    <div class="routes-body">
+    <div class="routesLoc-body">
 
         <center><br>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -252,7 +252,7 @@ pre {
     color: #003060;
     font-size: 20px;
 }
-.routes-body{
+.routesLoc-body{
     padding-bottom: 50px;
     padding-top: 50px;
 }
