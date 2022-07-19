@@ -95,12 +95,13 @@ export default {
     data(){
         return{
             form:{
+                id:'',
                 first_name: '',
                 last_name: '',
                 about: '',
                 email: '',
                 contact_number: '',
-            }
+            },
         }
     },
     
@@ -131,7 +132,7 @@ export default {
     methods:{
         submitForm(){
             if(this.formisvalid){
-                axios.put('/merchantupdate/1', this.form).then((response) => {
+                axios.put('/merchantupdate/'+this.form.id, this.form).then((response) => {
                     console.log(response.data)
 
                 }).catch((err) => {
@@ -145,8 +146,7 @@ export default {
 
         axios.get("/user").then((response) => {
              
-                  this.form = response.data
-                   
+                  this.form = response.data                   
           });
       },
     },
