@@ -13,7 +13,7 @@
         </div>
         <!-- profile end -->
         <div>
-            <NameModal :data="info"/>
+            <NameModal/>
         </div>
 
     </div>
