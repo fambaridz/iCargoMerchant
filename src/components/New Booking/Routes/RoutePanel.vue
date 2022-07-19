@@ -36,29 +36,63 @@
                 <!-- LOCATION FORM -- END CODE -->
 
                 <br><br><br><br>
+                <center>
                 <div class="container titletwo">
                     <!-- VEHICLE TYPE DROPDOWN -->
-                    <b-form-group id="input-group-3" label="WHOLE VEHICLE" label-for="input-3"
+                    <!--b-form-group id="input-group-3" label="WHOLE VEHICLE" label-for="input-3"
                         class="font-weight-bold">
                         <select class="form-select"  aria-label="Default select example"
                             style="padding: 0.7rem; margin-top: 10px;">
                             <option selected>Choose Vehicle Type</option>
                         </select>
                     </b-form-group>
+                     <b-form-select v-model="selected" :options="options"></b-form-select-->
                     <!-- VEHICLE TYPE DROPDOWN -- END CODE -->
-
-                    <br><br>
-
+                    
+                    <v-app class="form">
+                    <label id="label" class="text-center text-muted required mb-2">
+                    WHOLE VEHICLE
+                    </label>
+                    <v-select
+                    label="Choose Vehicle Type"
+                    class="select d-flex"
+                    background-color="#eef5fd"
+                    :items="vehicletype"
+                    item-text="vehicle_type"
+                    solo
+                    rounded
+                    >
+                    </v-select>
+                    </v-app>
+                    </div>
+                
                     <!-- CARGO TYPE DROPDOWN -->
-                    <b-form-group id="input-group-4" label="PARTIAL LOAD" label-for="input-4"
+                    <!--b-form-group id="input-group-4" label="PARTIAL LOAD" label-for="input-4"
                         class="font-weight-bold">
                         <select class="form-select" aria-label="Default select example"
                             style="padding: 0.7rem; margin-top: 10px;">
                             <option selected>Choose Cargo Type</option>
                             
                         </select>
-                    </b-form-group>
-                </div>
+                    </b-form-group-->
+                    <div class="container titletwo">
+                    <v-app class="form">
+                    <label id="label" class="text-center text-muted required mb-2">
+                    CARGO TYPE
+                    </label>
+                    <v-select
+                    label="Choose Cargo Type"
+                    class="select d-flex"
+                    background-color="#eef5fd"
+                    :items="cargotype"
+                    item-text="cargo_type"
+                    solo
+                    rounded
+                    >
+                    </v-select>
+                    </v-app>
+                    </div>
+                    </center>
                 <!-- CARGO TYPE DROPDOWN -- END CODE -->
 
 
@@ -234,6 +268,10 @@ import AddPackage from './AddPackage.vue';
 
 
 <style scoped>
+.form {
+  border-radius: 50px;
+  height: 5px;
+}
 p{
     color: #003060;
     font-family: 'Poppins','sans-serif';
@@ -262,7 +300,7 @@ pre {
 .titletwo{
     background-color: white;
     width: 50rem;
-    height:20rem;
+    height: 200px;
     font-weight:bold;
     color: #003060;
     font-size: 20px;
