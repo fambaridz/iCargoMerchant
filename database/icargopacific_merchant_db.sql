@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2022 at 05:58 AM
+-- Generation Time: Jul 19, 2022 at 06:02 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -59,6 +59,17 @@ CREATE TABLE `cargo` (
   `id` int(11) NOT NULL,
   `cargo_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cargo`
+--
+
+INSERT INTO `cargo` (`id`, `cargo_type`) VALUES
+(1, 'Box'),
+(2, 'Pallet'),
+(3, 'Roll'),
+(4, 'Crate'),
+(5, 'Bag');
 
 -- --------------------------------------------------------
 
@@ -145,6 +156,18 @@ CREATE TABLE `vehicle` (
   `vehicle_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `vehicle`
+--
+
+INSERT INTO `vehicle` (`id`, `vehicle_type`) VALUES
+(1, 'Truck\r\n'),
+(2, 'Minivan'),
+(3, 'Bulk Transportation'),
+(4, 'Tanker'),
+(5, 'Container'),
+(6, 'Closed van');
+
 -- --------------------------------------------------------
 
 --
@@ -230,7 +253,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -266,7 +289,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `verify_merchant`
