@@ -104,10 +104,11 @@ class BookingController extends Controller
                 ,200);
     }
 
-    public function displayBooking(Request $request, $email){
+    public function displayBooking(Request $request,$merchantid){
         //get booking condition to same of email
-        $bookingGet = DB::table('booking')->where('email',$email)->get();
+       // $bookingGet = DB::table('booking')->where('email',$email)->get();
                                  //OR
+     $bookingGet = DB::table('booking')->where('merchant_id',$merchantid)->get();
 
         //get booking condition to same order number
        // $bookingGet = DB::table('booking')->where('order_number',$order_number)->get();
@@ -115,11 +116,7 @@ class BookingController extends Controller
 //if booking get        
         if ($bookingGet) {
             return response()->json(
-                [
-                    'success' => $bookingGet,
-                    'message' => 'Successful',
-                ],
-                200
+              $bookingGet
             );
         } else {
             //if query failed

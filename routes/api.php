@@ -35,7 +35,9 @@ Route::post('/merchantlogin', [IdentificationController::class,'logIn']);
 
 Route::get('/cargovehiclelist', [BookingController::class, 'displayCargoVehicle']);
 
-Route::get('/getbooking/{id}', [BookingController::class, 'displayBooking']);
+Route::get('/getbooking/{merchantid}', [BookingController::class, 'displayBooking']);
+
+
 
 
 Route::get('/verification', [IdentificationController::class, 'verifymerchant']);
