@@ -56,7 +56,7 @@ export default {
 
 //update method
 
-            axios.put('/merchantupdate/{id}',this.$data).then((response)=>{
+            axios.put('/merchantupdate/1',this.$data).then((response)=>{
                 console.log(response.data)
 
             }).catch((err)=>{
