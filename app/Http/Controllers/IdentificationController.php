@@ -143,6 +143,7 @@ class IdentificationController extends Controller
         $merchantTable->about = $request->input('about');
         $merchantTable->contact_number = $request->input('contact_number');
         $merchantTable->email = $request->input('email');
+        $merchantTable->name_of_business = $request->input('name_of_business');
 
     //Updates new information to the Database
         $merchantTable->save();

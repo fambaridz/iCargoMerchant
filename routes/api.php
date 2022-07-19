@@ -44,8 +44,12 @@ Route::group(['middleware' =>['auth:sanctum']],function(){
 
     Route::post('/merchantlogout', [IdentificationController::class,'logout']);
 
+    Route::post('/customerlogout', [CustomerController::class,'logout']);
+
 });
 
 Route::put('/merchantupdate/{id}', [IdentificationController::class, 'update']);
 
 Route::post('/customersignup', [CustomerController::class,'signup']);
+
+Route::post('/customerlogin', [CustomerController::class,'logIn']);
