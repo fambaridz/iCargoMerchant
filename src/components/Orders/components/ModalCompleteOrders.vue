@@ -158,6 +158,7 @@ export default {
   font-family: 'Poppins', 'sans-serif';
   font-size: 1em;
   padding: .5em;
+  border: none;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 4rem;
