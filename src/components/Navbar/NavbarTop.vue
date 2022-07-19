@@ -74,7 +74,8 @@ mounted(){
              
 
                   this.userLogged = response.data
-
+//setting for temporarily the id of user for the booking orders. do not delete - jaq
+                  localStorage.setItem("book", response.data.id)
                   console.log(this.userLogged)
                    
           });

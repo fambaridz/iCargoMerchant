@@ -89,7 +89,7 @@
           <p>
             <span style="color:black ; font-weight:bold;">Remarks</span>
             <br>
-            Fragile items. Please handle with care.
+            Fragile items. Please handle with caressssssss.
           </p>
         </div>
 
@@ -100,7 +100,7 @@
               <span style="color:black ; font-weight:bold; margin-left: 1ch;">Price</span>
             </div>
             <div class="col-6 text-center">
-              <span style="color:#003060; font-weight:bold;"> P504 </span>
+              <span style="color:#003060; font-weight:bold;"> P500 </span>
             </div>
           </div>
           <div class="row">
@@ -118,15 +118,37 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+    data(){
+        return {
+          details : {},
+        }
+    },
+  mounted(){
+   // this.showdetails()
+  },
   methods: {
     showModal() {
       this.$refs['my-modal'].show()
     },
     hideModal() {
       this.$refs['my-modal'].hide()
+    },
+
+    showdetails(){
+      //do not delete this.
+      /*   axios.get('/getbook').then((response)=>{
+          
+            this.details = response.data[0]
+
+           // console.log(this.details)
+             }).catch((errors)=>{
+   
+    
+             })  */
     }
-  }
+  } 
 }
 </script>
 <style scoped>

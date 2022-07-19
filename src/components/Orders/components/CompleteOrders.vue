@@ -101,10 +101,43 @@
 import ModalCompleteOrders from './ModalCompleteOrders.vue';
 import NavbarTop from '../../../components/Navbar/NavbarTop.vue';
 import TitleHeader from './TitleHeader.vue';
+import axios from 'axios';
 
 export default {
     name: "CompleteOrders",
-    components: { ModalCompleteOrders, NavbarTop, TitleHeader }
+    components: { ModalCompleteOrders, NavbarTop, TitleHeader },
+
+    data(){
+        return {
+         user: '',
+        }
+    },
+
+    mounted(){
+    
+            this.getbook()
+    },
+
+    methods: {
+
+     
+        
+        getbook(){
+             
+             let id = localStorage.getItem('book');
+         
+
+              axios.get("/getbooking/"+id).then((response)=>{
+                    //console.log(response.data)
+
+            //please do use an array to loop it in the template table row
+
+               }).catch((errors)=>{
+   
+    
+             })  
+        }
+    }
 }
 </script>
 
