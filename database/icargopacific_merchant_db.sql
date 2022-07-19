@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2022 at 06:02 AM
+-- Generation Time: Jul 19, 2022 at 06:09 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -180,6 +180,21 @@ CREATE TABLE `verify_merchant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `verify_merchant`
+--
+
+INSERT INTO `verify_merchant` (`id`, `proof_of_identification`) VALUES
+(1, 'Philippine Passport'),
+(2, 'Social Security System (SSS) Card'),
+(3, 'Unified Multi-Purpose Identification (UMID) Card'),
+(4, 'Drivers License'),
+(5, 'PhilHealth ID'),
+(6, 'Professional Regulatory Commission (PRC) ID'),
+(7, 'Philippine Postal ID'),
+(8, 'Taxpayer Identification Number'),
+(9, 'PhilSys ID');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -295,7 +310,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `verify_merchant`
 --
 ALTER TABLE `verify_merchant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
