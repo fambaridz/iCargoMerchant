@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2022 at 06:09 AM
+-- Generation Time: Jul 19, 2022 at 08:21 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -161,7 +161,7 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`id`, `vehicle_type`) VALUES
-(1, 'Truck\r\n'),
+(1, 'Truck'),
 (2, 'Minivan'),
 (3, 'Bulk Transportation'),
 (4, 'Tanker'),
