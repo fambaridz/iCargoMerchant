@@ -155,7 +155,7 @@ export default {
 .box {
   position: absolute;
   color: #fbcd10;
-  margin-left: 1ch;
+  margin-left: 0ch;
   width: 2rem;
   height: 2rem;
 }
@@ -169,7 +169,7 @@ export default {
 }
 
 .VLine {
-  margin-left: 32ch;
+  margin-left: 31.5ch;
 }
 
 .vertical-line {
@@ -196,12 +196,16 @@ export default {
 
 .address2 {
   color: white;
-  margin-left: 12ch;
+  margin-left: 13.9ch;
 }
 
 @media (max-width:700px) {
+
+  .GMAP{
+    width: 100%;
+  }
   .Details {
-    width: 25rem;
+    width: 100%;
     height: 40rem;
   }
 
