@@ -24,12 +24,14 @@ class IdentificationController extends Controller
 
         //This is the code for validation of every request
         $validated = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email',
-            'contact_number' => 'required|digits:11',
-            'name_of_business' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'contact_number' => 'required',
+            'business_name' => 'required',
+            'confirmPassword'=>'required|same:password',
+            'password' => 'required|min:8',
+          
 
         ]);
 
@@ -47,11 +49,11 @@ class IdentificationController extends Controller
             //if correct, it will insert in the table of merchant
             $merchantTable = DB::table('merchant')->insert(
                 [
-                    'first_name' => $request->first_name,
-                    'last_name' => $request->last_name,
+                    'first_name' => $request->firstname,
+                    'last_name' => $request->lastname,
                     'email' => $request->email,
                     'contact_number' => $request->contact_number,
-                    'name_of_business' => $request->name_of_business,
+                    'name_of_business' => $request->business_name,
                     'password' => Hash::make($request->password),
                     'about' => $request->about,
                 ]
@@ -113,12 +115,11 @@ class IdentificationController extends Controller
     //Verify Merchant : Proof of Identification
     function verifymerchant()
      {
-        $verify_merchant = DB::table('verify_merchant')->get();
+        $verify_merchant = DB::table('verify_merchant')->get('proof_of_identification');
         
         return response()->json
             ([
-                'proof_of_identification'=>$verify_merchant,
-                
+             'ver'=> $verify_merchant,
                 ]
                 ,200);
 
@@ -137,8 +138,8 @@ class IdentificationController extends Controller
      public function update(Request $request, $id)
     {
         $merchantTable = merchant::find($id);
-        $merchantTable->first_name = $request->input('first_name');
-        $merchantTable->last_name = $request->input('last_name');
+        $merchantTable->firstname = $request->input('firstname');
+        $merchantTable->lastname = $request->input('lastname');
         $merchantTable->about = $request->input('about');
         $merchantTable->contact_number = $request->input('contact_number');
         $merchantTable->email = $request->input('email');

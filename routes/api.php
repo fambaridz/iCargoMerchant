@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IdentificationController;
 
@@ -38,7 +39,6 @@ Route::get('/getbooking/{id}', [BookingController::class, 'displayBooking']);
 
 
 Route::get('/verification', [IdentificationController::class, 'verifymerchant']);
-
 
 Route::group(['middleware' =>['auth:sanctum']],function(){
 
