@@ -20,12 +20,15 @@
             <br>
             <b-row>
                 <div class="container-fluid box-header">
-                    <div class="row">
-                        <div class="col-6 text-left" style="height: 10px;">
+                    
+                        <div class="col-6 text-left" style="height: 1px;">
                             <h3 id="date-time">March 25,2022 3:00PM</h3>
                         </div>
-                        <div id="modal-ongoing">
-                            <ModalOngoing />      
+                        <div class="row">
+                        <div class="col-15 text-left" style="margin-left:2ch;">
+                                <b-row>
+                                    <ModalOngoing />  
+                                </b-row>
                         </div>
                     </div>
                 </div>
@@ -49,18 +52,19 @@
                     </div>
                 </div>
             </b-row>
-            <!--ORDER-->
+                      <!--ORDER-->
             <br>
             <b-row>
                 <div class="container-fluid box-header">
-                    <div class="row">
-                        <div class="col-6 text-left" style="height: 10px;">
+                    
+                        <div class="col-6 text-left" style="height: 1px;">
                             <h3 id="date-time">March 25,2022 3:00PM</h3>
                         </div>
-                        <div id="modal-ongoing">
-                            <b-row>
-                                <ModalOngoing />
-                            </b-row>
+                        <div class="row">
+                        <div class="col-15 text-left" style="margin-left:2ch;">
+                                <b-row>
+                                    <ModalOngoing />  
+                                </b-row>
                         </div>
                     </div>
                 </div>
@@ -99,18 +103,19 @@ export default {
     components: { ModalOngoing, NavbarTop, TitleHeader }
 }
 </script>
+
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:ital,wght@0,600;1,400&display=swap');
-.ongoing-body {
+
+.toship-body {
     height: 100%;
     background-color: white;
 }
 
 .box-header {
     background-color: #003060;
-    padding: .4rem;
+    padding: 1rem;
     color: white;
-    padding-left: 2rem;
+    padding-left: 3rem;
     width: 50rem;
 }
 
@@ -133,11 +138,11 @@ export default {
     text-align: left;
 }
 
+
 #date-time {
     color: white;
-    font-weight: bold;
     margin-left: 1ch;
-    font-size: large;
+    font-size: x-large;
 }
 
 #vehicle-type {
@@ -149,6 +154,19 @@ export default {
 #price {
     color: navy;
     font-weight: bold;
+}
+
+#cancel {
+    background-color: #FBCD10;
+    color: black;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 1em;
+    padding: .5em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+    border-radius: 4rem;
+    margin-left: 50ch;
 }
 
 .topnav {
@@ -184,51 +202,69 @@ a.disable:hover {
     background-color: #FBCD10;
 }
 
-@media (max-width:700px){
+@media (max-width:700px) {
+    /* .topnav{
+        width: 25em;
+    } */
 
-/* .topnav{
-    width: 25em;
-} */
-.box-header {
-    width: 22rem;
-}
+    .box-header {
+        width: 22rem;
+    }
 
-.address {
-    width: 22rem;
-}
+    #date-time {
+    margin-left: -1ch;
+    font-size: 18px;
+    }
 
-.box-footer {
-    width: 22rem;
-}
-#cancel{
-margin-left:14ch;
-width: 11rem;
-}
-}
+    .address {
+        width: 22rem;
+    }
 
-@media (max-width:350px){
+    .box-footer {
+        width: 22rem;
+    }
 
-.topnav{
-    width: 19em;
-}
-.topnav a{
-    width: 25%;
-}
-.box-header {
-    width: 17rem;
+    #cancel {
+        margin-left: 14ch;
+        width: 9rem;
+    }
 }
 
-.address {
-    width: 17rem;
-}
+@media (max-width:350px) {
 
-.box-footer {
-    width: 17rem;
-}
-#cancel{
-margin-left:9.5ch;
-width: 9rem;
-}
+    .toship {
+        width: fit-content;
+    }
+
+    .topnav {
+        width: 19em;
+    }
+
+    .topnav a {
+        width: 25%;
+    }
+
+    .box-header {
+        width: 17rem;
+    }
+
+    .address {
+        width: 17rem;
+    }
+
+    #date-time {
+    margin-left: -1ch;
+    font-size: 18px;
+    }
+
+    .box-footer {
+        width: 17rem;
+    }
+
+    #cancel {
+        margin-left: 9.5ch;
+        width: 7rem;
+    }
 }
 
 /* for top nav */
@@ -242,5 +278,4 @@ width: 9rem;
       font-size: 0.5rem;
     }
 }
-
 </style>
