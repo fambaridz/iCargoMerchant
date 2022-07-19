@@ -9,7 +9,7 @@
                         <b-form-group label-for="first-name" style="margin-bottom: 5px; line-height: 2em;">
                             <label for="first-name">First Name <a data-toggle="tooltip" data-placement="top" title="Please fill the input field!" style="color:red; text-decoration: none;"
                                     v-if="!fnameisvalid">*</a></label>
-                            <b-form-input id="first-name" v-model="form.fname"
+                            <b-form-input id="first-name" v-model="form.first_name"
                                 style="border-radius: 25px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; margin-top: 5px;">
                             </b-form-input>
                         </b-form-group>
@@ -20,7 +20,7 @@
                         <b-form-group label-for="last-name" style="margin-bottom: 5px; line-height: 2em;">
                             <label for="fname">Last Name <a data-toggle="tooltip" data-placement="top" title="Please fill the input field!" style="color:red; text-decoration: none;"
                                     v-if="!lnameisvalid">*</a></label>
-                            <b-form-input id="last-name" v-model="form.lname"
+                            <b-form-input id="last-name" v-model="form.last_name"
                                 style="border-radius: 25px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; margin-top: 5px;">
                             </b-form-input>
                         </b-form-group>
@@ -46,7 +46,7 @@
                             <div
                                 style="margin-top:5px;  box-shadow: 0px 1px 1px 1px #ced6e0; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
                                 <b-input-group prepend="(+63)" style="">
-                                    <b-form-input id="contact" v-model.number="form.contact"
+                                    <b-form-input id="contact" v-model.number="form.contact_number"
                                         style=" border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
                                     </b-form-input>
                                 </b-input-group>
@@ -60,7 +60,7 @@
                             <div
                                 style="margin-top:5px;  box-shadow: 0px 1px 1px 1px #ced6e0; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
                                 <b-input-group prepend="@" style="">
-                                    <b-form-input id="email" v-model.number="form.email"
+                                    <b-form-input id="email" v-model="form.email"
                                         style=" border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
                                     </b-form-input>
                                 </b-input-group>
@@ -75,7 +75,7 @@
                         style="width:100px; border-radius:15px; background-color: white; color:#BC9476; box-shadow: 0px 1px 1px 1px #ced6e0; border:none;">
                         Back
                     </b-button>
-                    <b-button id="modal-btn" size="md" :disabled="!formisvalid" @click="$bvModal.hide('modal-custom-1')"
+                    <b-button id="modal-btn" size="md" :disabled="!formisvalid" @click="submitForm"
                         style="width:100px; border-radius:10px; background-color: #FFC000; color:white; border:none; box-shadow: 0px 1px 1px 1px #ced6e0; ">
                         Update
                     </b-button>
@@ -88,26 +88,28 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     
     data(){
         return{
             form:{
-                fname: this.firstname,
-                lname: this.lastname,
-                about: this.compabout,
-                email: this.compemail,
-                contact: this.compcontact,
+                first_name: '',
+                last_name: '',
+                about: '',
+                email: '',
+                contact_number: '',
             }
         }
     },
     
     computed:{
         fnameisvalid(){
-            return !!this.form.fname
+            return !!this.form.first_name
         },
         lnameisvalid(){
-            return !!this.form.lname
+            return !!this.form.last_name
         },
         aboutisvalid(){
             return !!this.form.about
@@ -116,21 +118,37 @@ export default {
             return !!this.form.email
         },
         contactisvalid(){
-            return typeof this.form.contact === 'number' && this.form.contact > 999999999
+            return !!this.form.contact_number
         },
         formisvalid(){
             return this.fnameisvalid && this.lnameisvalid && this.aboutisvalid && this.emailisvalid && this.contactisvalid
         },
         
     },
+    mounted() {
+        this.getInfo()
+    },
     methods:{
         submitForm(){
             if(this.formisvalid){
-                return false;
-            }else{
+                axios.put('/merchantupdate/1', this.form).then((response) => {
+                    console.log(response.data)
+
+                }).catch((err) => {
+                    console.log(err)
+                })
+            } else {
                 console.log('invalid form')
             }
-        }
+        },
+        getInfo(){
+
+        axios.get("/user").then((response) => {
+             
+                  this.form = response.data
+                   
+          });
+      },
     },
 }
 </script>

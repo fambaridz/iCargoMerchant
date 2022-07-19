@@ -8,7 +8,7 @@
                     <b-form-group label-for="name-input">
                         <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
-                        <b-form-input id="comp-name" v-model="data.companyName"
+                        <b-form-input id="comp-name" v-model="info.name_of_business"
                             style="border-radius: 25px; margin-top:5px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
                         </b-form-input>
                     </b-form-group>
@@ -37,13 +37,15 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            companyName: '',
+            info:{
+                name_of_business:''
+            }
         }
     },
 
     computed:{
         compnameisvalid(){
-            return !!this.data.companyName
+            return !!this.data.name_of_business
         },
         formisvalid(){
             return this.compnameisvalid 
@@ -55,8 +57,11 @@ export default {
             if(this.formisvalid){
 
 //update method
-
-            axios.put('/merchantupdate/1',this.$data).then((response)=>{
+            axios.put('/merchantupdate/1',{
+                name_of_business:this.info.name_of_business
+            })
+            
+            .then((response)=>{
                 console.log(response.data)
 
             }).catch((err)=>{
@@ -69,7 +74,7 @@ export default {
         },
 
     },
-    props:{
+    props: {
         data:Object
     }
 
