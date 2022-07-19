@@ -92,7 +92,7 @@ class BookingController extends Controller
     //function to display contents of cargo table
     public function displayCargo(){
 
-        $cargo = DB::table('cargo')->get();
+        $cargo = DB::table('cargo')->get('cargo_type');
 
         //will return status 200 containing the contents of the database
         return response()->json
@@ -105,7 +105,7 @@ class BookingController extends Controller
     //function to display contents of vehicle table
     public function displayVehicle(){
 
-        $vehicle = DB::table('vehicle')->get();
+        $vehicle = DB::table('vehicle')->get('vehicle_type');
 
         //will return status 200 containing the contents of the database
         return response()->json
