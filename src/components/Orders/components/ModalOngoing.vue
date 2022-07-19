@@ -50,6 +50,7 @@ export default {
   padding: .5em;
   padding-left: 1rem;
   padding-right: 1rem;
+  border: none;
   border-radius: 4rem;
   margin-left: 50ch;
 }
@@ -59,6 +60,7 @@ export default {
   color: black;
   font-family: 'Poppins', 'sans-serif';
   font-size: 1em;
+  border: none;
   border-radius: 4rem;
 }
 
