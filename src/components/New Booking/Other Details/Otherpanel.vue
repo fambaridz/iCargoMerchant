@@ -111,7 +111,7 @@ a:hover {
   margin: 4px 2px;
   cursor: pointer;
 }
-.button1 {border-radius: 10px;}   
+.button1 {border: none; border-radius: 10px;}   
 .button1{
   background-color: white; 
   border: none;
@@ -124,7 +124,7 @@ a:hover {
   margin: 4px 2px;
   cursor: pointer;
 }
-.button {border-radius: 10px;}     
+.button {border: none; border-radius: 10px;}     
 
 
 </style>

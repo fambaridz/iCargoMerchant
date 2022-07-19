@@ -98,6 +98,7 @@ span:hover{
   border: 1px solid;
   padding:5px;
   margin-bottom: 10px;
+  border: none;
 }
 p{
     color: #003060;

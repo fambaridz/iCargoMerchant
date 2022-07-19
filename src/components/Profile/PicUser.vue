@@ -6,14 +6,14 @@
         
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
-                <span id="comp-name">{{company}}</span>
+                <span id="comp-name">{{info.name_of_business}}</span>
                 <input type="file" id="file" style="display:none;">
                 <a href="#" v-b-modal.modal-custom-name><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
         </div>
         <!-- profile end -->
         <div>
-            <NameModal :company="company" />
+            <NameModal :data="info"/>
         </div>
 
     </div>
@@ -32,18 +32,26 @@ export default {
      },
      data(){
         return{
-            company: 'ABC Hardware',
+            info:{
+                name_of_business:''
+            },
         }
      },
     mounted() {
         this.getName()
     },
     methods: {
-        async getName() {
-            await axios.get('/user').then((res) => {
-                console.log(res)
-            })
-        }
+
+     getName(){
+
+        axios.get("/user").then((response) => {
+             
+                  this.info = response.data
+
+                  console.log(this.info)
+                   
+          });
+      },
     }
      
 

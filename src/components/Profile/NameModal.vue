@@ -3,12 +3,12 @@
         <!-- modal username -->
         <b-modal id="modal-custom-name" ref="modal" title="Update Company Name" button-size="md" body-class="p-4" centered hide-header-close
             no-close-on-backdrop header-class="justify-content-center">
-            <form ref="form" @submit.prevent="submitForm">
+            <form ref="form">
                 <div class="container-fluid custom-input" style="width:80%">
                     <b-form-group label-for="name-input">
                         <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
-                        <b-form-input id="comp-name" v-model="form.companyname"
+                        <b-form-input id="comp-name" v-model="info.name_of_business"
                             style="border-radius: 25px; margin-top:5px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
                         </b-form-input>
                     </b-form-group>
@@ -33,19 +33,19 @@
 
 <script>
 import axios from 'axios'
+
 export default {
     data(){
         return{
-            form:{
-                companyname: this.company
-            },
-         
+            info:{
+                name_of_business:''
+            }
         }
     },
 
     computed:{
         compnameisvalid(){
-            return !!this.form.companyname
+            return !!this.data.name_of_business
         },
         formisvalid(){
             return this.compnameisvalid 
@@ -57,22 +57,25 @@ export default {
             if(this.formisvalid){
 
 //update method
-
-            axios.put('/updateBusiness/7',this.form).then((response)=>{
-                    console.log(response.data)
+            axios.put('/merchantupdate/1',{
+                name_of_business:this.info.name_of_business
+            })
+            
+            .then((response)=>{
+                console.log(response.data)
 
             }).catch((err)=>{
-                    console.log(err)
+                console.log(err)
             }) 
 
             }else{
                 console.log('invalid form')
             }
-        }
+        },
 
     },
-    props:{
-        company:String
+    props: {
+        data:Object
     }
 
 }

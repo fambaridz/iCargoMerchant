@@ -37,6 +37,7 @@ a:hover {
   padding: .5em;
   padding-left:1rem;
   padding-right:1rem;
+  border:none;
   box-shadow: 2px 10px 10px 2px rgba(0, 0, 0, 0.4)
 
 
@@ -48,10 +49,12 @@ a:hover {
   font-family: 'Poppins','sans-serif';
   font-size: 1em;
   padding:.5em;
+  border:none;
   box-shadow: 2px 10px 10px 2px rgba(0, 0, 0, 0.4)
 }
 .button{
   padding:2.5rem;
+  border:none;
 
 }
 </style>

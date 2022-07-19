@@ -21,10 +21,11 @@
                 <br>
                 <b-row>
                     <div class="container-fluid box-header">
-                        <div class="row">
-                            <div class="col-6 text-left" style="height: 10px;">
+                        
+                            <div class="col-6 text-left" style="height: 1px;">
                                 <h3 id="date-time">March 25,2022 3:00PM</h3>
                             </div>
+                            <div class="row">
                             <div class="col-15 text-left" style="margin-left:2ch;">
                                 <b-row>
                                     <ModalCompleteOrders />
@@ -58,10 +59,11 @@
                 <br>
                 <b-row>
                     <div class="container-fluid box-header">
-                        <div class="row">
+                        
                             <div class="col-6 text-left" style="height: 10px;">
                                 <h3 id="date-time">March 25,2022 3:00PM</h3>
                             </div>
+                            <div class="row">
                             <div class="col-15 text-left" style="margin-left:2ch;">
                                 <b-row>
                                     <ModalCompleteOrders />
@@ -107,18 +109,17 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:ital,wght@0,600;1,400&display=swap');
 
-.completeorder-body {
+.toship-body {
     height: 100%;
     background-color: white;
 }
 
 .box-header {
     background-color: #003060;
-    padding: .4rem;
+    padding: 1rem;
     color: white;
-    padding-left: 2rem;
+    padding-left: 3rem;
     width: 50rem;
 }
 
@@ -141,11 +142,11 @@ export default {
     text-align: left;
 }
 
+
 #date-time {
     color: white;
-    font-weight: bold;
     margin-left: 1ch;
-    font-size: large;
+    font-size: x-large;
 }
 
 #vehicle-type {
@@ -160,14 +161,16 @@ export default {
 }
 
 #cancel {
-    background-color: yellow;
+    background-color: #FBCD10;
     color: black;
     font-family: 'Poppins', 'sans-serif';
     font-size: 1em;
     padding: .5em;
     padding-left: 1rem;
     padding-right: 1rem;
+    border: none;
     border-radius: 4rem;
+    margin-left: 50ch;
 }
 
 .topnav {
@@ -204,13 +207,17 @@ a.disable:hover {
 }
 
 @media (max-width:700px) {
-
-    /* .topnav {
+    /* .topnav{
         width: 25em;
     } */
 
     .box-header {
         width: 22rem;
+    }
+
+    #date-time {
+    margin-left: -1ch;
+    font-size: 18px;
     }
 
     .address {
@@ -220,9 +227,19 @@ a.disable:hover {
     .box-footer {
         width: 22rem;
     }
+
+    #cancel {
+        margin-left: 14ch;
+        width: 9rem;
+    }
 }
 
 @media (max-width:350px) {
+
+    .toship {
+        width: fit-content;
+    }
+
     .topnav {
         width: 19em;
     }
@@ -239,11 +256,20 @@ a.disable:hover {
         width: 17rem;
     }
 
+    #date-time {
+    margin-left: -1ch;
+    font-size: 18px;
+    }
+
     .box-footer {
         width: 17rem;
     }
-}
 
+    #cancel {
+        margin-left: 9.5ch;
+        width: 7rem;
+    }
+}
 
 /* for top nav */
 @media(max-width:400px){

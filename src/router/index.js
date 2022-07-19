@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import price from '../components/New Booking/Price/NewBooking.vue'
+import details from '../components/New Booking/Other Details/NavBody.vue'
+import toship from '../components/Orders/components/ToShipOrder.vue'
 import ongoing from '../components/Orders/components/OngoingOrder.vue'
 import complete from '../components/Orders/components/CompleteOrders.vue'
 import cancel from '../components/Orders/components/CancelledOrders.vue'
@@ -44,7 +47,7 @@ const routes = [
   {
     name:'price',
     path: '/price',
-    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/Price/NewBooking.vue')
+    component: price
   },
   {
     name:'routes',
@@ -54,12 +57,12 @@ const routes = [
   {
     name:'details',
     path: '/details',
-    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/Other Details/NavBody.vue')
+    component: details
   },
   {
     name:'toship',
     path: '/toship',
-    component: () => import(/* webpackChunkName: "register" */ '../components/Orders/components/ToShipOrder.vue')
+    component: toship
   },
   {
     name:'ongoing',
@@ -87,11 +90,10 @@ const router = new VueRouter({
 export default router
 
 function loggedIn(){
-  return localStorage.getItem("token")
+  return localStorage.getItem('token')
 
  
 }
-
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
@@ -101,6 +103,7 @@ router.beforeEach((to, from, next) => {
 
 if (requiresAuth) {
       if (!loggedIn()) {
+         
           return next({  name: "signinPage"});
       }
   }

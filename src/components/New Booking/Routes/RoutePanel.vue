@@ -1,5 +1,5 @@
 <template>
-    <div class="routes-body">
+    <div class="routesLoc-body">
 
         <center><br>
             <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -252,7 +252,7 @@ pre {
     color: #003060;
     font-size: 20px;
 }
-.routes-body{
+.routesLoc-body{
     padding-bottom: 50px;
     padding-top: 50px;
 }
@@ -275,6 +275,7 @@ pre {
     font-family: 'Poppins','sans-serif';
     font-size: 20px;
     box-shadow: 0px 3px 10px 1px gray;
+    border:none;
 }
 .btn-custom:hover{
     background: #ffae00;

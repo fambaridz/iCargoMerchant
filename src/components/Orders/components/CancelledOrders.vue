@@ -98,9 +98,9 @@ export default {
 
 .box-header {
     background-color: #003060;
-    padding: .4rem;
+    padding: 1rem;
     color: white;
-    padding-left: 2rem;
+    padding-left: 3rem;
     width: 50rem;
 }
 
@@ -125,9 +125,8 @@ export default {
 
 #date-time {
     color: white;
-    font-weight: bold;
     margin-left: 1ch;
-    font-size: large;
+    font-size: x-large;
 }
 
 #vehicle-type {

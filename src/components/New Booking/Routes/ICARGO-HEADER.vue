@@ -1,5 +1,5 @@
 <template>
-  <div class="routes">
+  <div class="routesLoc">
     <!-- ICARGO SECTION -->
     <nav>
       <NavbarTop />
@@ -126,7 +126,7 @@ import NavbarTop from '../../Navbar/NavbarTop.vue';
   border: 1px solid grey;
   color: solid white;
 }
-.routes{
+.routesLoc{
   background-color: white;
   height: 100%;
 }
