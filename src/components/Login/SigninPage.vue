@@ -94,16 +94,10 @@ export default {
         
         .then((response) => {
              localStorage.setItem("token", response.data.token); 
-       //   this.$router.push({name:'details'});
-          
-              this.$router.push('/details', () => this.$router.go(0)).catch(err => {})
-
-          
-  
-
-    
  
-       
+          
+              this.$router.push('/details', () => this.$router.go(0)).catch(err => {}) 
+
         })
         .catch((err) => {
           //  console.log(err)
