@@ -275,6 +275,7 @@ pre {
     font-family: 'Poppins','sans-serif';
     font-size: 20px;
     box-shadow: 0px 3px 10px 1px gray;
+    border:none;
 }
 .btn-custom:hover{
     background: #ffae00;
