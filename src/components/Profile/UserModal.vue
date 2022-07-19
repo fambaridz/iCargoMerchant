@@ -134,7 +134,7 @@ export default {
             if(this.formisvalid){
                 axios.put('/merchantupdate/'+this.form.id, this.form).then((response) => {
                     console.log(response.data)
-
+                    window.location.reload();
                 }).catch((err) => {
                     console.log(err)
                 })
@@ -142,12 +142,12 @@ export default {
                 console.log('invalid form')
             }
         },
-        getInfo(){
+        async getInfo(){
 
-        axios.get("/user").then((response) => {
+        await axios.get("/user").then((response) => {
              
-                  this.form = response.data                   
-          });
+            this.form = response.data                   
+        });
       },
     },
 }
