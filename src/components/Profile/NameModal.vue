@@ -8,7 +8,7 @@
                     <b-form-group label-for="name-input">
                         <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
-                        <b-form-input id="comp-name" v-model="info.name_of_business"
+                        <b-form-input id="comp-name" v-model="name.name_of_business"
                             style="border-radius: 25px; margin-top:5px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
                         </b-form-input>
                     </b-form-group>
@@ -22,8 +22,6 @@
                     <b-button size="md" :disabled="!formisvalid" @click="submitForm" style="width:100px; border-radius:10px; background-color: #FFC000; color:white; border:none; box-shadow: 0px 1px 1px 1px #ced6e0; ">
                         Update
                     </b-button>
-
-                    
                 </div>
             </template>
         </b-modal>
@@ -37,7 +35,8 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            info:{
+            name:{
+                id:'',
                 name_of_business:''
             }
         }
@@ -45,38 +44,44 @@ export default {
 
     computed:{
         compnameisvalid(){
-            return !!this.data.name_of_business
+            return !!this.name.name_of_business
         },
         formisvalid(){
             return this.compnameisvalid 
         },
         
     },
+    mounted() {
+        this.getName()
+    },
     methods:{
         submitForm(){
             if(this.formisvalid){
 
 //update method
-            axios.put('/merchantupdate/1',{
-                name_of_business:this.info.name_of_business
-            })
-            
-            .then((response)=>{
-                console.log(response.data)
+                axios.put('/merchantupdate/' + this.name.id, this.name).then((response) => {
+                    console.log(response.data)
+                    window.location.reload();
+                }).catch((err) => {
+                    console.log(err)
+                })
 
-            }).catch((err)=>{
-                console.log(err)
-            }) 
-
-            }else{
+            } else {
                 console.log('invalid form')
             }
         },
+        getName(){
+
+        axios.get("/user").then((response) => {
+             
+                  this.name = response.data
+
+                  console.log(this.name)
+                   
+          });
+      },
 
     },
-    props: {
-        data:Object
-    }
 
 }
 </script>
