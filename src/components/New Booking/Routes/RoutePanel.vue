@@ -40,14 +40,9 @@
                     <!-- VEHICLE TYPE DROPDOWN -->
                     <b-form-group id="input-group-3" label="WHOLE VEHICLE" label-for="input-3"
                         class="font-weight-bold">
-                        <select class="form-select" aria-label="Default select example"
+                        <select class="form-select"  aria-label="Default select example"
                             style="padding: 0.7rem; margin-top: 10px;">
                             <option selected>Choose Vehicle Type</option>
-                            <option value="1">Closed Box</option>
-                            <option value="2">Box</option>
-                            <option value="3">Pallet</option>
-                            <option value="4">Crate</option>
-                            <option value="5">Other</option>
                         </select>
                     </b-form-group>
                     <!-- VEHICLE TYPE DROPDOWN -- END CODE -->
@@ -60,10 +55,7 @@
                         <select class="form-select" aria-label="Default select example"
                             style="padding: 0.7rem; margin-top: 10px;">
                             <option selected>Choose Cargo Type</option>
-                            <option value="1">Small Pickup</option>
-                            <option value="2">Closed Van</option>
-                            <option value="3">Pickup Truck</option>
-                            <option value="4">6w Fwd Truck</option>
+                            
                         </select>
                     </b-form-group>
                 </div>
@@ -170,6 +162,8 @@
 
 
 <script>
+import axios from 'axios'
+
 import AddPackage from './AddPackage.vue';
 
   export default {
@@ -190,7 +184,28 @@ import AddPackage from './AddPackage.vue';
             show: true
         };
     },
+
+    mounted() {
+
+        this.vehicleList();
+        this.cargoList();
+
+    }, 
+
     methods: {
+
+        async vehicleList(){
+            await axios.get('/vehiclelist').then((res)=>{
+                this.vehicle = res.data.vehicle_type
+            })
+        },
+
+        async cargoList(){
+            await axios.get('/cargolist').then((res)=>{
+                this.cargo = res.data.cargo_type
+            })
+        },
+        
         onSubmit(event) {
             event.preventDefault();
         },
