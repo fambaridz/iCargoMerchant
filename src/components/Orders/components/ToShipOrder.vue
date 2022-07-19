@@ -20,10 +20,11 @@
                 <br>
                 <b-row>
                     <div class="container-fluid box-header">
-                        <div class="row">
-                            <div class="col-6 text-left" style="height: 10px;">
+                        
+                            <div class="col-6 text-left" style="height: 1px;">
                                 <h3 id="date-time">March 25,2022 3:00PM</h3>
                             </div>
+                            <div class="row">
                             <div class="modal-button">
                                 <b-button id="cancel" @click="showMsgBoxTwo">Cancel Order
                                 </b-button>
@@ -52,20 +53,20 @@
                         </div>
                     </div>
                 </b-row>
-                <!--ORDER-->
+                              <!--ORDER-->
                 <br>
                 <b-row>
                     <div class="container-fluid box-header">
-                        <div class="row">
-                            <div class="col-6 text-left" style="height: 10px;">
+                        
+                            <div class="col-6 text-left" style="height: 1px;">
                                 <h3 id="date-time">March 25,2022 3:00PM</h3>
                             </div>
+                            <div class="row">
                             <div class="modal-button">
                                 <b-button id="cancel" @click="showMsgBoxTwo">Cancel Order
                                 </b-button>
                                 {{ String(boxTwo) }}
                             </div>
-
                         </div>
                     </div>
                     <div class="container-fluid address">
@@ -142,9 +143,9 @@ export default {
 
 .box-header {
     background-color: #003060;
-    padding: .4rem;
+    padding: 1rem;
     color: white;
-    padding-left: 2rem;
+    padding-left: 3rem;
     width: 50rem;
 }
 
@@ -170,9 +171,8 @@ export default {
 
 #date-time {
     color: white;
-    font-weight: bold;
     margin-left: 1ch;
-    font-size: large;
+    font-size: x-large;
 }
 
 #vehicle-type {
@@ -194,6 +194,7 @@ export default {
     padding: .5em;
     padding-left: 1rem;
     padding-right: 1rem;
+    border: none;
     border-radius: 4rem;
     margin-left: 50ch;
 }
@@ -240,6 +241,11 @@ a.disable:hover {
         width: 22rem;
     }
 
+    #date-time {
+    margin-left: -1ch;
+    font-size: 18px;
+    }
+
     .address {
         width: 22rem;
     }
@@ -276,13 +282,18 @@ a.disable:hover {
         width: 17rem;
     }
 
+    #date-time {
+    margin-left: -1ch;
+    font-size: 18px;
+    }
+
     .box-footer {
         width: 17rem;
     }
 
     #cancel {
         margin-left: 9.5ch;
-        width: 8rem;
+        width: 7rem;
     }
 }
 
