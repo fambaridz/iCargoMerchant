@@ -39,16 +39,6 @@
                 <center>
                 <div class="container titletwo">
                     <!-- VEHICLE TYPE DROPDOWN -->
-                    <!--b-form-group id="input-group-3" label="WHOLE VEHICLE" label-for="input-3"
-                        class="font-weight-bold">
-                        <select class="form-select"  aria-label="Default select example"
-                            style="padding: 0.7rem; margin-top: 10px;">
-                            <option selected>Choose Vehicle Type</option>
-                        </select>
-                    </b-form-group>
-                     <b-form-select v-model="selected" :options="options"></b-form-select-->
-                    <!-- VEHICLE TYPE DROPDOWN -- END CODE -->
-                    
                     <v-app class="form">
                     <label id="label" class="text-center text-muted required mb-2">
                     WHOLE VEHICLE
@@ -57,7 +47,7 @@
                     label="Choose Vehicle Type"
                     class="select d-flex"
                     background-color="#eef5fd"
-                    :items="vehicletype"
+                    :items="vehicles"
                     item-text="vehicle_type"
                     solo
                     rounded
@@ -65,16 +55,9 @@
                     </v-select>
                     </v-app>
                     </div>
+                    <!-- VEHICLE TYPE DROPDOWN -- END CODE -->
                 
                     <!-- CARGO TYPE DROPDOWN -->
-                    <!--b-form-group id="input-group-4" label="PARTIAL LOAD" label-for="input-4"
-                        class="font-weight-bold">
-                        <select class="form-select" aria-label="Default select example"
-                            style="padding: 0.7rem; margin-top: 10px;">
-                            <option selected>Choose Cargo Type</option>
-                            
-                        </select>
-                    </b-form-group-->
                     <div class="container titletwo">
                     <v-app class="form">
                     <label id="label" class="text-center text-muted required mb-2">
@@ -84,7 +67,7 @@
                     label="Choose Cargo Type"
                     class="select d-flex"
                     background-color="#eef5fd"
-                    :items="cargotype"
+                    :items="cargos"
                     item-text="cargo_type"
                     solo
                     rounded
@@ -92,8 +75,9 @@
                     </v-select>
                     </v-app>
                     </div>
+
                     </center>
-                <!-- CARGO TYPE DROPDOWN -- END CODE -->
+                    <!-- CARGO TYPE DROPDOWN -- END CODE -->
 
 
                 <!-- LENGTH - WIDTH - HEIGHT - WEIGHT -->
@@ -202,8 +186,8 @@ import AddPackage from './AddPackage.vue';
 
   export default {
     Name: "RoutePanel",
-    data() {
-        return {
+    data: () => ({
+
             form: {
                 L: "",
                 W: "",
@@ -213,11 +197,11 @@ import AddPackage from './AddPackage.vue';
                 vehicletype: null,
                 checked: "",
             },
-            vehicletype: [{ text: "Choose Vehicle Type", value: null }, "Closed Box", "Box", "Pallet", "Crate", "Other"],
-            cargotype: [{ text: "Choose Cargo Type", value: null }, "Small Pickup", "Closed Van", "Pickup Truck", "6w Fwd Truck"],
+            vehicles: [],
+            cargos: [],
             show: true
-        };
-    },
+
+    }),
 
     mounted() {
 
@@ -230,13 +214,13 @@ import AddPackage from './AddPackage.vue';
 
         async vehicleList(){
             await axios.get('/vehiclelist').then((res)=>{
-                this.vehicle = res.data.vehicle_type
+                this.vehicles = res.data.vehicle_type
             })
         },
 
         async cargoList(){
             await axios.get('/cargolist').then((res)=>{
-                this.cargo = res.data.cargo_type
+                this.cargos = res.data.cargo_type
             })
         },
         
