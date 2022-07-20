@@ -119,7 +119,7 @@ class IdentificationController extends Controller
         
         return response()->json
             ([
-             'ver'=> $verify_merchant,
+             'MerchantID'=> $verify_merchant,
                 ]
                 ,200);
 
