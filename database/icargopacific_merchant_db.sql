@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2022 at 08:21 AM
+-- Generation Time: Jul 20, 2022 at 07:02 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -122,6 +122,7 @@ CREATE TABLE `merchant` (
   `password` varchar(100) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
+  `profile_image` varchar(255) DEFAULT NULL,
   `contact_number` varchar(255) NOT NULL,
   `name_of_business` varchar(255) NOT NULL,
   `about` text DEFAULT NULL
