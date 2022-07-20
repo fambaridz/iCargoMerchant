@@ -119,7 +119,7 @@ export default {
 
 <style>
 .bg {
-  height: 130vh;
+  height: 150vh;
   position: relative;
   background: linear-gradient(
     to bottom right,
