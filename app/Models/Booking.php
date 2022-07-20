@@ -12,15 +12,17 @@ class Booking extends Model
     protected $table = 'booking';
 
     protected $fillable = [
-        'email',
+        'merchant_id',
         'sender_location',
         'sender_contact',
         'recipient_location',
         'recipient_contact',
+        'vehicle',
         'length',
         'width',
         'height',
         'weight',
+        'cargo_type',
         'time',
         'distance',
         'inclusions',

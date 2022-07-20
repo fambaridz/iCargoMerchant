@@ -23,6 +23,9 @@ class Merchant  extends Authenticatable
         'profile_image',
         'contact_number',
         'name_of_business',
+        'proof_id',
+        'id_image',
+        'permit_image',
         'about',
 
     ];
