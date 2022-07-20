@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2022 at 07:02 AM
+-- Generation Time: Jul 20, 2022 at 10:04 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -125,6 +125,9 @@ CREATE TABLE `merchant` (
   `profile_image` varchar(255) DEFAULT NULL,
   `contact_number` varchar(255) NOT NULL,
   `name_of_business` varchar(255) NOT NULL,
+  `proof_id` varchar(255) NOT NULL,
+  `id_image` varchar(255) NOT NULL,
+  `permit_image` varchar(255) NOT NULL,
   `about` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
