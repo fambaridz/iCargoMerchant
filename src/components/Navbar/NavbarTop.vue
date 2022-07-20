@@ -17,9 +17,15 @@
         </div>
 
         <div class="justify-content-end d-flex align-items-center">
-          <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
-          &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
 
+          <div v-if="!image">
+             <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
+          </div>
+
+          <div v-if="image">
+          <img :src="require(`../../assets/profilepictures/${image}`)" style="width:35px; height:35px; border-radius: 50%;" alt="company profile">
+          </div>
+          &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
           <b-dropdown id="dropdown-right" right variant="none">
             <b-dropdown-item id="item" href="/routes"
               ><i class="fa-solid fa-book-bookmark icon-body"></i>New
@@ -56,6 +62,8 @@ data(){
   return{
       userLogged : {},
       errors:'',
+      image:{
+      }
    
   }
 },
@@ -67,29 +75,30 @@ mounted(){
 
   methods: {
 
-     showuser(){
-  
+    showuser() {
 
-        axios.get("/user").then((response) => {
-             
 
-                  this.userLogged = response.data
-//setting for temporarily the id of user for the booking orders. do not delete - jaq
-                  localStorage.setItem("book", response.data.id)
-                  console.log(this.userLogged)
-                   
-          });
-      },
+      axios.get("/user").then((response) => {
+
+
+        this.userLogged = response.data
+        this.image = response.data.profile_image
+        //setting for temporarily the id of user for the booking orders. do not delete - jaq
+        localStorage.setItem("book", response.data.id)
+        console.log(this.userLogged)
+
+      });
+    },
     logout() {
       axios
         .post("/merchantlogout")
         .then((response) => {
           localStorage.removeItem("token");
-          this.$router.push({name:'signinPage'})
+          this.$router.push({ name: 'signinPage' })
         })
         .catch((err) => {
-        //  this.errors = err
-        //  console.log(err);
+          //  this.errors = err
+          //  console.log(err);
         });
     },
   },

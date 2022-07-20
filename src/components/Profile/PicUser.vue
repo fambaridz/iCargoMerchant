@@ -2,8 +2,13 @@
 
     <div id="BodyUser">
         <!-- profile -->
-        <label for="file"><i class="fa-solid fa-circle-user"></i></label>
-        <!-- <img :src='image' alt=""> -->
+        
+        <div v-if="!image">
+        <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <div v-if="image">
+        <img :src="require(`../../assets/profilepictures/${image}`)" class="fa-circle-user" alt="company profile">
+        </div>
         
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
@@ -33,9 +38,11 @@ export default {
      data(){
         return{
             info:{
-                name_of_business:''
+                name_of_business:'',
+                profile_image: ''
             },
-            // image: require("")
+            image:{
+            }
         }
      },
     mounted() {
@@ -43,12 +50,12 @@ export default {
     },
     methods: {
 
-     getName(){
+    async getName(){
 
-        axios.get("/user").then((response) => {
+        await axios.get("/user").then((response) => {
              
                   this.info = response.data
-
+                  this.image = response.data.profile_image
                   console.log(this.info)
                    
           });
@@ -67,6 +74,7 @@ export default {
     height: 275px;
     color: #0D7CFF;
     margin-bottom: 10px;
+    border-radius: 50%;
 }
 #profile-pic{
     cursor: pointer;
