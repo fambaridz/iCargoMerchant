@@ -138,8 +138,8 @@ class IdentificationController extends Controller
      public function update(Request $request, $id)
     {
         $merchantTable = merchant::find($id);
-        $merchantTable->firstname = $request->input('firstname');
-        $merchantTable->lastname = $request->input('lastname');
+        $merchantTable->firstname = $request->input('first_name');
+        $merchantTable->lastname = $request->input('last_name');
         $merchantTable->about = $request->input('about');
         $merchantTable->contact_number = $request->input('contact_number');
         $merchantTable->email = $request->input('email');
