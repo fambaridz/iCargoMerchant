@@ -3,6 +3,7 @@
     <div id="BodyUser">
         <!-- profile -->
         <label for="file"><i class="fa-solid fa-circle-user"></i></label>
+        <!-- <img :src='image' alt=""> -->
         
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
@@ -15,7 +16,6 @@
         <div>
             <NameModal/>
         </div>
-
     </div>
 
 </template>
@@ -35,6 +35,7 @@ export default {
             info:{
                 name_of_business:''
             },
+            // image: require("")
         }
      },
     mounted() {

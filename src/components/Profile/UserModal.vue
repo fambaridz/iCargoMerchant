@@ -155,7 +155,7 @@ export default {
 
 <style scoped>
 
-/deep/ .modal-body{
+/deep/.modal-body{
     border-radius: 25px;
     padding-left: 25px;
     padding-right: 25px;

@@ -127,7 +127,7 @@ mounted(){
   color: black;
   font-weight: 600;
 }
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   #icargo {
     font-size: 1.3rem;
   }

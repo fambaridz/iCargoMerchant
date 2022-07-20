@@ -111,7 +111,6 @@ export default {
      async getID(){
       await axios.get('/verification').then((res)=>{
         this.items = res.data.proof_of_identification
-    
       })
      },
   

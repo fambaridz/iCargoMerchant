@@ -59,9 +59,9 @@ export default {
             if(this.formisvalid){
 
 //update method
-                axios.put('/merchantupdate/' + this.name.id, this.name).then((response) => {
+                axios.put('/merchantupdate/'+this.name.id, this.name).then((response) => {
                     console.log(response.data)
-                    window.location.reload();
+                    window.location.reload();   
                 }).catch((err) => {
                     console.log(err)
                 })
