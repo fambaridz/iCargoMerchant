@@ -80,7 +80,7 @@ export default {
     cursor: pointer;
 }
 .fa-circle-user:hover{
-    opacity: 0.7;
+    opacity: 0.71;
     cursor: pointer;
 }
 
