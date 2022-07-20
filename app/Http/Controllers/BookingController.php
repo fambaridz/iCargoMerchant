@@ -89,28 +89,17 @@ class BookingController extends Controller
         }
     }
     
-    //function to display contents of cargo table
-    public function displayCargo(){
+    //function to display contents of cargo and vehicle table
+    public function displayOptions(){
 
+        $vehicle = DB::table('vehicle')->get('vehicle_type');
         $cargo = DB::table('cargo')->get('cargo_type');
 
         //will return status 200 containing the contents of the database
         return response()->json
             ([
-                'CargoType'=>$cargo,
-                ]
-                ,200);
-    }
-
-    //function to display contents of vehicle table
-    public function displayVehicle(){
-
-        $vehicle = DB::table('vehicle')->get('vehicle_type');
-
-        //will return status 200 containing the contents of the database
-        return response()->json
-            ([
                 'Vehicles'=>$vehicle,
+                'CargoType'=>$cargo,
                 ]
                 ,200);
     }
