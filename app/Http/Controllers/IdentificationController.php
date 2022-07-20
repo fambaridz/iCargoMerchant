@@ -135,15 +135,15 @@ class IdentificationController extends Controller
      //Update Profile Information
      public function update(Request $request, $id)
     {
-        $request->validate([
-            'profile_image'=>'profile_image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-        $merchantTable = User::where('id',$id)->first();
-        unlink($merchantTable->profile_image);
-        $profile_image_name = time().'.'.$request->profile_image->extension();
-        $request->profile_image->move(public_path('public'),$profile_image_name);
-        $path = 'public/'.$profile_image_name;
-        $merchantTable->profile_image = $path;
+        // $request->validate([
+        //     'profile_image'=>'profile_image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+        // $merchantTable = User::where('id',$id)->first();
+        // unlink($merchantTable->profile_image);
+        // $profile_image_name = time().'.'.$request->profile_image->extension();
+        // $request->profile_image->move(public_path('public'),$profile_image_name);
+        // $path = 'public/'.$profile_image_name;
+        // $merchantTable->profile_image = $path;
 
         $merchantTable = merchant::find($id);
         $merchantTable->first_name = $request->input('first_name');
