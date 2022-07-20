@@ -187,40 +187,29 @@ import AddPackage from './AddPackage.vue';
   export default {
     Name: "RoutePanel",
     data: () => ({
-
-            form: {
-                L: "",
-                W: "",
-                H: "",
-                KG: "",
-                cargotype: null,
-                vehicletype: null,
-                checked: "",
-            },
-            vehicles: [],
-            cargos: [],
-            show: true
-
+        form: {
+            L: "",
+            W: "",
+            H: "",
+            KG: "",
+            checked: "",
+        },
+        vehicles: [],
+        cargos: [],
+        show: true
     }),
 
     mounted() {
-
-        this.vehicleList();
-        this.cargoList();
-
+        this.displayList()
     }, 
 
     methods: {
 
-        async vehicleList(){
-            await axios.get('/vehiclelist').then((res)=>{
-                this.vehicles = res.data.vehicle_type
-            })
-        },
-
-        async cargoList(){
-            await axios.get('/cargolist').then((res)=>{
-                this.cargos = res.data.cargo_type
+        async displayList(){
+            await axios.get('/optionlist').then((res)=>{
+                console.log(res)
+                this.vehicles = res.data.Vehicles
+                this.cargos = res.data.CargoType
             })
         },
         
