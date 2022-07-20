@@ -29,10 +29,8 @@ class IdentificationController extends Controller
             'email' => 'required|email',
             'contact_number' => 'required',
             'business_name' => 'required',
-            'confirmPassword'=>'required|same:password',
             'password' => 'required|min:8',
-          
-
+            'confirmPassword'=>'required|same:password',
         ]);
 
         //if validation fails this will return the error response
@@ -53,7 +51,7 @@ class IdentificationController extends Controller
                     'last_name' => $request->lastname,
                     'email' => $request->email,
                     'contact_number' => $request->contact_number,
-                    'name_of_business' => $request->business_name,
+                    'business_name' => $request->business_name,
                     'password' => Hash::make($request->password),
                     'about' => $request->about,
                 ]
@@ -153,7 +151,7 @@ class IdentificationController extends Controller
         $merchantTable->about = $request->input('about');
         $merchantTable->contact_number = $request->input('contact_number');
         $merchantTable->email = $request->input('email');
-        $merchantTable->name_of_business = $request->input('name_of_business');
+        $merchantTable->business_name = $request->input('business_name');
 
     //Updates new information to the Database
         $merchantTable->save();
