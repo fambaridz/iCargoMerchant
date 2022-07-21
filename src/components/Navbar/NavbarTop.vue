@@ -144,7 +144,7 @@ export default {
   color: black;
   font-weight: 600;
 }
-@media (max-width: 550px) {
+@media (max-width: 650px) {
   #icargo {
     font-size: 1.3rem;
   }
