@@ -12,7 +12,7 @@
         <span style="font-weight:bold; color: red;">{{userWithIcon.msg}}</span>
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
-                <span id="comp-name">{{info.name_of_business}}</span>
+                <span id="comp-name">{{info.business_name}}</span>
                 <input type="file" id="file" style="display:none;">
                 <a href="#" v-b-modal.modal-custom-name><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
@@ -42,7 +42,7 @@ export default {
      data(){
         return{
             info:{
-                name_of_business:'',
+                business_name:'',
                 profile_image: ''
             },
             image:{

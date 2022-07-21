@@ -8,7 +8,7 @@
                     <b-form-group label-for="name-input">
                         <label for="comp-name">Company Name<span style="color:red;"
                                     v-if="!compnameisvalid">*</span></label>
-                        <b-form-input id="comp-name" v-model="name.name_of_business"
+                        <b-form-input id="comp-name" v-model="name.business_name"
                             style="border-radius: 25px; margin-top:7px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
                         </b-form-input>
                     </b-form-group>
@@ -37,14 +37,14 @@ export default {
         return{
             name:{
                 id:'',
-                name_of_business:''
+                business_name:''
             }
         }
     },
 
     computed:{
         compnameisvalid(){
-            return !!this.name.name_of_business
+            return !!this.name.business_name
         },
         formisvalid(){
             return this.compnameisvalid 
