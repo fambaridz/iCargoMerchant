@@ -3,11 +3,11 @@
     <div id="BodyUser">
         <!-- profile -->
         
-        <div v-if="!image">
-        <i class="fa-solid fa-circle-user"></i>
-        </div>
         <div v-if="image">
-        <img :src="require(`../../assets/profilepictures/${image}`)" class="fa-circle-user" alt="company profile">
+        <img :src="userWithIcon.icon" class="fa-circle-user" alt="company profile">
+        </div>
+        <div v-else>
+        <i class="fa-solid fa-circle-user"></i>
         </div>
         
         <div class="row text-center">
@@ -45,6 +45,14 @@ export default {
             }
         }
      },
+    computed: {
+        userWithIcon() {
+            return {
+                ...this.image,
+                icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+            }
+        }
+    },
     mounted() {
         this.getName()
     },
@@ -55,7 +63,7 @@ export default {
         await axios.get("/user").then((response) => {
              
                   this.info = response.data
-                  this.image = response.data.profile_image
+                  this.image = response.data
                   console.log(this.info)
                    
           });

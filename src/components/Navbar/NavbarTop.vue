@@ -23,7 +23,7 @@
           </div>
 
           <div v-if="image">
-          <img :src="require(`../../assets/profilepictures/${image}`)" style="width:35px; height:35px; border-radius: 50%;" alt="company profile">
+          <img :src="userWithIcon.icon" style="width:35px; height:35px; border-radius: 50%;" alt="company profile">
           </div>
           &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
           <b-dropdown id="dropdown-right" right variant="none">
@@ -58,19 +58,27 @@
 import axios from "axios";
 export default {
   name: "NavbarTop",
-data(){
-  return{
-      userLogged : {},
-      errors:'',
-      image:{
+  data() {
+    return {
+      userLogged: {},
+      errors: '',
+      image: {
       }
-   
-  }
-},
-mounted(){
-      this.showuser()
+
+    }
   },
- 
+  computed: {
+    userWithIcon() {
+      return {
+        ...this.image,
+        icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+      }
+    }
+  },
+  mounted() {
+    this.showuser()
+  },
+
 
 
   methods: {
@@ -82,7 +90,7 @@ mounted(){
 
 
         this.userLogged = response.data
-        this.image = response.data.profile_image
+        this.image = response.data
         //setting for temporarily the id of user for the booking orders. do not delete - jaq
         localStorage.setItem("book", response.data.id)
         console.log(this.userLogged)
