@@ -297,10 +297,10 @@ pre {
 .btn-custom{
     width: 125px;
     background: #FBCD10;
-    color: black;
+    color: white;
     font-family: 'Poppins','sans-serif';
     font-size: 20px;
-    box-shadow: 0px 3px 10px 1px gray;
+    box-shadow: 0px 2px 2px 1px #aaa;
     border:none;
 }
 .btn-custom:hover{

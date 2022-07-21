@@ -2,8 +2,8 @@
   <div id="modal">
    <div><br></div>
    <center>
-     <a href="/details" class="button show-btn1">Back</a>&nbsp;&nbsp;
-    <b-button id=show-btn @click="showModal">Place Order </b-button>
+     <a href="/details" class="button show-btn1">BACK</a>&nbsp;&nbsp;
+    <b-button id="show-btn" @click="showModal">PLACE ORDER </b-button>
     </center>
     <b-modal ref="my-modal" title="YOUR ECONOMY PRICE" hide-footer>
       <div class="d-block">
@@ -65,29 +65,33 @@ h6{
 
 #show-btn{
   background-color: #FBCD10;
-  color: black;
+  color: white;
   font-family: 'Poppins','sans-serif';
-  font-size: 1em;
+  font-size: 20px;
+  margin-left: 15px; /* spacing in between buttons */
   padding: .5rem;
   padding-left:1rem;
   padding-right:1rem;
   border-radius:4rem;
-  box-shadow: 0px 3px 10px 1px gray;
+  box-shadow: 0px 2px 2px 1px #aaa;
  
 
 }
+
 .show-btn1{
-   background-color: #FBCD10;
-  color: black;
+  background-color: #FBCD10;
+  width: 125px;
+  color: white;
   font-family: 'Poppins','sans-serif';
-  font-size: 1em;
+  font-size: 20px;
+  margin-right: 15px; /* spacing in between buttons */
   padding: .5rem;
-  padding-left:2rem;
-  padding-right:2rem;
+  padding-left:2.4rem;
+  padding-right:2.4rem;
   border-radius:4rem;
   border: .5px solid grey;
   text-decoration:none;
-  box-shadow: 0px 3px 10px 1px gray;
+  box-shadow: 0px 2px 2px 1px #aaa;
 }
 #modal{
   padding-bottom: 50px;

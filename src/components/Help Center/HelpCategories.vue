@@ -27,13 +27,13 @@ export default {
 
 <style scoped>
 .help-body{
-    background-color: yellow;
+    background-color: white;
     box-shadow: 0px 3px 10px 1px gray;
     height: 50px;
 }
 .icon{
     font-size: 1.7em;
-    color: #0D7CFF;
+    color: #fbcd10;
 }
 .user{
     font-size: 1.5em;
