@@ -18,13 +18,14 @@
 
         <div class="justify-content-end d-flex align-items-center">
 
-          <div v-if="!image">
+          <div v-if="image.profile_image !== null">
+          <img :src="userWithIcon.icon" style="width:35px; height:35px; border-radius: 50%;" alt="company profile">
+          </div>
+
+          <div v-else-if="image.profile_image == null">
              <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
           </div>
 
-          <div v-if="image">
-          <img :src="userWithIcon.icon" style="width:35px; height:35px; border-radius: 50%;" alt="company profile">
-          </div>
           &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
           <b-dropdown id="dropdown-right" right variant="none">
             <b-dropdown-item id="item" href="/routes"

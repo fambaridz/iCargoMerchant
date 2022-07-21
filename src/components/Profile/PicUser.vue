@@ -3,13 +3,13 @@
     <div id="BodyUser">
         <!-- profile -->
         
-        <div v-if="image">
-        <img :src="userWithIcon.icon" class="fa-circle-user" alt="company profile">
+        <div v-if="image.profile_image !== null">
+        <a href="#" v-b-modal.modal-custom-picture><img :src="userWithIcon.icon" class="fa-circle-user" alt="company profile"></a>
         </div>
-        <div v-else>
-        <i class="fa-solid fa-circle-user"></i>
+        <div v-else-if="image.profile_image == null">
+        <a href="#" v-b-modal.modal-custom-picture><i class="fa-solid fa-circle-user"></i></a>
         </div>
-        
+        <span style="font-weight:bold; color: red;">{{userWithIcon.msg}}</span>
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
                 <span id="comp-name">{{info.name_of_business}}</span>
@@ -20,6 +20,7 @@
         <!-- profile end -->
         <div>
             <NameModal/>
+            <ChangePic/>
         </div>
     </div>
 
@@ -27,14 +28,17 @@
 
 <script>
 import NameModal from './NameModal.vue';
+import ChangePic from './ChangePic.vue'
 import axios from 'axios';
 
 
 export default {
     name: 'BodyUser',
      components:{
-        NameModal,
-     },
+    NameModal,
+    ChangePic,
+    ChangePic
+},
      data(){
         return{
             info:{
@@ -47,10 +51,21 @@ export default {
      },
     computed: {
         userWithIcon() {
-            return {
+            try {
+                return {
                 ...this.image,
                 icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+                }
+            } catch (error) {
+                return {
+                    msg:"image cannot be found"
+                }
             }
+
+            // return {
+            //     ...this.image,
+            //     icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+            // }
         }
     },
     mounted() {
