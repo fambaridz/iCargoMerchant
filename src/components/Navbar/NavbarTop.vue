@@ -26,7 +26,9 @@
              <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
           </div>
 
+          
           &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
+          
           <b-dropdown id="dropdown-right" right variant="none">
             <b-dropdown-item id="item" href="/routes"
               ><i class="fa-solid fa-book-bookmark icon-body"></i>New
@@ -92,6 +94,7 @@ export default {
 
         this.userLogged = response.data
         this.image = response.data
+
         //setting for temporarily the id of user for the booking orders. do not delete - jaq
         localStorage.setItem("book", response.data.id)
         console.log(this.userLogged)

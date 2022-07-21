@@ -7,7 +7,7 @@
                 <div class="container-fluid custom-input" style="width:80%">
                     <b-form-group label-for="name-input">
                         <div class="text-center">
-                            <p style="font-size:0.9em">Please make sure that the picture is in this path "/assets/profile" of the project folder
+                            <p style="font-size:0.9em">Please make sure that the image is in this path "/assets/profile" of the project folder
                             <span style="color:red;">*</span></p>
                         </div>
                         <b-form-input id="comp-name" v-model="name.profile_image"
