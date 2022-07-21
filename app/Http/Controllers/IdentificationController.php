@@ -29,10 +29,8 @@ class IdentificationController extends Controller
             'email' => 'required|email',
             'contact_number' => 'required',
             'business_name' => 'required',
-            'confirmPassword'=>'required|same:password',
             'password' => 'required|min:8',
-          
-
+            'confirmPassword'=>'required|same:password',
         ]);
 
         //if validation fails this will return the error response
@@ -53,7 +51,7 @@ class IdentificationController extends Controller
                     'last_name' => $request->lastname,
                     'email' => $request->email,
                     'contact_number' => $request->contact_number,
-                    'name_of_business' => $request->business_name,
+                    'business_name' => $request->business_name,
                     'password' => Hash::make($request->password),
                     'about' => $request->about,
                 ]
@@ -119,7 +117,7 @@ class IdentificationController extends Controller
         
         return response()->json
             ([
-             'ver'=> $verify_merchant,
+             'MerchantID'=> $verify_merchant,
                 ]
                 ,200);
 
@@ -137,13 +135,24 @@ class IdentificationController extends Controller
      //Update Profile Information
      public function update(Request $request, $id)
     {
+        // $request->validate([
+        //     'profile_image'=>'profile_image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+        // $merchantTable = User::where('id',$id)->first();
+        // unlink($merchantTable->profile_image);
+        // $profile_image_name = time().'.'.$request->profile_image->extension();
+        // $request->profile_image->move(public_path('public'),$profile_image_name);
+        // $path = 'public/'.$profile_image_name;
+        // $merchantTable->profile_image = $path;
+
         $merchantTable = merchant::find($id);
         $merchantTable->first_name = $request->input('first_name');
         $merchantTable->last_name = $request->input('last_name');
+        $merchantTable->profile_image = $request->input('profile_image');
         $merchantTable->about = $request->input('about');
         $merchantTable->contact_number = $request->input('contact_number');
         $merchantTable->email = $request->input('email');
-        $merchantTable->name_of_business = $request->input('name_of_business');
+        $merchantTable->business_name = $request->input('business_name');
 
     //Updates new information to the Database
         $merchantTable->save();

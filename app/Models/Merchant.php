@@ -20,8 +20,12 @@ class Merchant  extends Authenticatable
         'password',
         'first_name',
         'last_name',
+        'profile_image',
         'contact_number',
-        'name_of_business',
+        'business_name',
+        'proof_id',
+        'id_image',
+        'permit_image',
         'about',
 
     ];
