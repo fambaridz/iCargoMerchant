@@ -148,6 +148,7 @@ class IdentificationController extends Controller
         $merchantTable = merchant::find($id);
         $merchantTable->first_name = $request->input('first_name');
         $merchantTable->last_name = $request->input('last_name');
+        $merchantTable->profile_image = $request->input('profile_image');
         $merchantTable->about = $request->input('about');
         $merchantTable->contact_number = $request->input('contact_number');
         $merchantTable->email = $request->input('email');
