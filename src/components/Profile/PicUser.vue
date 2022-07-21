@@ -3,13 +3,18 @@
     <div id="BodyUser">
         <!-- profile -->
         
+        <!-- display if image cannot be found -->
+        <span style="font-weight:bold; color: red;">{{userWithIcon.msg}}</span>
+        <!--  -->
+
         <div v-if="image.profile_image !== null">
         <a href="#" v-b-modal.modal-custom-picture><img :src="userWithIcon.icon" class="fa-circle-user" alt="company profile"></a>
         </div>
+        
         <div v-else-if="image.profile_image == null">
         <a href="#" v-b-modal.modal-custom-picture><i class="fa-solid fa-circle-user"></i></a>
         </div>
-        <span style="font-weight:bold; color: red;">{{userWithIcon.msg}}</span>
+
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
                 <span id="comp-name">{{info.business_name}}</span>
