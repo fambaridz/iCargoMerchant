@@ -36,38 +36,48 @@
                 <!-- LOCATION FORM -- END CODE -->
 
                 <br><br><br><br>
+                <center>
                 <div class="container titletwo">
                     <!-- VEHICLE TYPE DROPDOWN -->
-                    <b-form-group id="input-group-3" label="WHOLE VEHICLE" label-for="input-3"
-                        class="font-weight-bold">
-                        <select class="form-select" aria-label="Default select example"
-                            style="padding: 0.7rem; margin-top: 10px;">
-                            <option selected>Choose Vehicle Type</option>
-                            <option value="1">Closed Box</option>
-                            <option value="2">Box</option>
-                            <option value="3">Pallet</option>
-                            <option value="4">Crate</option>
-                            <option value="5">Other</option>
-                        </select>
-                    </b-form-group>
+                    <v-app class="form">
+                    <label id="label" class="text-center text-muted required mb-2">
+                    WHOLE VEHICLE
+                    </label>
+                    <v-select
+                    label="Choose Vehicle Type"
+                    class="select d-flex"
+                    background-color="#eef5fd"
+                    :items="vehicles"
+                    item-text="vehicle_type"
+                    solo
+                    rounded
+                    >
+                    </v-select>
+                    </v-app>
+                    </div>
                     <!-- VEHICLE TYPE DROPDOWN -- END CODE -->
-
-                    <br><br>
-
+                
                     <!-- CARGO TYPE DROPDOWN -->
-                    <b-form-group id="input-group-4" label="PARTIAL LOAD" label-for="input-4"
-                        class="font-weight-bold">
-                        <select class="form-select" aria-label="Default select example"
-                            style="padding: 0.7rem; margin-top: 10px;">
-                            <option selected>Choose Cargo Type</option>
-                            <option value="1">Small Pickup</option>
-                            <option value="2">Closed Van</option>
-                            <option value="3">Pickup Truck</option>
-                            <option value="4">6w Fwd Truck</option>
-                        </select>
-                    </b-form-group>
-                </div>
-                <!-- CARGO TYPE DROPDOWN -- END CODE -->
+                    <div class="container titletwo">
+                    <v-app class="form">
+                    <label id="label" class="text-center text-muted required mb-2">
+                    CARGO TYPE
+                    </label>
+                    <v-select
+                    label="Choose Cargo Type"
+                    class="select d-flex"
+                    background-color="#eef5fd"
+                    :items="cargos"
+                    item-text="cargo_type"
+                    solo
+                    rounded
+                    >
+                    </v-select>
+                    </v-app>
+                    </div>
+
+                    </center>
+                    <!-- CARGO TYPE DROPDOWN -- END CODE -->
 
 
                 <!-- LENGTH - WIDTH - HEIGHT - WEIGHT -->
@@ -170,27 +180,39 @@
 
 
 <script>
+import axios from 'axios'
+
 import AddPackage from './AddPackage.vue';
 
   export default {
     Name: "RoutePanel",
-    data() {
-        return {
-            form: {
-                L: "",
-                W: "",
-                H: "",
-                KG: "",
-                cargotype: null,
-                vehicletype: null,
-                checked: "",
-            },
-            vehicletype: [{ text: "Choose Vehicle Type", value: null }, "Closed Box", "Box", "Pallet", "Crate", "Other"],
-            cargotype: [{ text: "Choose Cargo Type", value: null }, "Small Pickup", "Closed Van", "Pickup Truck", "6w Fwd Truck"],
-            show: true
-        };
-    },
+    data: () => ({
+        form: {
+            L: "",
+            W: "",
+            H: "",
+            KG: "",
+            checked: "",
+        },
+        vehicles: [],
+        cargos: [],
+        show: true
+    }),
+
+    mounted() {
+        this.displayList()
+    }, 
+
     methods: {
+
+        async displayList(){
+            await axios.get('/optionlist').then((res)=>{
+                console.log(res)
+                this.vehicles = res.data.Vehicles
+                this.cargos = res.data.CargoType
+            })
+        },
+        
         onSubmit(event) {
             event.preventDefault();
         },
@@ -219,6 +241,10 @@ import AddPackage from './AddPackage.vue';
 
 
 <style scoped>
+.form {
+  border-radius: 50px;
+  height: 5px;
+}
 p{
     color: #003060;
     font-family: 'Poppins','sans-serif';
@@ -247,7 +273,7 @@ pre {
 .titletwo{
     background-color: white;
     width: 50rem;
-    height:20rem;
+    height: 200px;
     font-weight:bold;
     color: #003060;
     font-size: 20px;
@@ -271,10 +297,10 @@ pre {
 .btn-custom{
     width: 125px;
     background: #FBCD10;
-    color: black;
+    color: white;
     font-family: 'Poppins','sans-serif';
     font-size: 20px;
-    box-shadow: 0px 3px 10px 1px gray;
+    box-shadow: 0px 2px 2px 1px #aaa;
     border:none;
 }
 .btn-custom:hover{

@@ -2,15 +2,15 @@
   <div class="container-fluid pt-5 p-1 background">
     <form @submit.prevent="loginUser">
       <h1 class="text-dark text-center">
-        Sign in to <span class="text">iCargo</span><span class="text-warning"> Pacific</span>
+        Sign in to <span style="color:#034d97">iCargo</span><span class="text-warning"> Pacific</span>
       </h1>
       <label class="text-left text-dark">Email </label>
       <v-text-field id="email" v-model="auth.email" class="field d-block mx-auto" :rules="[rules.required, rules.email]"
-        name="email" placeholder="Email" rounded solo filled></v-text-field>
+        name="email" placeholder="Email" background-color="#eef5fd" rounded solo filled></v-text-field>
       <label class="text-left text-dark">Password </label>
 
       <v-text-field id="password" v-model="auth.password" name="password" class="field d-block mx-auto"
-        placeholder="Password" rounded solo filled :rules="[rules.required]" :type="show ? 'text' : 'password'"
+        placeholder="Password" background-color="#eef5fd" rounded solo filled :rules="[rules.required]" :type="show ? 'text' : 'password'"
         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'" @click:append="show = !show"></v-text-field>
 
       <h5 class="text-right p-0 m-0 text-dark font-weight-normal">

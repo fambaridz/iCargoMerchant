@@ -1,25 +1,28 @@
 <template>
   <div>
         <!-- modal username -->
-        <b-modal id="modal-custom-name" ref="modal" title="Update Company Name" button-size="md" body-class="p-4" centered hide-header-close
+        <b-modal id="modal-custom-picture" ref="modal" title="Update Profile Picture" button-size="md" body-class="p-4" centered hide-header-close
             no-close-on-backdrop header-class="justify-content-center">
             <form ref="form">
                 <div class="container-fluid custom-input" style="width:80%">
                     <b-form-group label-for="name-input">
-                        <label for="comp-name">Company Name<span style="color:red;"
-                                    v-if="!compnameisvalid">*</span></label>
-                        <b-form-input id="comp-name" v-model="name.business_name"
-                            style="border-radius: 25px; margin-top:7px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;">
+                        <div class="text-center">
+                            <p style="font-size:0.9em">Please make sure that the image is in this path "/assets/profile" of the project folder
+                            <span style="color:red;">*</span></p>
+                        </div>
+                        <b-form-input id="comp-name" v-model="name.profile_image"
+                            style="border-radius: 25px; padding: 10px 15px; box-shadow: 0px 1px 1px 1px #ced6e0; background-color: ;"
+                            placeholder="Please input the file name ex: 'carlo.jpg'">
                         </b-form-input>
                     </b-form-group>
                 </div>
             </form>
             <template #modal-footer>
                 <div class="w-100 d-flex justify-content-center align-items-center" style="column-gap: 25px">
-                    <b-button size="md" @click="$bvModal.hide('modal-custom-name')" style="width:100px; border-radius:15px; background-color: white; color:#BC9476; box-shadow: 0px 1px 1px 1px #ced6e0; border:none;">
+                    <b-button size="md" @click="$bvModal.hide('modal-custom-picture')" style="width:100px; border-radius:15px; background-color: white; color:#BC9476; box-shadow: 0px 1px 1px 1px #ced6e0; border:none;">
                         Back
                     </b-button>
-                    <b-button size="md" :disabled="!formisvalid" @click="submitForm" style="width:100px; border-radius:10px; background-color: #FFC000; color:white; border:none; box-shadow: 0px 1px 1px 1px #ced6e0; ">
+                    <b-button size="md" @click="submitForm" style="width:100px; border-radius:10px; background-color: #FFC000; color:white; border:none; box-shadow: 0px 1px 1px 1px #ced6e0; ">
                         Update
                     </b-button>
                 </div>
@@ -37,27 +40,25 @@ export default {
         return{
             name:{
                 id:'',
-                business_name:''
+                profile_image:''
             }
         }
     },
 
-    computed:{
-        compnameisvalid(){
-            return !!this.name.business_name
-        },
-        formisvalid(){
-            return this.compnameisvalid 
-        },
+    // computed:{
+    //     compnameisvalid(){
+    //         return !!this.name.name_of_business
+    //     },
+    //     formisvalid(){
+    //         return this.compnameisvalid 
+    //     },
         
-    },
+    // },
     mounted() {
         this.getName()
     },
     methods:{
         submitForm(){
-            if(this.formisvalid){
-
 //update method
                 axios.put('/merchantupdate/'+this.name.id, this.name).then((response) => {
                     console.log(response.data)
@@ -65,10 +66,6 @@ export default {
                 }).catch((err) => {
                     console.log(err)
                 })
-
-            } else {
-                console.log('invalid form')
-            }
         },
         getName(){
 

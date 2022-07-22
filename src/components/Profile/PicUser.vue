@@ -2,11 +2,22 @@
 
     <div id="BodyUser">
         <!-- profile -->
-        <label for="file"><i class="fa-solid fa-circle-user"></i></label>
         
+        <!-- display if image cannot be found -->
+        <span style="font-weight:bold; color: red;">{{userWithIcon.msg}}</span>
+        <!--  -->
+
+        <div v-if="image.profile_image !== null">
+        <a href="#" v-b-modal.modal-custom-picture><img :src="userWithIcon.icon" class="fa-circle-user" alt="company profile"></a>
+        </div>
+        
+        <div v-else-if="image.profile_image == null">
+        <a href="#" v-b-modal.modal-custom-picture><i class="fa-solid fa-circle-user"></i></a>
+        </div>
+
         <div class="row text-center">
             <div class="col-lg-12 d-flex justify-content-center align-items-center profile">
-                <span id="comp-name">{{info.name_of_business}}</span>
+                <span id="comp-name">{{info.business_name}}</span>
                 <input type="file" id="file" style="display:none;">
                 <a href="#" v-b-modal.modal-custom-name><i class="fa-solid fa-pen-to-square"></i></a>
             </div>
@@ -14,40 +25,65 @@
         <!-- profile end -->
         <div>
             <NameModal/>
+            <ChangePic/>
         </div>
-
     </div>
 
 </template>
 
 <script>
 import NameModal from './NameModal.vue';
+import ChangePic from './ChangePic.vue'
 import axios from 'axios';
 
 
 export default {
     name: 'BodyUser',
      components:{
-        NameModal,
-     },
+    NameModal,
+    ChangePic,
+    ChangePic
+},
      data(){
         return{
             info:{
-                name_of_business:''
+                business_name:'',
+                profile_image: ''
             },
+            image:{
+            }
         }
      },
+    computed: {
+        userWithIcon() {
+            try {
+                return {
+                ...this.image,
+                icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+                }
+            } catch (error) {
+                return {
+                    msg:"image cannot be found"
+                }
+            }
+
+            // return {
+            //     ...this.image,
+            //     icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+            // }
+        }
+    },
     mounted() {
         this.getName()
     },
     methods: {
 
-     getName(){
+    async getName(){
 
-        axios.get("/user").then((response) => {
+        await axios.get("/user").then((response) => {
              
                   this.info = response.data
-
+                  this.image = response.data
                   console.log(this.info)
                    
           });
@@ -66,12 +102,13 @@ export default {
     height: 275px;
     color: #0D7CFF;
     margin-bottom: 10px;
+    border-radius: 50%;
 }
 #profile-pic{
     cursor: pointer;
 }
 .fa-circle-user:hover{
-    opacity: 0.7;
+    opacity: 0.71;
     cursor: pointer;
 }
 

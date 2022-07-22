@@ -17,9 +17,18 @@
         </div>
 
         <div class="justify-content-end d-flex align-items-center">
-          <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
-          &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
 
+          <div v-if="image.profile_image !== null">
+          <img :src="userWithIcon.icon" style="width:35px; height:35px; border-radius: 50%;" alt="company profile">
+          </div>
+
+          <div v-else-if="image.profile_image == null">
+             <i class="fa-solid fa-circle-user" style="color: #0d7cff"></i>
+          </div>
+
+          
+          &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
+          
           <b-dropdown id="dropdown-right" right variant="none">
             <b-dropdown-item id="item" href="/routes"
               ><i class="fa-solid fa-book-bookmark icon-body"></i>New
@@ -52,44 +61,56 @@
 import axios from "axios";
 export default {
   name: "NavbarTop",
-data(){
-  return{
-      userLogged : {},
-      errors:'',
-   
-  }
-},
-mounted(){
-      this.showuser()
+  data() {
+    return {
+      userLogged: {},
+      errors: '',
+      image: {
+      }
+
+    }
   },
- 
+  computed: {
+    userWithIcon() {
+      return {
+        ...this.image,
+        icon: this.image.profile_image && require(`../../assets/profile/${this.image.profile_image}`)
+      }
+    }
+  },
+  mounted() {
+    this.showuser()
+  },
+
 
 
   methods: {
 
-     showuser(){
-  
+    showuser() {
 
-        axios.get("/user").then((response) => {
-             
 
-                  this.userLogged = response.data
-//setting for temporarily the id of user for the booking orders. do not delete - jaq
-                  localStorage.setItem("book", response.data.id)
-                  console.log(this.userLogged)
-                   
-          });
-      },
+      axios.get("/user").then((response) => {
+
+
+        this.userLogged = response.data
+        this.image = response.data
+
+        //setting for temporarily the id of user for the booking orders. do not delete - jaq
+        localStorage.setItem("book", response.data.id)
+        console.log(this.userLogged)
+
+      });
+    },
     logout() {
       axios
         .post("/merchantlogout")
         .then((response) => {
           localStorage.removeItem("token");
-          this.$router.push({name:'signinPage'})
+          this.$router.push({ name: 'signinPage' })
         })
         .catch((err) => {
-        //  this.errors = err
-        //  console.log(err);
+          //  this.errors = err
+          //  console.log(err);
         });
     },
   },
@@ -127,7 +148,7 @@ mounted(){
   color: black;
   font-weight: 600;
 }
-@media (max-width: 500px) {
+@media (max-width: 650px) {
   #icargo {
     font-size: 1.3rem;
   }

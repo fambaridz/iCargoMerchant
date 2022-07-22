@@ -108,11 +108,17 @@
         <h3>Mode of Payment</h3>
     </div>
      <div class="container-fluid titlethreea">
-        <select id="state" class="form-select">
-         <option selected><b id="mop">Cash on Delivery</b></option>
-         <option><b>GCASH</b></option>
-         <option><b>Bank</b></option>
-        </select>
+        <v-app class="form">
+  
+            <v-select
+              label="Choose Mode of Payment"
+              class="select d-flex"
+              :items="items"
+              item-text="proof_of_identification"
+              solo
+            >
+            </v-select>
+          </v-app>
     </div>
 <!--For contacts-->
     <div class="container-fluid titlefour">
@@ -166,8 +172,29 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default{
     name: 'BookTitle',
+     data: () => ({
+    items: [
+   ],
+  }),
+  mounted(){
+    
+   this.getID();
+  
+  },
+  methods:{
+
+     async getID(){
+      await axios.get('/verification').then((res)=>{
+        this.items = res.data.proof_of_identification
+    
+      })
+     },
+  
+    
+  },
     
 }
 
@@ -190,6 +217,13 @@ export default{
 }
 .fa-circle-user {
   font-size: 2rem;
+}
+.form {
+  font-family: Roboto;
+  max-width: 900px;
+  background: white;
+  text-align: left;
+  height:50px;
 }
 @media(max-width:500px){
   #icargo{

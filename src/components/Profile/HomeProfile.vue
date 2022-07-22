@@ -45,11 +45,11 @@ export default {
 .body-content{
     padding-top: 3rem;
     padding-bottom: 3rem;
-    background: linear-gradient(to right, white, yellow);
+    background: linear-gradient(to right, white, #fbe541);
 }
 .sample{
   height: 100vh;
-  background: linear-gradient(to right, white, yellow);
+  background: linear-gradient(to right, white, #fbe541);
 }
 .square-box{
     background-color: white;

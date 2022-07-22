@@ -4,7 +4,7 @@
       <div class="row custom-input">
         <div class="col-12">
           <h1 class="text-dark text-center py-2">
-            Be an <span class="text-primary"> iCargo </span><span class="text-warning"> Merchant </span> today!
+            Be an <span style="color:#034d97"> iCargo </span><span class="text-warning"> Merchant </span> today!
           </h1>
           <label class="text-left text-muted required"> First Name </label>
           <v-text-field v-model="firstname" name="firstname" id="firstname" class="field d-block mx-auto"
