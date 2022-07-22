@@ -53,16 +53,17 @@
         <h3>Remarks</h3>
     </div>
       <div class="container-fluid titletwoa">
-        <form>
+        <b-form-input id="input" class="textarea" placeholder="Additional information or instruction for you delivery.." ></b-form-input>
+        <b-button pill type="submit" class="button2 button4" >SUBMIT</b-button>
+        <!-- <form>
          <textarea id="subject" name="subject" placeholder="Additional information or instruction for you delivery..."></textarea>
          <a href="#" class="button2 button4">Submit</a>
-        </form>
+        </form> -->
         </div>
     <center>
-    <a href="/routes" class="button1 button4" id="button">&nbsp;BACK</a>
-    <a href="/price" class="button button4" id="button">NEXT&nbsp;</a>
+    <a href="/routes" class="button1 button4">&nbsp;BACK</a>
+    <a href="/price" class="button button4">NEXT&nbsp;</a>
     </center>
-    <br><br>
       <!-- insert here OTHER DETAILS content -->
 </div>
 </template>
@@ -172,17 +173,16 @@ textarea {
 }
 .button {
   background-color:#FBCD10; /* button */
-  width: 120px;
   border: none;
-  color: white;
-  padding: 5px;
+  color: black;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Poppins','sans-serif';
-  box-shadow: 0px 2px 2px 1px #aaa;
-  margin: 30px 20px 0px 20px; /* spacing in between buttons */
+  box-shadow: 0px 3px 10px 1px gray;
+  margin: 4px 2px;
   cursor: pointer;
 }
 .button1 {border: none; border-radius: 4rem;}   
@@ -192,17 +192,16 @@ textarea {
 }
 .button1{
   background-color: #FBCD10; 
-  width: 120px;
   border: none;
-  color: white;
-  padding: 5px;
+  color: black;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Poppins','sans-serif';
-  box-shadow: 0px 2px 2px 1px #aaa;
-  margin: 30px 20px 0px 20px; /* spacing in between buttons */
+  box-shadow: 0px 3px 10px 1px gray;
+  margin: 4px 2px;
   cursor: pointer;
 }
 .button {border: none; border-radius: 4rem;}  
@@ -220,7 +219,7 @@ textarea {
   display: inline-block;
   font-size: 12px;
   font-family: 'Poppins','sans-serif';
-  box-shadow: 0px 2px 2px 1px #aaa;
+  box-shadow: 0px 3px 10px 1px gray;
   margin: 3px 2px;
   cursor: pointer;
 }
