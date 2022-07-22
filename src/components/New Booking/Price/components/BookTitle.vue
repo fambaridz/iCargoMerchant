@@ -16,14 +16,15 @@
   </b-tabs>
   </div>
     <div><br></div>
-    <!--For Booking Details-->
+    
+   <!--For Booking Details-->
   <div class="container-fluid titleone" >
       <h3>Booking Details</h3>
  </div>
   <div class="container-fluid titleonea">
     <div class="row" style="padding-left: 2rem">
       <div class="col-md-5">
-       <div class="container p-3 text-center" style="border: 2px solid #0D7CFF">
+       <div class="container p-3" style="border: 2px solid #0D7CFF">
          <label for="file"><b-icon class="icona" icon="plus-circle" scale="2"></b-icon></label>
          <br><br>
          <input type="file" id="file" style="display:none;"> 
@@ -108,17 +109,11 @@
         <h3>Mode of Payment</h3>
     </div>
      <div class="container-fluid titlethreea">
-        <v-app class="form">
-  
-            <v-select
-              label="Choose Mode of Payment"
-              class="select d-flex"
-              :items="items"
-              item-text="proof_of_identification"
-              solo
-            >
-            </v-select>
-          </v-app>
+       <select id="state" class="form-select">
+         <option selected><b>Cash on Delivery</b></option>
+         <option><b>GCASH</b></option>
+         <option><b>Bank</b></option>
+        </select> 
     </div>
 <!--For contacts-->
     <div class="container-fluid titlefour">
@@ -172,29 +167,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default{
     name: 'BookTitle',
-     data: () => ({
-    items: [
-   ],
-  }),
-  mounted(){
-    
-   this.getID();
-  
-  },
-  methods:{
-
-     async getID(){
-      await axios.get('/verification').then((res)=>{
-        this.items = res.data.proof_of_identification
-    
-      })
-     },
-  
-    
-  },
     
 }
 
@@ -217,13 +191,6 @@ export default{
 }
 .fa-circle-user {
   font-size: 2rem;
-}
-.form {
-  font-family: Roboto;
-  max-width: 900px;
-  background: white;
-  text-align: left;
-  height:50px;
 }
 @media(max-width:500px){
   #icargo{
@@ -250,6 +217,7 @@ export default{
   overflow: hidden;
   background-color: white;
   align-self: center;
+
 }
 .topnav a{
   width: 33.3%;
@@ -270,6 +238,18 @@ export default{
    border: 1px solid grey;
   color: solid white;
 }
+@media(max-width:400px){
+  .topnav{
+    font-size:0.8rem;
+  }
+
+}
+@media(max-width:300px){
+  .topnav{
+    font-size:0.5rem;
+  }
+
+}
 
 
 #input{
@@ -286,6 +266,7 @@ export default{
     color:grey;
     font-size:14px;
     font-family: 'Arial';
+    margin-left:5.5rem;
 }
 .par2{
     color:black;
@@ -370,6 +351,7 @@ export default{
 .icona{
     cursor:pointer; 
     color: #0D7CFF;
+    margin-left:7.3rem;
 }
 .icona:hover{
     cursor:pointer; 
@@ -417,47 +399,6 @@ box-shadow: 2px 10px 10px 2px rgba(0, 0, 0, 0.4)
 }
 #iconc{
   font-size:1rem;
-}
-@media (max-width:800px){
-    .titleone{
-    width: 35rem;
-    }
-    .titletwo{
-    width: 35rem;
-    }
-    .titlethree{
-    width: 35rem;
-    }
-    .titlefour{
-    width: 35rem;
-    }
-     .titleonea{
-    width: 35rem;
-    }
-    .titletwoa{
-    width: 35rem;
-    }
-    .titlethreea{
-    width: 35rem;
-    }
-    .titlefoura{
-    width: 35rem;
-    }
-    .titlefourb{
-    width: 35rem;
-    }
-    #input{
-    width:32rem;
-    }
-    #state{
-      width:22rem;
-    }
-    .row{
-  padding-left:.5rem;
-  }
-  #iconc{
-    padding-left:.1rem;
-  } 
 }
 @media (max-width:700px){
     .titleone{
@@ -546,79 +487,59 @@ box-shadow: 2px 10px 10px 2px rgba(0, 0, 0, 0.4)
   #usera{
   font-size: .9rem;
 }
-  
 }
-
 @media (max-width:400px){
     .titleone{
-    width: 20rem;
+    width: 25rem;
     }
     .titletwo{
-    width: 20rem;
+    width: 25rem;
     }
     .titlethree{
-    width: 20rem;
+    width: 25rem;
     }
     .titlefour{
-    width: 20rem;
+    width: 25rem;
     }
     .titleonea{
-    width: 20rem;
-    font-size: 0.7rem;
+    width: 25rem;
     }
     .titletwoa{
-    width: 20rem;
-    font-size: 0.7rem;
+    width: 25rem;
     }
     .titlethreea{
-    width: 20rem;
+    width: 25rem;
     }
     .titlefoura{
-    width: 20rem;
+    width: 25rem;
     }
     .titlefourb{
-    width: 20rem;
+    width: 25rem;
     }
     #input{
-    width:16.7rem;
+    width:22rem;
     }
      #state{
-      width:17rem;
+      width:22rem;
     } 
     .col-md-5{
-      width:15rem;
+      width:20rem;
     }
     .details{
-    padding-left: 0.4rem;
+    padding-left: 1rem;
 }
  .form-check-input{
     margin-left:1rem;
   }
   #usera{
-  font-size: .6em;
+  font-size: .9rem;
 }
-#userone{
-  font-size: 0.7rem;
+  
 }
-.form-select{
-  font-size: 0.8rem;
+@media (max-width:350px){
+    
+  
 }
-
-}
-@media(max-width:400px){
-    #top-nav{
-      font-size: 0.8rem;
-    }
-}
-@media(max-width:300px){
-    #top-nav{
-      font-size: 0.5rem;
-    }
-}
-
-
-
-
 
 
 
