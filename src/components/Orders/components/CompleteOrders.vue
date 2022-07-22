@@ -15,6 +15,11 @@
             </b-tabs>
         </div>
 
+        <div class="Adding"
+            v-for="getbook in getbook"
+            v-bind:key="getbook.id">
+        <form>
+
         <b-container class="complete">
             <b-nav>
                 <!--ORDER-->
@@ -23,7 +28,7 @@
                     <div class="container-fluid box-header">
                         
                             <div class="col-6 text-left" style="height: 1px;">
-                                <h3 id="date-time">March 25,2022 3:00PM</h3>
+                                <h3 id="date-time">{{getbook.date}} {{getbook.time}}</h3>
                             </div>
                             <div class="row">
                             <div class="col-15 text-left" style="margin-left:2ch;">
@@ -35,13 +40,11 @@
                     </div>
                     <div class="container-fluid address">
                         <i class="fa-regular fa-circle" style="color:#FBCD10; margin-left: 3ch;"></i>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="pu-address">House No., Street, City, Country, Postal
-                            Code</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="pu-address">{{getbook.recipient_location}}</span>
                         <br>
                         <br>
                         <i class="fa-solid fa-location-dot" style="color:#FBCD10; margin-left: 3ch;"></i>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="do-address">House No., Street, City, Country, Postal
-                            Code</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="do-address">{{getbook.sender_location}}</span>
                     </div>
 
                     <div class="container-fluid box-footer">
@@ -50,12 +53,12 @@
                                 <span id="vehicle-type">Truck</span>
                             </div>
                             <div class="col-6 text-center">
-                                <span id="price">P424</span>
+                                <span id="price">P {{getbook.price}}</span>
                             </div>
                         </div>
                     </div>
                 </b-row>
-                <!--ORDER-->
+                <!--ORDER
                 <br>
                 <b-row>
                     <div class="container-fluid box-header">
@@ -91,9 +94,11 @@
                             </div>
                         </div>
                     </div>
-                </b-row>
+                </b-row>-->
             </b-nav>
         </b-container>
+        </form>
+        </div>
     </div>
 </template>
 
@@ -111,16 +116,28 @@ export default {
         return {
          user: '',
 
-         
+         getbook: [
+                {
+                    date: 'JULY 21, 2022',
+                    time: '5:00 PM',
+                    recipient_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    sender_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    price: '50',
+                },
+               
+            ]
         }
     },
 
     mounted(){
     
-            this.getbook()
+            //this.getbook()
     },
 
     methods: {
+        book(){
+
+        },
 
      
         
@@ -130,11 +147,14 @@ export default {
          
 
               axios.get("/getbooking/"+id).then((response)=>{
-                 console.log(response.data)
+                    console.log(response.data)
+                    this.getbook = response
+                    console.log(this.getbook)
 
             //please do use an array to loop it in the template table row
 
                }).catch((errors)=>{
+                    console.log(err)
    
     
              })  
