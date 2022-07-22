@@ -1,33 +1,45 @@
 <template>
   <div class="Modal">
+    
     <b-button id=show-btn @click="showModal">See Details</b-button>
 
-    <b-modal ref="my-modal" title="Order Number">
+    <b-modal ref="my-modal" hide-header-close=""> 
+      
+      <div class="Adding"
+            v-for="showdetails in showdetails"
+            v-bind:key="showdetails.id">
+        <form>
 
       <!--DATE AND TIME-->
       <div class="d-block">
+
+        <div class="container-fluid drop-offadd">
+          <header>ORDER #{{showdetails.order_number}}</header>
+        <br>
+
+        </div>
         <div class="container-fluid datetime">
-          <h3 style="color:white;font-weight: bolder;">March 25, 2022 3:00PM</h3>
+          <h3 style="color:white;font-weight: bolder;">{{showdetails.date}} {{showdetails.time}}</h3>
         </div>
 
         <!--ADDRESS-->
         <div class="container-fluid pick-upadd" style="margin-left:2ch;">
           <br>
           <i class="far fa-circle" style="color:#FBCD10; text-align:left;"></i>
-          &nbsp;&nbsp;<span id="usera">Makati City</span>
+          &nbsp;&nbsp;<span id="usera">{{showdetails.sender_location}}</span>
           <p>
-            House No., Street, City, Country, Postal Code
+            {{showdetails.sender_location}}
             <br>
-            Sender's Name | Sender's Contact Number
+            {{showdetails.sender_name}} | {{showdetails.sender_contact}}
           </p>
         </div>
         <div class="container-fluid drop-offadd" style="margin-left:2ch;">
           <i class="far fa-circle" style="color:#FBCD10; text-align:left;"></i>
-          &nbsp;&nbsp;<span id="usera">Valenzuela City</span>
+          &nbsp;&nbsp;<span id="usera">{{showdetails.recipient_location}}</span>
           <br>
-          House No., Street, City, Country, Postal Code
+          {{showdetails.recipient_location}}
           <br>
-          Recipient's Name | Recipient's Contact Number
+          {{showdetails.recipient_name}} | {{showdetails.recipient_contact}}
         </div>
 
         <!--PACKAGE DETAILS-->
@@ -48,10 +60,10 @@
           </div>
           <div class="row">
             <div class="col-6 text-left" style="color: black; height: 22px;">
-              <span style="color:black ; font-weight:bold; margin-left: 12ch;">34x54x22cm</span>
+              <span style="color:black ; font-weight:bold; margin-left: 12ch;">{{showdetails.dimention}}cm</span>
             </div>
             <div class="col-6 text-center">
-              <span style="color:black; font-weight:bold;">Crate</span> <br><br>
+              <span style="color:black; font-weight:bold;">{{showdetails.cargo_type}}</span> <br><br>
             </div>
           </div>
           <div class="row">
@@ -64,10 +76,10 @@
           </div>
           <div class="row">
             <div class="col-6 text-left" style="color: black; height: 22px;">
-              <span style="color:black ; font-weight:bold; margin-left: 12ch;">14kg </span>
+              <span style="color:black ; font-weight:bold; margin-left: 12ch;"> {{showdetails.weight}} kg </span>
             </div>
             <div class="col-6 text-center">
-              <span style="color:black; font-weight:bold;"> Truck </span> <br><br>
+              <span style="color:black; font-weight:bold;"> {{showdetails.cargo_service}} </span> <br><br>
             </div>
           </div>
         </div>
@@ -79,7 +91,7 @@
               <span style="color:black ; font-weight:bold; margin-left: 1ch;">Distance </span>
             </div>
             <div class="col-6 text-center">
-              <span style="color:black; font-weight:bold;"> 703km </span>
+              <span style="color:black; font-weight:bold;"> {{showdetails.distance}} km </span>
             </div>
           </div>
         </div>
@@ -89,7 +101,7 @@
           <p>
             <span style="color:black ; font-weight:bold;">Remarks</span>
             <br>
-            Fragile items. Please handle with caressssssss.
+            {{showdetails.remarks}}
           </p>
         </div>
 
@@ -100,7 +112,7 @@
               <span style="color:black ; font-weight:bold; margin-left: 1ch;">Price</span>
             </div>
             <div class="col-6 text-center">
-              <span style="color:#003060; font-weight:bold;"> P500 </span>
+              <span style="color:#003060; font-weight:bold;"> P{{showdetails.price}} </span>
             </div>
           </div>
           <div class="row">
@@ -108,10 +120,12 @@
               <span style="color:black ; font-weight:bold; margin-left: 1ch;">Mode of Payment </span>
             </div>
             <div class="col-6 text-center">
-              <span style="color:#003060; font-weight:bold;"> Cash on Delivery </span>
+              <span style="color:#003060; font-weight:bold;"> {{showdetails.mode_of_payment}} </span>
             </div>
           </div>
         </div>
+      </div>
+      </form>
       </div>
     </b-modal>
   </div>
@@ -123,6 +137,30 @@ export default {
     data(){
         return {
           details : {},
+
+          showdetails: [
+                {
+                    order_number: '111',
+                    date: 'JULY 21, 2022',
+                    time: '5:00 PM',
+                    sender_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    sender_name: 'Dianna Mateo',
+                    sender_contact: '09999999999',
+                    recipient_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    recipient_name: 'Joyce Balala',
+                    recipient_contact: '09999999999',
+                    package_picture: '',
+                    dimention: '34x54x22',
+                    cargo_type: 'Crate',
+                    cargo_service: 'Truck',
+                    weight: '10',
+                    distance: '125',
+                    remarks: 'None',
+                    price: '50',
+                    mode_of_payment: 'GCASH',
+                },
+               
+            ]
         }
     },
   mounted(){
@@ -147,7 +185,28 @@ export default {
    
     
              })  */
-    }
+            
+
+            let id = localStorage.getItem('details');
+         
+
+              axios.get("/getbooking/"+id).then((response)=>{
+                    console.log(response.data)
+                    this.showdetails = response
+                    console.log(this.showdetails)
+
+            
+
+               }).catch((errors)=>{
+                    console.log(err)
+   
+    
+             }) 
+    },
+
+    details(){
+
+            },
   } 
 }
 </script>
