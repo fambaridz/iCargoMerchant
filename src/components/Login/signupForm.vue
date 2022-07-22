@@ -85,8 +85,6 @@
         </div>
         <br />
       </div>
-
-      <v-btn color="info" @click="signupData" >BUTTON</v-btn>
     </form>
   </div>
 </template>
