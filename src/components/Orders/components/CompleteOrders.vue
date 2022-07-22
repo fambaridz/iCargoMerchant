@@ -28,7 +28,7 @@
                     <div class="container-fluid box-header">
                         
                             <div class="col-6 text-left" style="height: 1px;">
-                                <h3 id="date-time">{{getbook.date}} {{getbook.time}}</h3>
+                                <h3 id="date-time">{{getbook.date}} {{getbook.time}} </h3>
                             </div>
                             <div class="row">
                             <div class="col-15 text-left" style="margin-left:2ch;">
@@ -116,40 +116,31 @@ export default {
         return {
          user: '',
 
-         getbook: [
-                {
-                    date: 'JULY 21, 2022',
-                    time: '5:00 PM',
-                    recipient_location: '20 Tabang, Guiguinto, Bulacan 3015',
-                    sender_location: '20 Tabang, Guiguinto, Bulacan 3015',
-                    price: '50',
-                },
-               
-            ]
+         getbook: []
         }
     },
 
     mounted(){
     
-            //this.getbook()
+          this.book()
     },
 
     methods: {
-        book(){
-
-        },
+      
 
      
         
-        getbook(){
+       book(){
              
              let id = localStorage.getItem('book');
          
 
-              axios.get("/getbooking/"+id).then((response)=>{
-                    console.log(response.data)
-                    this.getbook = response
-                    console.log(this.getbook)
+            axios.get("/getbooking/"+id).then((response)=>{
+                 
+                    this.getbook = response.data.complete
+
+                 
+                  
 
             //please do use an array to loop it in the template table row
 
