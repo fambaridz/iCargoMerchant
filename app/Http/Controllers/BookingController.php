@@ -108,15 +108,24 @@ class BookingController extends Controller
         //get booking condition to same of email
        // $bookingGet = DB::table('booking')->where('email',$email)->get();
                                  //OR
-     $bookingGet = DB::table('booking')->where('merchant_id',$merchantid)->get();
+     $bookingGet = DB::table('booking')->where('merchant_id',$merchantid)->where('status','complete')->get();
+
+
+     $ship = DB::table('booking')->where('merchant_id',$merchantid)->where('status','ship')->get();
+
+
+     $ongoing = DB::table('booking')->where('merchant_id',$merchantid)->where('status','ongoing')->get();
+
+
+     $cancel = DB::table('booking')->where('merchant_id',$merchantid)->where('status','cancel')->get();
 
         //get booking condition to same order number
        // $bookingGet = DB::table('booking')->where('order_number',$order_number)->get();
 
 //if booking get        
-        if ($bookingGet) {
+        if ($bookingGet || $ship || $ongoing || $cancel) {
             return response()->json(
-              $bookingGet
+              ['complete' => $bookingGet, 'ship' =>  $ship, 'ongoing' =>  $ongoing, 'cancel' =>  $cancel ]
             );
         } else {
             //if query failed
