@@ -110,6 +110,8 @@ export default {
     data(){
         return {
          user: '',
+
+         
         }
     },
 
@@ -128,7 +130,7 @@ export default {
          
 
               axios.get("/getbooking/"+id).then((response)=>{
-                    //console.log(response.data)
+                 console.log(response.data)
 
             //please do use an array to loop it in the template table row
 
