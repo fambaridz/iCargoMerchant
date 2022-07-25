@@ -126,7 +126,7 @@ export default {
     background-color: #003060;
     padding: 1rem;
     color: white;
-    padding-left: 3rem;
+    padding-left: 2rem;
     width: 50rem;
 }
 
