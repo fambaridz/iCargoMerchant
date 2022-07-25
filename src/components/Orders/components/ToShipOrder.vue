@@ -160,7 +160,7 @@ export default {
     background-color: #003060;
     padding: 1rem;
     color: white;
-    padding-left: 3rem;
+    padding-left: 2rem;
     width: 50rem;
 }
 
@@ -298,7 +298,7 @@ a.disable:hover {
     }
 
     #date-time {
-    margin-left: -1ch;
+    margin-left: -2ch;
     font-size: 18px;
     }
 
@@ -307,8 +307,8 @@ a.disable:hover {
     }
 
     #cancel {
-        margin-left: 9.5ch;
-        width: 7rem;
+        margin-left: 10ch;
+        width: 8rem;
     }
 }
 
