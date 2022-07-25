@@ -81,4 +81,9 @@ export default {
     margin-left: 16ch;
   }
 }
+@media (max-width:350px) {
+  #but1 {
+    margin-left: 9.8ch;
+  }
+}
 </style>
