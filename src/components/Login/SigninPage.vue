@@ -150,13 +150,14 @@ a:hover{
 
 form{
   font-family: Roboto;
-  max-width: 760px;
-  margin: 0px auto;
-  margin-bottom: 100px;
+  max-width: 700px;
+  margin: 10px auto;
+  margin-bottom: 100px auto;
   background: white;
   text-align: left;
   padding: 40px 40px 10px 40px;
   border-radius: 50px;
+  size:80%;
 }
 
 label{
