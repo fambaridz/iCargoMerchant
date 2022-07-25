@@ -255,4 +255,13 @@ export default {
     margin-left: 16ch;
   }
 }
+@media (max-width:350px) {
+  .datetime {
+    width: 22rem;
+  }
+
+  #show-btn {
+    margin-left: 9.8ch;
+  }
+}
 </style>
