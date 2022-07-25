@@ -71,14 +71,6 @@ export default {
          user: '',
 
          getbook: [
-                {
-                    date: 'JULY 25, 2022',
-                    time: '5:00 PM',
-                    recipient_location: '20 Tabang, Guiguinto, Bulacan 3015',
-                    sender_location: '20 Tabang, Guiguinto, Bulacan 3015',
-                    vehicle: 'Truck',
-                    price: '50',
-                },
                
             ]
         }
@@ -86,24 +78,22 @@ export default {
 
     mounted(){
     
-          //this.book()
+         this.bookcancel()
     },
 
     methods: {
-        book(){
-
-        },
+     
 
      
         
-        getbook(){
+        bookcancel(){
              
              let id = localStorage.getItem('book');
          
 
               axios.get("/getbooking/"+id).then((response)=>{
                     console.log(response.data)
-                    this.getbook = response
+                    this.getbook = response.data.cancel
                     console.log(this.getbook)
 
             //please do use an array to loop it in the template table row
