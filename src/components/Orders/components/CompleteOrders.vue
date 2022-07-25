@@ -50,7 +50,7 @@
                     <div class="container-fluid box-footer">
                         <div class="row">
                             <div class="col-6 text-left" style="color: black; height: 20px;">
-                                <span id="vehicle-type">Truck</span>
+                                <span id="vehicle-type">{{getbook.vehicle}}</span>
                             </div>
                             <div class="col-6 text-center">
                                 <span id="price">P {{getbook.price}}</span>
@@ -58,43 +58,9 @@
                         </div>
                     </div>
                 </b-row>
-                <!--ORDER
+                
                 <br>
-                <b-row>
-                    <div class="container-fluid box-header">
-                        
-                            <div class="col-6 text-left" style="height: 10px;">
-                                <h3 id="date-time">March 25,2022 3:00PM</h3>
-                            </div>
-                            <div class="row">
-                            <div class="col-15 text-left" style="margin-left:2ch;">
-                                <b-row>
-                                    <ModalCompleteOrders />
-                                </b-row>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid address">
-                        <i class="fa-regular fa-circle" style="color:#FBCD10; margin-left: 3ch;"></i>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="pu-address">House No., Street, City, Country, Postal
-                            Code</span> <br>
-                        <br>
-                        <i class="fa-solid fa-location-dot" style="color:#FBCD10; margin-left: 3ch;"></i>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span id="do-address">House No., Street, City, Country, Postal
-                            Code</span>
-                    </div>
-
-                    <div class="container-fluid box-footer">
-                        <div class="row">
-                            <div class="col-6 text-left" style="color: black; height: 20px;">
-                                <span id="vehicle-type">Truck</span>
-                            </div>
-                            <div class="col-6 text-center">
-                                <span id="price">P424</span>
-                            </div>
-                        </div>
-                    </div>
-                </b-row>-->
+                
             </b-nav>
         </b-container>
         </form>
