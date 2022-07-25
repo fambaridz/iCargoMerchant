@@ -133,7 +133,7 @@ class BookingController extends Controller
                 'success' => false,
                 'message' => 'Failed to get',
             ], 500);
-        }
+        }   
 
     }
 }
