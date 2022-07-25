@@ -17,77 +17,113 @@
 
         <br>
 
+        <div class="Adding"
+            v-for="getbook in getbook"
+            v-bind:key="getbook.id">
+        <form> 
+
         <b-container class="cancelled">
             <!--ORDER-->
             <b-row>
                 <div class="container-fluid box-header">
-                    <h5>March 25, 2022 3:00PM</h5>
+                    <h5>{{getbook.date}} {{getbook.time}}</h5>
                 </div>
                 <div class="container-fluid address">
                     <i class="fa-regular fa-circle" style="color:#FBCD10; margin-left: 3ch;"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="pu-address">House No., Street, City, Country, Postal Code</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="pu-address">{{getbook.recipient_location}}</span>
                     <br>
                     <br>
-
-
                     <i class="fa-solid fa-location-dot" style="color:#FBCD10; margin-left: 3ch;"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="do-address">House No., Street, City, Country, Postal Code</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="do-address">{{getbook.sender_location}}</span>
                 </div>
 
                 <div class="container-fluid box-footer">
                     <div class="row">
                         <div class="col-6 text-left" style="color: black; height: 20px;">
-                            <span id="vehicle-type">Truck</span>
+                            <span id="vehicle-type">{{getbook.vehicle}}</span>
                         </div>
                         <div class="col-6 text-center">
-                            <span id="price">P424</span>
+                            <span id="price">P {{getbook.price}}</span>
                         </div>
                     </div>
                 </div>
             </b-row>
-            <!--ORDER-->
+
             <br>
-            <b-row>
-                <div class="container-fluid box-header">
-                    <h5>March 25, 2022 3:00PM</h5>
-                </div>
-                <div class="container-fluid address">
-                    <i class="fa-regular fa-circle" style="color:#FBCD10; margin-left: 3ch;"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="pu-address">House No., Street, City, Country, Postal Code</span>
-                    <br>
-                    <br>
 
-
-                    <i class="fa-solid fa-location-dot" style="color:#FBCD10; margin-left: 3ch;"></i>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span id="do-address">House No., Street, City, Country, Postal Code</span>
-                </div>
-
-                <div class="container-fluid box-footer">
-                    <div class="row">
-                        <div class="col-6 text-left" style="color: black; height: 20px;">
-                            <span id="vehicle-type">Truck</span>
-                        </div>
-                        <div class="col-6 text-center">
-                            <span id="price">P424</span>
-                        </div>
-                    </div>
-                </div>
-            </b-row>
         </b-container>
+        </form>
+        </div> 
     </div>
 </template>
 
 <script>
 import NavbarTop from '../../../components/Navbar/NavbarTop.vue';
 import TitleHeader from './TitleHeader.vue';
+import axios from 'axios';
+
 export default {
     name: "CancelledOrders",
-    components: {
-        NavbarTop,
-        TitleHeader
+    components: { NavbarTop, TitleHeader },
+
+    data(){
+        return {
+         user: '',
+
+         getbook: [
+                {
+                    date: 'JULY 25, 2022',
+                    time: '5:00 PM',
+                    recipient_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    sender_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    vehicle: 'Truck',
+                    price: '50',
+                },
+               
+            ]
+        }
     },
+
+    mounted(){
+    
+          //this.book()
+    },
+
+    methods: {
+        book(){
+
+        },
+
+     
+        
+        getbook(){
+             
+             let id = localStorage.getItem('book');
+         
+
+              axios.get("/getbooking/"+id).then((response)=>{
+                    console.log(response.data)
+                    this.getbook = response
+                    console.log(this.getbook)
+
+            //please do use an array to loop it in the template table row
+
+               }).catch((errors)=>{
+                    console.log(err)
+   
+    
+             })  
+        }
+    }
 }
+
+
+
 </script>
+
+
+
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:ital,wght@0,600;1,400&display=swap');
 
