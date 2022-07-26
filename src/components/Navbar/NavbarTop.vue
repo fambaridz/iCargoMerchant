@@ -30,7 +30,7 @@
           &nbsp;&nbsp;<span id="user">Hi,{{userLogged.first_name}} {{userLogged.last_name}}</span>
           
           <b-dropdown id="dropdown-right" right variant="none">
-            <b-dropdown-item id="item" href="/routes"
+            <b-dropdown-item id="item" href="/newbooking"
               ><i class="fa-solid fa-book-bookmark icon-body"></i>New
               Order</b-dropdown-item
             >

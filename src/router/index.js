@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import price from '../components/New Booking/Price/NewBooking.vue'
-import details from '../components/New Booking/Other Details/NavBody.vue'
 import toship from '../components/Orders/components/ToShipOrder.vue'
 import ongoing from '../components/Orders/components/OngoingOrder.vue'
 import complete from '../components/Orders/components/CompleteOrders.vue'
@@ -45,19 +43,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "register" */ '../components/Login/verifyMerchant.vue')
   },
   {
-    name:'price',
-    path: '/price',
-    component: price
-  },
-  {
-    name:'routes',
-    path: '/routes',
-    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/Routes/ICARGO-HEADER.vue')
-  },
-  {
-    name:'details',
-    path: '/details',
-    component: details
+    name:'newbooking',
+    path: '/newbooking',
+    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/NewBooking.vue')
   },
   {
     name:'toship',
