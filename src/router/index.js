@@ -4,6 +4,7 @@ import toship from '../components/Orders/components/ToShipOrder.vue'
 import ongoing from '../components/Orders/components/OngoingOrder.vue'
 import complete from '../components/Orders/components/CompleteOrders.vue'
 import cancel from '../components/Orders/components/CancelledOrders.vue'
+import newbooking from '../components/New Booking/NewBooking.vue'
 
 Vue.use(VueRouter)
 
@@ -45,7 +46,7 @@ const routes = [
   {
     name:'newbooking',
     path: '/newbooking',
-    component: () => import(/* webpackChunkName: "register" */ '../components/New Booking/NewBooking.vue')
+    component: newbooking
   },
   {
     name:'toship',
