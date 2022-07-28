@@ -3,7 +3,7 @@
     <NavbarTop/>
     <TitleHeader/>
     <BookingDetails/>
-    <NewModal/>
+    <!-- <NewModal/> -->
    
     
   </div>
@@ -13,7 +13,7 @@
 import BookingDetails from './components/BookingDetails.vue'
 import NavbarTop from '../Navbar/NavbarTop.vue'
 import TitleHeader from './components/TitleHeader.vue'
-import NewModal from './components/NewModal.vue'
+// import NewModal from './components/NewModal.vue'
 
 
 export default {
@@ -23,7 +23,7 @@ export default {
     BookingDetails,
     NavbarTop,
     TitleHeader,
-    NewModal,
+    // NewModal,
 
 
     

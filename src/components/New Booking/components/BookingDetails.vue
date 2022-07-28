@@ -24,12 +24,12 @@
                             <br><br>
                              <b-form-group for="validationDefault01" id="input-group-1" label-for="input-1"
                                 class="font-weight-bold text-primary inputloc">
-                                <b-form-input id="input" v-model="form.senderloc"
+                                <b-form-input id="input" v-model="form.sender_loc"
                                     name="senderloc" placeholder="Sender's Location" required></b-form-input>
                             </b-form-group>
                             <br><br>
                             <b-form-group id="input-group-2" label-for="input-2" class="font-weight-bold text-primary inputloc">
-                                <b-form-input id="input" v-model="form.recipientloc"
+                                <b-form-input id="input" v-model="form.recipient_loc"
                                     name="recipientloc" placeholder="Recipient's Location" prepend="@" required></b-form-input>
                             </b-form-group>
                         </div>
@@ -51,7 +51,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text">+63</span>
   </div>
-  <input type="number"  class="form-control" id="num" v-model="form.sender_number" name="sender_number">
+  <input type="number"  class="form-control" id="num" v-model="form.sender_num" name="sender_number">
 </div>
         <br>
         <!--Recipients Location-->
@@ -62,7 +62,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text">+63</span>
   </div>
-  <input type="number" class="form-control" id="num" v-model="form.recipient_number" name="recipient_number">
+  <input type="number" class="form-control" id="num" v-model="form.recipient_num" name="recipient_number">
 </div>
 
   <!--Responsible for payment-->
@@ -87,7 +87,7 @@
                     WHOLE VEHICLE
                     </label>
                     <v-select
-                    v-model="form.vehicles"
+                    v-model="form.vehicle_type"
                     label="Choose Vehicle Type"
                     class="select d-flex"
                     background-color="#eef5fd"
@@ -109,7 +109,7 @@
                     CARGO TYPE
                     </label>
                     <v-select
-                    v-model="form.cargos"
+                    v-model="form.cargo_type"
                     label="Choose Cargo Type"
                     class="select d-flex"
                     background-color="#eef5fd"
@@ -249,21 +249,156 @@
         <h3 style="padding-bottom:.3rem;padding-top:.3rem;">Mode of Payment</h3>
     </div>
      <div class="container-fluid sender">
-       <select id="state" class="form-select">
-         <option selected><b>Cash on Delivery</b></option>
-         <option><b>GCASH</b></option>
-         <option><b>Bank</b></option>
-        </select> 
+       <form class="container d-flex">
+      <v-app class="form" style="width:45rem;float:center;">
+                          <v-select
+                          v-model="form.mode_payment"
+                          label="Choose Mode of Payment"
+                          class="select d-flex"
+                          background-color="#eef5fd"
+                          :items="modes"
+                          item-text="ModePay"
+                          solo
+                          rounded
+                          >
+      </v-select>
+                          </v-app>
+                          <br><br>
+                          </form>
         </div>
       <!--Remarks-->
     <div class="container-fluid contact">
         <h3 style="padding-bottom:.3rem;padding-top:.3rem;">Remarks</h3>
     </div>
       <div class="container-fluid sender">
-        <b-form-input id="remarks" class="textarea" v-model="form.remarks" name="remarks"  placeholder="Additional information or instruction for you delivery.." ></b-form-input>
-
+        <b-form-input id="remarks" class="textarea" v-model="form.remarks" name="remarks"  placeholder="Additional information or instruction for you delivery.." ></b-form-input>     
         </div>
+        <br>
+
+    <form class="container d-flex justify-content-center dropdown">
+        <center>  
+        <b-button id=btn-custom @click="showModal">Place Order</b-button>
+        </center>
+    </form>
+   
+    <div class="Modal">
     
+     <b-modal ref="my-modal" hide-footer title="BOOKING DETAILS">
+      
+      
+      <!-- <div class="Adding"
+            v-for="showdetails in showdetails"
+            v-bind:key="showdetails.id"> -->
+    
+       <div class="d-block"> 
+        <!--ADDRESS-->
+        <br>
+        <div class="container-fluid pick-upadd" style="margin-left:2ch;">
+          <i class="far fa-circle" style="color:#FBCD10; text-align:left;"></i>
+          &nbsp;&nbsp;<span id="usera">{{form.sender_loc}}</span>
+          <p>
+            {{form.sender_name}} | {{form.sender_num}}
+          </p>
+        </div>
+        <div class="container-fluid drop-offadd" style="margin-left:2ch;">
+          <i class="far fa-circle" style="color:#FBCD10; text-align:left;"></i>
+          &nbsp;&nbsp;<span id="usera">{{form.recipient_loc}}</span>
+          <p>
+          {{form.recipient_name}} | {{form.recipient_num}}
+          </p>
+        </div>
+
+        <!--PACKAGE DETAILS-->
+        <div class="container-fluid package-details" style="margin-left:5ch;">
+          <br>
+          <div class="row">
+            <div class="col-1 text-left" style="color: black; height: 4px;">
+              <br><img src="" width="70" height="50" alt="PACKAGE PIC">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-left" style="color: black; height: 22px;">
+              <span style="color:black ; margin-left: 12ch;">length</span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:black;">Cargo type</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-left" style="color: black; height: 22px;">
+              <span style="color:black ; font-weight:bold; margin-left: 12ch;">{{form.length}}x{{form.width}}x{{form.height}}cm</span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:black; font-weight:bold;">{{form.cargo_type}}</span> <br><br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-left" style="color: black; height: 22px;">
+              <span style="color:black ;margin-left: 12ch;">Weight</span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:black;"> Vehicle Type</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-left" style="color: black; height: 22px;">
+              <span style="color:black ; font-weight:bold; margin-left: 12ch;"> {{form.weight}} kg </span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:black; font-weight:bold;"> {{form.vehicle_type}} </span> <br><br>
+            </div>
+          </div>
+        </div>
+
+        <!--DISTANCE-->
+        <div class="container-fluid distance">
+          <div class="row">
+            <div class="col-6 text-left" style="color: black; height: 25px;">
+              <span style="color:black ; font-weight:bold; margin-left: 1ch;">Distance </span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:black; font-weight:bold;"> {{form.distance}} km </span>
+            </div>
+          </div>
+        </div>
+
+        <!--REMARKS-->
+        <div class="container-fluid Remarks" style="margin-left: 1ch;">
+          <p>
+            <span style="color:black ; font-weight:bold;">Remarks</span>
+            <br>
+            {{form.remarks}}
+          </p>
+        </div>
+
+        <!--PRICE & MOP-->
+        <div class="container-fluid Price-MOP">
+          <div class="row">
+            <div class="col-6 text-left" style="color: black;">
+              <span style="color:black ; font-weight:bold; margin-left: 1ch;">Price</span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:#003060; font-weight:bold;"> P{{form.price}} </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-left" style="color: black;">
+              <span style="color:black ; font-weight:bold; margin-left: 1ch;">Mode of Payment </span>
+            </div>
+            <div class="col-6 text-center">
+              <span style="color:#003060; font-weight:bold;"> {{form.mode_payment}} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+       <pre
+                        class="text-center">  <b-button pill href="/toship" variant="primary font-weight-bold" style="font-family:'Poppins', 'sans-serif'">   BOOK NOW   </b-button></pre>
+      
+     
+      <!-- </div> -->
+    </b-modal>
+  </div>
     
   </div>
 </template>
@@ -273,21 +408,29 @@
 import axios from 'axios'
   export default {
     Name: "RoutePanel",
-    data: () => ({
+    
+     data: () => ({
         form: {
                 data:'',
-                senderloc:"",
-                recipientloc:"",
+                sender_loc:"",
+                sender_name:"",
+                sender_num:"",
+                recipient_loc:"",
+                recipient_name:"",
+                recipient_num:"",
                 length: "",
                 width: "",
                 height: "",
                 weight: "",
-                cargotype: null,
-                vehicletype: null,
-                checked: "",
+                remarks:"",
+                cargo_type: '',
+                vehicle_type: '',
+                mode_payment: '',
+                
         },
         vehicles: [],
         cargos: [],
+        modes:[],
         show: true
     }),
 
@@ -296,17 +439,55 @@ import axios from 'axios'
     }, 
 
     methods: {
-        },
-
-        async displayList(){
+       
+      async displayList(){
             await axios.get('/optionlist').then((res)=>{
                 console.log(res)
                 this.vehicles = res.data.Vehicles
                 this.cargos = res.data.CargoType
+                this.modes = res.data.ModePay
             })
         },
-        
-       
+
+        showModal() {
+      this.$refs['my-modal'].show()
+      axios.post('/testbook',this.form).then((response)=>{
+                 console.log(response)
+                 this.data=response
+            }).catch((err)=>{
+                console.log(err)
+            })
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
+    },
+    showdetails(){
+      //do not delete this.
+      /*   axios.get('/getbook').then((response)=>{
+          
+            this.details = response.data[0]
+
+           // console.log(this.details)
+             }).catch((errors)=>{
+    
+             })  */
+            
+
+            let id = localStorage.getItem('details');
+         
+              axios.get("/getbooking/"+id).then((response)=>{
+                    console.log(response.data)
+                    this.showdetails = response
+                    console.log(this.showdetails)
+               }).catch((errors)=>{
+                    console.log(err)    
+             }) 
+    },
+
+    details(){
+
+            },
+        },    
     }
 </script>
 
@@ -317,6 +498,11 @@ import axios from 'axios'
     padding-bottom: 50px;
     padding-top: 50px;
 }
+
+.Price-MOP{
+  background-color: lightgray;
+}
+
 .location{
     background-color: #003060;
     padding: 3rem;
@@ -406,12 +592,6 @@ h1{
   color: black;
   text-align:left;
 }
-#state{
-    width:45rem;
-    border-color:white;
-    font-family: 'Poppins','sans-serif';
-
-}
 
 #input{
     border-radius:5rem;
@@ -419,14 +599,11 @@ h1{
 .input-group-text{
 border-top-left-radius:5rem; 
 border-bottom-left-radius: 5rem;
-
 }
 #num{
  border-top-right-radius:5rem; 
 border-bottom-right-radius: 5rem; 
-
 }
-
 textarea {
   width: 100%;
   height: 50px;
@@ -437,8 +614,78 @@ textarea {
   background-color: #f8f8f8;
   font-size: 16px;
   color: gray;
-  resize: none;
 }
+#usera {
+  font-family: 'Poppins', 'sans-serif';
+  font-size: 1rem;
+  color: rgb(49, 48, 48);
+  text-align: left;
+}
+.distance {
+  background-color: lightgray;
+}
+#btn-custom{
+    width: 10rem;
+    background: #FBCD10;
+    color: white;
+    font-family: 'Poppins','sans-serif';
+    font-size: 20px;
+    box-shadow: 0px 2px 2px 1px #aaa;
+    border:none;
+    border-radius:3rem;
+}
+#btn-custom:hover{
+    background: #ffae00;
+    color: rgb(255, 255, 255);
+}
+@media (max-width:800px) {
+.location{
+    width: 40rem;
+}
+.contact{
+    width: 34rem;  
+}
+.sender{
+    width: 34rem;
+}
+}
+@media (max-width:700px) {
+.location{
+    width: 25rem;
+}
+.contact{
+    width: 25rem;  
+}
+.sender{
+    width: 25rem;
+}
+}
+@media (max-width:500px) {
+.location{
+    width: 20rem;
+}
+.contact{
+    width: 20rem;  
+}
+.sender{
+    width: 20rem;
+}
+}
+@media (max-width:350px) {
+.location{
+    width: 18rem;
+}
+.contact{
+    width: 18rem;  
+}
+.sender{
+    width: 18rem;
+}
+#userone{
+  font-size: .9rem;
+}
+}
+
 
 
 </style>
