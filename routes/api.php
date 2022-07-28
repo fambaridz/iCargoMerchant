@@ -52,3 +52,5 @@ Route::put('/merchantupdate/{id}', [IdentificationController::class, 'update']);
 Route::post('/customersignup', [CustomerController::class,'signup']);
 
 Route::post('/customerlogin', [CustomerController::class,'logIn']);
+
+Route::post('/testbook', [BookingController::class,'insertTestBook']);

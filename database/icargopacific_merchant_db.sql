@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2022 at 10:19 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Generation Time: Jul 28, 2022 at 10:36 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -134,6 +134,27 @@ CREATE TABLE `merchant` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mode_of_payment`
+--
+
+CREATE TABLE `mode_of_payment` (
+  `id` int(11) NOT NULL,
+  `ModePay` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mode_of_payment`
+--
+
+INSERT INTO `mode_of_payment` (`id`, `ModePay`) VALUES
+(1, 'CASH ON DELIVERY'),
+(2, 'GCASH'),
+(3, 'CARD/DEBIT CARD'),
+(4, 'ONLINE BANKING');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `personal_access_tokens`
 --
 
@@ -148,6 +169,30 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_booking`
+--
+
+CREATE TABLE `test_booking` (
+  `book_id` int(11) NOT NULL,
+  `sender_loc` varchar(255) NOT NULL,
+  `recipient_loc` varchar(255) NOT NULL,
+  `sender_num` varchar(255) NOT NULL,
+  `recipient_num` varchar(255) NOT NULL,
+  `sender_name` varchar(255) NOT NULL,
+  `recipient_name` varchar(255) NOT NULL,
+  `vehicle_type` varchar(255) NOT NULL,
+  `cargo_type` varchar(255) NOT NULL,
+  `length` float NOT NULL,
+  `width` float NOT NULL,
+  `height` float NOT NULL,
+  `weight` float NOT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `mode_payment` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -239,12 +284,24 @@ ALTER TABLE `merchant`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mode_of_payment`
+--
+ALTER TABLE `mode_of_payment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `test_booking`
+--
+ALTER TABLE `test_booking`
+  ADD PRIMARY KEY (`book_id`);
 
 --
 -- Indexes for table `vehicle`
@@ -299,10 +356,22 @@ ALTER TABLE `merchant`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `mode_of_payment`
+--
+ALTER TABLE `mode_of_payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `test_booking`
+--
+ALTER TABLE `test_booking`
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vehicle`

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Cargo;
 use App\Models\Vehicle;
+use App\Models\Testbooking;
 use Illuminate\Support\Facades\Validator;
 
 //IMPORT DB IF YOU USE DB FOR QUERYING
@@ -94,12 +95,14 @@ class BookingController extends Controller
 
         $vehicle = DB::table('vehicle')->get('vehicle_type');
         $cargo = DB::table('cargo')->get('cargo_type');
+        $mode = DB::table('mode_of_payment')->get('ModePay');
 
         //will return status 200 containing the contents of the database
         return response()->json
             ([
                 'Vehicles'=>$vehicle,
                 'CargoType'=>$cargo,
+                'ModePay'=>$mode,
                 ]
                 ,200);
     }
@@ -135,5 +138,72 @@ class BookingController extends Controller
             ], 500);
         }   
 
+    }
+
+    public function insertTestBook(Request $request)
+    {
+
+        //This is the code for validation of every request
+        $validated = Validator::make($request->all(), [
+            'sender_loc' => 'required',
+            'sender_num' => 'required|digits:10',
+            'sender_name' =>'required',
+            'recipient_name' => 'required',
+            'recipient_loc' => 'required',
+            'recipient_num' => 'required|digits:10',
+            'vehicle_type' => 'required',
+            'length' => 'required|numeric',
+            'width' => 'required|numeric',
+            'height' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'cargo_type' => 'required',
+            'remarks' => 'required',
+            'mode_payment' => 'required',
+    
+        ]);
+
+        //if validation fails this will return the error response
+        if ($validated->fails()) { 
+            $responseArr['message'] = $validated->errors();
+            return response()->json($responseArr);
+        }
+
+        //if correct, it will insert in the table of booking
+        $bookingTest = DB::table('test_booking')->insert(
+            [
+
+                'sender_loc' => $request->sender_loc,
+                'sender_num' => $request->sender_num,
+                'sender_name' => $request -> sender_name,
+                'recipient_name' => $request -> recipient_name,
+                'recipient_loc' => $request->recipient_loc,
+                'recipient_num' => $request->recipient_num,
+                'vehicle_type' => $request->vehicle_type,
+                'length' => $request->length,
+                'width' => $request->width,
+                'height' => $request->height,
+                'weight' => $request->weight,
+                'cargo_type' => $request->cargo_type,
+                'remarks' => $request->remarks,
+                'mode_payment' => $request->mode_payment,
+
+            ]
+        );
+
+        //it will return status 200 if it was inserted in the DB and 500 if inserting is not successful
+        if ($bookingTest) {
+            return response()->json(
+                [
+                    'success' => $bookingTest,
+                    'message' => 'successfully inserted',
+                ],
+                200
+            );
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to insert',
+            ], 500);
+        }
     }
 }
