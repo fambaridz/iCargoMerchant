@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2022 at 10:08 AM
+-- Generation Time: Jul 29, 2022 at 10:21 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -50,15 +50,6 @@ CREATE TABLE `booking` (
   `mode_payment` varchar(255) NOT NULL,
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`order_number`, `merchant_id`, `sender_loc`, `sender_name`, `sender_num`, `recipient_loc`, `recipient_name`, `recipient_num`, `vehicle_type`, `length`, `width`, `height`, `weight`, `cargo_type`, `time`, `distance`, `inclusions`, `remarks`, `price`, `mode_payment`, `status`) VALUES
-(1, NULL, 'tanza', 'fam', '9389307414', 'tondo', 'nicole', '9777229391', 'Truck', 10, 10, 10, 10, 'Box', NULL, NULL, NULL, NULL, NULL, 'CASH ON DELIVERY', NULL),
-(2, NULL, 'Tondo', 'emman', '9389307414', 'Tanza', 'fam', '9777229391', 'Truck', 10, 10, 10, 10, 'Box', NULL, NULL, NULL, NULL, NULL, 'CASH ON DELIVERY', NULL),
-(3, NULL, 'Manila', 'Emman', '9212464041', 'Cavite', 'Patrick', '9389307414', 'Truck', 5, 5, 5, 2, 'Roll', NULL, NULL, NULL, NULL, NULL, 'GCASH', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,13 +132,6 @@ CREATE TABLE `merchant` (
   `permit_image` varchar(255) DEFAULT NULL,
   `about` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `merchant`
---
-
-INSERT INTO `merchant` (`id`, `email`, `password`, `first_name`, `last_name`, `profile_image`, `contact_number`, `business_name`, `proof_id`, `id_image`, `permit_image`, `about`) VALUES
-(1, 'quartzgerald@gmail.com', '$2y$10$VAZSQ.n.VOgbd1kiEeyFIuFte43vO7EdHLNEZwtwmBHk8.4YzcJxC', 'Fam', 'Barida', NULL, '9999999999', 'KGarden Online Shop', 'Philippine Passport', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -311,7 +295,7 @@ ALTER TABLE `verify_merchant`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `order_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_number` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cargo`
@@ -341,7 +325,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mode_of_payment`
