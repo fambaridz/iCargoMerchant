@@ -31,6 +31,7 @@ class IdentificationController extends Controller
             'business_name' => 'required',
             'password' => 'required|min:8',
             'confirmPassword'=>'required|same:password',
+            'proof_id'=>'required',
         ]);
 
         //if validation fails this will return the error response
@@ -54,6 +55,7 @@ class IdentificationController extends Controller
                     'business_name' => $request->business_name,
                     'password' => Hash::make($request->password),
                     'about' => $request->about,
+                    'proof_id' => $request->proof_id,
                 ]
             );
 
