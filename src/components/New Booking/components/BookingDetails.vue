@@ -217,7 +217,7 @@
      <div class="container-fluid sender">
         <div>
         <span id="user">Standard Service</span> &nbsp;&nbsp;<i class="fa-solid fa-circle-info" style="color:#FBCD10;"></i>
-        <input class="form-check-input" type="checkbox" v-model="form.checked" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
+        <input class="form-check-input" type="checkbox" v-model="form.checked1" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
         <div><span id="user">--</span></div>
   
       </div>
@@ -226,21 +226,21 @@
         <div>
        <span id="user">Special Assistance</span> &nbsp;&nbsp;<i class="fa-solid fa-circle-info" style="color:#FBCD10;"></i>
         
-        <input class="form-check-input" type="checkbox" v-model="form.checked" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
+        <input class="form-check-input" type="checkbox" v-model="form.checked2" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
         <div><span id="user" >--</span></div>
       </div>
     </div>
     <div class="container-fluid sender">
         <div>
         <span id="user">Customer Service</span> &nbsp;&nbsp;<i class="fa-solid fa-circle-info" style="color:#FBCD10;"></i>
-        <input class="form-check-input" type="checkbox" v-model="form.checked" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
+        <input class="form-check-input" type="checkbox" v-model="form.checked3" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
         <div><span id="user">--</span></div>
       </div>
     </div>
     <div class="container-fluid sender">
         <div>
         <span id="user">Tarpaulin Cover</span> &nbsp;&nbsp;<i class="fa-solid fa-circle-info" style="color:#FBCD10;"></i>
-        <input class="form-check-input" type="checkbox" v-model="form.checked" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
+        <input class="form-check-input" type="checkbox" v-model="form.checked4" id="checkboxNoLabel" value="" aria-label="..."  style="color:#003060; float: right;"/>
         <div><span id="user" style="color:#003060">P50</span></div>
       </div>
     </div>
