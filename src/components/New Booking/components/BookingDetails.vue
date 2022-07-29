@@ -451,7 +451,7 @@ import axios from 'axios'
 
         showModal() {
       this.$refs['my-modal'].show()
-      axios.post('/testbook',this.form).then((response)=>{
+      axios.post('/booking',this.form).then((response)=>{
                  console.log(response)
                  this.data=response
             }).catch((err)=>{
