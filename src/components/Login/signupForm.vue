@@ -71,20 +71,91 @@
           </v-text-field>
         </div>
       </div>
-
-      <p class="text-muted text-center">
-        Already have an account?<router-link to="SignUp.vue" class="text-primary">
-          Sign in.</router-link>
-      </p>
-
-      <div class="container">
-        <div class="center">
-          <router-link to=" " id="buttons" class="text btn btn-light btn-lg shadow text-muted">Back</router-link>
-          <router-link to="/verify" id="buttons" class="text btn btn-warning btn-lg shadow text-light">Next
-          </router-link>
+       <div class="row custom-input">
+        <div class="col-12">
+          <h1 class="text-dark text-center" id="header">Account Verification</h1>
+            
+            <v-app class = "form">
+            <label id="label" class="text-left text-muted required mb-2">
+              Proof of Identification
+            </label>
+            <v-select v-model="proof_id" name="proof_id" id="proof_id"
+              label="Choose Government-issued ID Type"
+              class="select d-flex"
+              background-color="#eef5fd"
+              :items="items"
+              item-text="proof_of_identification"
+              solo
+              rounded
+            ></v-select>        
+            </v-app>
+            <br>
+            <br>
+            <br>
         </div>
-        <br />
+        </div>
+        <div class="row d-flex justify-content-center" id="card">
+        <div class="col-lg-6 custom-input">
+          <label class="text-left text-muted required my-2">
+            Photo of your ID Card
+          </label>
+          <v-file-input
+            background-color="#eef5fd"
+            label="Choose File..."
+            solo
+            rounded
+            prepend-icon="mdi-camera"
+          ></v-file-input>
+        </div>
+        <div class="col-lg-6 custom-input" id="permit">
+          <label class="text-left text-muted required my-2">
+            Business Permit
+          </label>
+          <v-file-input
+            background-color="#eef5fd"
+            label="Choose File..."
+            solo
+            rounded
+            prepend-icon="mdi-camera"
+          ></v-file-input>
+        </div>
       </div>
+      <v-row class="container">
+        <v-col class="center">
+          <input type="checkbox" id="accept" value="accept" /> &nbsp;
+          <label for="accept" class="check text-dark">
+            I have read, understood and accept the 
+            Terms and Conditions and Privacy Policy.</label>
+          
+        </v-col>
+      </v-row>
+
+      <div class="row custom-input">
+        <div class="col-12">
+          <p class="text-muted text-center my-4">
+            Already have an account?<router-link
+              to="SignUp.vue"
+              class="text-primary"
+            >
+              Sign in.</router-link
+            >
+          </p>
+        </div>
+      </div>
+<center>
+      <div class="box custom-input">
+        <div class="col-12">
+          <router-link
+            to="/"
+            id="button1"
+            class="text btn btn-light btn-lg shadow text-muted"
+            >Back</router-link>
+
+          <v-btn color="info" to="/registration" id="button2" class="text btn btn-warning btn-lg shadow text-light" 
+          @click="signupData" >Sign Up</v-btn>
+        </div>
+      </div>
+</center>
     </form>
   </div>
 </template>
@@ -95,9 +166,17 @@ import axios from 'axios'
 
 
 export default {
+name: "SignUp",
+
+  mounted(){
+    
+   this.getID();
+  
+  },
 
   data() {
     return {
+      items: [],
       data: '',
       show: false,
       firstname: "",
@@ -107,6 +186,7 @@ export default {
       business_name: "",
       password: "",
       confirmPassword: "",
+      proof_id:"",
       rules: {
         required: (value) => !!value || "Required.",
         shortcounter: (value) =>
@@ -148,7 +228,7 @@ export default {
       },
     };
   },
-
+  
 
 methods: {
     signupData(){
@@ -156,16 +236,23 @@ methods: {
 //post method, signup middleware
        axios.post('/merchantsignup',this.$data).then((response)=>{
         
-        //    console.log(response.data)
+            console.log(response.data)
+            this.data = response
             //response.data to get response  
              }).catch((errors)=>{
-   
-             this.error =  errors.response.data;
+                console.log(errors)
+             //this.error =  errors.response.data;
     
              }) 
     },
 
-
+     async getID(){
+      await axios.get('/verification').then((res)=>{
+       // console.log(res)
+        this.items = res.data.MerchantID
+        console.log(this.items)
+      })
+     },
   },
 
 };
@@ -207,6 +294,20 @@ router-link.text {
   text-decoration: none;
   font-weight: bold;
 }
+#button1 {
+    padding: 5px 8px;
+    border-radius: 20px;
+    width:6rem;
+    margin-left:-0.7ch;
+  }
+  #button2 {
+    padding: 5px 8px;
+    border-radius: 20px;
+    width: 8rem;
+    margin-left:3ch;
+    background-color: #FBDC10;
+
+  }
 
 form {
   font-family: Roboto;
@@ -218,6 +319,9 @@ form {
   border-radius: 50px;
   margin-bottom: 100px;
   flex-wrap: wrap;
+}
+.form {
+  height: 5px;
 }
 
 label {
