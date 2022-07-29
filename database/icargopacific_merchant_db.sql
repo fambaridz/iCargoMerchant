@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2022 at 10:36 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jul 29, 2022 at 10:08 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,25 +29,36 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `booking` (
   `order_number` int(11) NOT NULL,
-  `merchant_id` int(255) NOT NULL,
-  `sender_location` varchar(255) NOT NULL,
-  `sender_contact` varchar(255) NOT NULL,
-  `recipient_location` varchar(255) NOT NULL,
-  `recipient_contact` varchar(255) NOT NULL,
-  `vehicle` varchar(255) NOT NULL,
+  `merchant_id` int(255) DEFAULT NULL,
+  `sender_loc` varchar(255) NOT NULL,
+  `sender_name` varchar(255) NOT NULL,
+  `sender_num` varchar(255) NOT NULL,
+  `recipient_loc` varchar(255) NOT NULL,
+  `recipient_name` varchar(255) NOT NULL,
+  `recipient_num` varchar(255) NOT NULL,
+  `vehicle_type` varchar(255) NOT NULL,
   `length` float NOT NULL,
   `width` float NOT NULL,
   `height` float NOT NULL,
   `weight` float NOT NULL,
   `cargo_type` varchar(255) NOT NULL,
-  `time` varchar(255) NOT NULL,
-  `distance` int(11) NOT NULL,
-  `inclusions` varchar(255) NOT NULL,
-  `remarks` text NOT NULL,
-  `price` decimal(10,0) NOT NULL,
-  `mode_of_payment` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `time` varchar(255) DEFAULT NULL,
+  `distance` int(11) DEFAULT NULL,
+  `inclusions` varchar(255) DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL,
+  `mode_payment` varchar(255) NOT NULL,
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`order_number`, `merchant_id`, `sender_loc`, `sender_name`, `sender_num`, `recipient_loc`, `recipient_name`, `recipient_num`, `vehicle_type`, `length`, `width`, `height`, `weight`, `cargo_type`, `time`, `distance`, `inclusions`, `remarks`, `price`, `mode_payment`, `status`) VALUES
+(1, NULL, 'tanza', 'fam', '9389307414', 'tondo', 'nicole', '9777229391', 'Truck', 10, 10, 10, 10, 'Box', NULL, NULL, NULL, NULL, NULL, 'CASH ON DELIVERY', NULL),
+(2, NULL, 'Tondo', 'emman', '9389307414', 'Tanza', 'fam', '9777229391', 'Truck', 10, 10, 10, 10, 'Box', NULL, NULL, NULL, NULL, NULL, 'CASH ON DELIVERY', NULL),
+(3, NULL, 'Manila', 'Emman', '9212464041', 'Cavite', 'Patrick', '9389307414', 'Truck', 5, 5, 5, 2, 'Roll', NULL, NULL, NULL, NULL, NULL, 'GCASH', NULL);
 
 -- --------------------------------------------------------
 
@@ -126,10 +137,17 @@ CREATE TABLE `merchant` (
   `contact_number` varchar(255) NOT NULL,
   `business_name` varchar(255) NOT NULL,
   `proof_id` varchar(255) NOT NULL,
-  `id_image` varchar(255) NOT NULL,
-  `permit_image` varchar(255) NOT NULL,
+  `id_image` varchar(255) DEFAULT NULL,
+  `permit_image` varchar(255) DEFAULT NULL,
   `about` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `merchant`
+--
+
+INSERT INTO `merchant` (`id`, `email`, `password`, `first_name`, `last_name`, `profile_image`, `contact_number`, `business_name`, `proof_id`, `id_image`, `permit_image`, `about`) VALUES
+(1, 'quartzgerald@gmail.com', '$2y$10$VAZSQ.n.VOgbd1kiEeyFIuFte43vO7EdHLNEZwtwmBHk8.4YzcJxC', 'Fam', 'Barida', NULL, '9999999999', 'KGarden Online Shop', 'Philippine Passport', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -169,30 +187,6 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test_booking`
---
-
-CREATE TABLE `test_booking` (
-  `book_id` int(11) NOT NULL,
-  `sender_loc` varchar(255) NOT NULL,
-  `recipient_loc` varchar(255) NOT NULL,
-  `sender_num` varchar(255) NOT NULL,
-  `recipient_num` varchar(255) NOT NULL,
-  `sender_name` varchar(255) NOT NULL,
-  `recipient_name` varchar(255) NOT NULL,
-  `vehicle_type` varchar(255) NOT NULL,
-  `cargo_type` varchar(255) NOT NULL,
-  `length` float NOT NULL,
-  `width` float NOT NULL,
-  `height` float NOT NULL,
-  `weight` float NOT NULL,
-  `remarks` varchar(255) NOT NULL,
-  `mode_payment` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -298,12 +292,6 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `test_booking`
---
-ALTER TABLE `test_booking`
-  ADD PRIMARY KEY (`book_id`);
-
---
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
@@ -323,7 +311,7 @@ ALTER TABLE `verify_merchant`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `order_number` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cargo`
@@ -353,7 +341,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mode_of_payment`
@@ -366,12 +354,6 @@ ALTER TABLE `mode_of_payment`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `test_booking`
---
-ALTER TABLE `test_booking`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
