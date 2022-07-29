@@ -14,10 +14,12 @@ class Booking extends Model
     protected $fillable = [
         'merchant_id',
         'sender_location',
+        'sender_name',
         'sender_contact',
         'recipient_location',
+        'recipient_name',
         'recipient_contact',
-        'vehicle',
+        'vehicle_type',
         'length',
         'width',
         'height',
