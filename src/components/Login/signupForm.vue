@@ -145,12 +145,8 @@
 <center>
       <div class="box custom-input">
         <div class="col-12">
-          <router-link
-            to="/signin"
-            id="button1"
-            class="text btn btn-light btn-lg shadow text-muted"
-            >Back</router-link>
-
+          <v-btn color="info" to="/signin" id="button1" class="text btn btn-light btn-lg shadow text-muted" 
+          @click="signupData" >Back</v-btn>
           <v-btn color="info" to="/registration" id="button2" class="text btn btn-warning btn-lg shadow text-light" 
           @click="signupData" >Sign Up</v-btn>
         </div>
