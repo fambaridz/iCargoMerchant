@@ -256,7 +256,7 @@ methods: {
 
 <style scoped>
 .bg {
-  min-height: 100vh;
+  min-height: 260vh;
   background: linear-gradient(to bottom right,
       #280eb8,
       #3352db,
