@@ -7,7 +7,9 @@
         </div>
         <h2 class="text-dark text-center"> Congratulations, <span>ABC Hardware</span> for being an iCargo Merchant!</h2>
         <div class="d-flex justify-content-center">
-          <a href="/" id="startBookingButton" class="btn mx-auto" role="button">Start Booking</a>
+          <!--a href="/newbooking" id="startBookingButton" class="btn mx-auto" role="button">Start Booking</a-->
+          <v-btn to="/newbooking" id="button" class="btn mx-auto" 
+          @click="newbooking" >Start Booking</v-btn>
         </div>
       </form>
   </div>
@@ -35,7 +37,7 @@ h2 {
   text-align: center;
 }
 
-a,button {
+#button {
   margin: 0px auto;
   border-radius: 50px;
   text-decoration: none;
@@ -48,7 +50,7 @@ a,button {
   background-color: #003366;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-a:hover{
+#button:hover{
   color: #ffc107;
 }
 form{
@@ -107,7 +109,7 @@ span{
     height:auto;
     max-width: 90%;
   }
-  a,button {
+  #button {
     font-size: 0.8rem;
     margin: 0px auto;
     border-radius: 50px;
@@ -130,7 +132,7 @@ span{
     font-size: 0.6rem;
     
   }
-  a,button {
+  #button {
     font-size: 0.6rem;
     margin: 0px auto;
     border-radius: 50px;
