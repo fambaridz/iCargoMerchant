@@ -45,7 +45,7 @@
               ><i class="fa-solid fa-circle-question icon-body"></i>Help
               Center</b-dropdown-item
             >
-            <b-dropdown-item id="item"  @click="logout"
+            <b-dropdown-item id="item"  href="/signin"
               ><i class="fa-solid fa-right-from-bracket icon-body"></i
               >Logout</b-dropdown-item
             >
