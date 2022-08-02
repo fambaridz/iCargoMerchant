@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div >
+   <div class="Adding"
+            v-for="showdetails in showdetails"
+            v-bind:key="showdetails.id">
+        <form>
+      
+
     <div class="GMAP">
       <br>
       <GmapMap :center='center' :zoom='12' style='width:100%;  height: 200px;'>
@@ -15,7 +21,7 @@
           <br>
           <div row>
             <span class="sender">Sender:</span>
-            <span class="name">Emelio Marasigan W. Araullones</span>
+            <span class="name"> {{showdetails.sender_name}}</span>
           </div>
         </div>
 
@@ -24,7 +30,7 @@
         <div class="container-fluid Recipient">
           <div row>
             <span class="recipient">Recipient:</span>
-            <span class="name">Loida Anne Alicia Deline Q. Esteban</span>
+            <span class="name"> {{showdetails.recipient_name}} </span>
             <br> <br>
           </div>
         </div>
@@ -33,7 +39,7 @@
         <div class="container-fluid PUAdd">
           <div row>
             <i class="fa-solid fa-box box"></i>
-            <span class="address"> Port Batangas, Batangas Port Access Road, Calatagan, Batangas </span>
+            <span class="address">{{showdetails.sender_location}} </span>
             <br><br>
           </div>
         </div>
@@ -49,7 +55,7 @@
         <div class="container-fluid Driver-Details">
           <h6 class="h6">Your Driver</h6>
           <i class="fa-regular fa-circle-user user-icon"></i>
-          <span id="driver-name">Bartholomew D. Sales</span>
+          <span id="driver-name">{{showdetails.driver_name}} </span>
           <i class="fa-solid fa-square-phone phone-icon"></i>
           <br>
           <span id="logistic-company">&nbsp;&nbsp;&nbsp;AllGoods Logistic Co.</span>
@@ -61,26 +67,94 @@
           <div row>
             <br>
             <i class="fa-solid fa-box boxa"></i>
-            <span class="address2 justified">Port Batangas, Batangas Port Access Road, Calatagan, Batangas</span>
+            <span class="address2 justified">{{showdetails.recipient_location}} </span>
           </div>
         </div>
 
       </div>
     </div>
+    </form>
+    </div>
   </div>
 </template>
 
 <script>
+
+import axios from "axios";
+
+
 export default {
   name: 'GoogleMap',
-  data() {
-    return {
-      center: { lat: 45.508, lng: -73.587 },
-      currentPlace: null,
-      markers: [],
-      places: [],
-    }
+  data(){
+        return {
+            center: { lat: 45.508, lng: -73.587 },
+            currentPlace: null,
+            markers: [],
+            places: [],
+            details : {},
+
+          showdetails: [
+                {
+                   
+                    driver_name: 'Juan Dela Cruz',
+                    sender_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    sender_name: 'Dianna Mateo',
+                    sender_contact: '09999999999',
+                    recipient_location: '20 Tabang, Guiguinto, Bulacan 3015',
+                    recipient_name: 'Joyce Balala',
+                   
+                   
+                },
+               
+            ]
+        }
+    },
+  mounted(){
+   // this.showdetails()
   },
+  methods: {
+    showModal() {
+      this.$refs['my-modal'].show()
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
+    },
+
+    showdetails(){
+      //do not delete this.
+      /*   axios.get('/getbook').then((response)=>{
+          
+            this.details = response.data[0]
+
+           // console.log(this.details)
+             }).catch((errors)=>{
+   
+    
+             })  */
+            
+
+            let id = localStorage.getItem('details');
+         
+
+              axios.get("/getbooking/"+id).then((response)=>{
+                    console.log(response.data)
+                    this.showdetails = response
+                    console.log(this.showdetails)
+
+            
+
+               }).catch((errors)=>{
+                    console.log(err)
+   
+    
+             }) 
+    },
+
+    details(){
+
+            },
+  } 
+
 };
 
 </script>
